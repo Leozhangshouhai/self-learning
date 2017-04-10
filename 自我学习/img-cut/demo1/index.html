@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>基于HTML5的图片裁剪插件 - JS代码网</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/default.css">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="dist/cropper.css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
+<!--[if IE]>
+<![endif]-->
+</head>
+<body>
+<div class="htmleaf-container">
+	<!-- Content -->
+<div class="container">
+<div class="row">
+  <div class="col-md-9">
+	<!-- <h3 class="page-header">Demo:</h3> -->
+	<div class="img-container">
+	  <img src="assets/img/picture.jpg" alt="Picture">
+	</div>
+  </div>
+  <div class="col-md-3">
+	<!-- <h3 class="page-header">Preview:</h3> -->
+	<div class="docs-preview clearfix">
+	  <div class="img-preview preview-lg"></div>
+	  <!--<div class="img-preview preview-md"></div>-->
+	  <!--<div class="img-preview preview-sm"></div>-->
+	  <!--<div class="img-preview preview-xs"></div>-->
+	</div>
+
+	<!-- <h3 class="page-header">Data:</h3> -->
+  </div>
+</div>
+</div>
+</div>
+<button style="width: 100px;height: 100px;background-color: red" onclick=aa()>确定</button>
+<!-- Alert -->
+<img  id="cut-img" src="" alt="" width="300px" style="display: block; width: 791.906px; min-width: 0px !important; min-height: 0px !important; max-width: none !important; max-height: none !important; height: 445.447px; margin-left: -79.1906px; margin-top: -44.5447px; transform: none;" ;/>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="dist/cropper.js"></script>
+<script src="js/main.js"></script>
+<script>
+	function aa(){
+		$("#cut-img")[0].src=$('.preview-lg').find('img')[0].src;
+		$("#cut-img").css({
+
+		})
+
+		console.log("come i ");
+	}
+</script>
+</body>
+</html>
+<!--<div style="display:none">-->
+	<!--<script type="text/javascript">-->
+	<!--var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");-->
+	<!--document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F6f798e51a1cd93937ee8293eece39b1a' type='text/javascript'%3E%3C/script%3E"));-->
+	<!--</script>-->
+	<!--<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5718743'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5718743%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script>-->
+	<!--</div>-->

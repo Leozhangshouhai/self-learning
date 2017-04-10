@@ -1,0 +1,185 @@
+/**
+ * Created by leo on 2017/1/9.
+ */
+$(function () {
+    css_right();
+    //  获取订单信息
+    air_pay_data.pay_info = Storage.get('air-pay-data');
+    air_pay_data.plane_information_json = Storage.get('json_plane_order_personInfo');
+    air_pay_data.init();
+    page.click_init();
+    page.pay_way();
+
+});
+// 部分CSS 样式修正
+function css_right() {
+    var padding = parseInt($('.airtickets-show-dd-star').css('height')) - $('.airtickets-show-dd-timelong').height();
+    var padding_top = padding / 2;
+    $('.airtickets-show-dd-timelong').css({
+        'padding-top': padding_top + 'px',
+        'padding-bottom': padding_top + 'px'
+    })
+};
+
+var air_pay_data = {
+    pay_info: {},
+    plane_information_json: {},
+    sign: 1,
+    init: function () {
+        this.data_binding();
+    },
+    data_binding: function () {
+
+        //  初始化绑定
+        $('.info-show-title-add').html(this.plane_information_json.go.city + '-' + this.plane_information_json.go.ecity);
+        $('.info-show-title-name').html('单程');
+
+        var timearr = this.plane_information_json.go.data.split('-');
+        var $go = $('#popup-detail-title-go');
+
+        var $goAllFee = (this.pay_info.body.orderDetail[0].cabinprice - this.pay_info.body.orderDetail[0].commissionMoney);
+        var $goFee = Number(this.pay_info.body.orderDetail[0].fuleprice) + Number(this.pay_info.body.orderDetail[0].taxprice);
+        $('.info-show-price').html('￥' + (Number($goAllFee) + $goFee));
+        $go.find('.popup-detail-title-time-date').first().html(timearr[1] + '月' + timearr[2] + '日');
+        $go.find('.popup-detail-title-time-price').html('折后' + (this.pay_info.body.orderDetail[0].cabinprice - this.pay_info.body.orderDetail[0].commissionMoney));
+        $go.find('.popup-detail-title-airline-img').attr('src', this.plane_information_json.go.plane_info.airLogo);
+        $go.find('.popup-detail-title-airline').find('.popup-detail-title-airline-company').html(this.plane_information_json.go.plane_info.airName);
+        $go.find('.popup-detail-title-time-airline-name').html(this.plane_information_json.go.plane_info.airCode + this.plane_information_json.go.plane_info.flightNo);
+        $go.find('.popup-detail-title-counter').find('.popup-detail-title-time-name').html(this.plane_information_json.go.plane_info.checkBar == '' ? '无' : this.plane_information_json.go.plane_info.checkBar);
+        $go.find('.popup-detail-title-airline').find('.popup-detail-title-airline-box')
+            .find('.airtickets-show-dd-star').find('.airtickets-show-dd-star-time')
+            .html(this.plane_information_json.go.plane_info.takeOffTime)
+            .siblings('.airtickets-show-dd-start-add')
+            .html(this.plane_information_json.go.plane_info.originCityName + this.plane_information_json.go.plane_info.terminal.split(',')[0]);
+        $go.find('.popup-detail-title-airline')
+            .find('.popup-detail-title-airline-box')
+            .find('.airtickets-show-dd-timelong')
+            .find('.airtickets-show-dd-time-long')
+            .html(this.plane_information_json.go.plane_info.timediff);
+        $go.find('.popup-detail-title-airline').find('.popup-detail-title-airline-box')
+            .find('.airtickets-show-dd-end').find('.airtickets-show-dd-star-time')
+            .html(this.plane_information_json.go.plane_info.arriveOffTime)
+            .siblings('.airtickets-show-dd-start-add')
+            .html(this.plane_information_json.go.plane_info.arriveCityName + this.plane_information_json.go.plane_info.terminal.split(',')[1]);
+        if (this.plane_information_json.back) {
+            this.sign=2;
+            $('.info-show-title-name').html('往返');
+
+
+            var $back = $('#popup-detail-title-back');
+            $back.fadeIn(300);
+            $back.find('.popup-detail-title-time-date').html(timearr[1] + '月' + timearr[2] + '日');
+            $back.find('.popup-detail-title-time-price').html('折后' + (this.pay_info.body.orderDetail[1].cabinprice - this.pay_info.body.orderDetail[1].commissionMoney));
+            $back.find('.popup-detail-title-airline-img').attr('src', this.plane_information_json.back.plane_info.airLogo);
+            $back.find('.popup-detail-title-airline').find('.popup-detail-title-airline-company').html(this.plane_information_json.back.plane_info.airName);
+            $back.find('.popup-detail-title-time-airline-name').html(this.plane_information_json.back.plane_info.airCode + this.plane_information_json.back.plane_info.flightNo);
+            $back.find('.popup-detail-title-counter').find('.popup-detail-title-time-name').html(this.plane_information_json.back.plane_info.checkBar == '' ? '无' : this.plane_information_json.go.plane_info.checkBar);
+            $back.find('.popup-detail-title-airline').find('.popup-detail-title-airline-box')
+                .find('.airtickets-show-dd-star').find('.airtickets-show-dd-star-time')
+                .html(this.plane_information_json.back.plane_info.takeOffTime)
+                .siblings('.airtickets-show-dd-start-add')
+                .html(this.plane_information_json.back.plane_info.originCityName + this.plane_information_json.back.plane_info.terminal.split(',')[0]);
+            $back.find('.popup-detail-title-airline')
+                .find('.popup-detail-title-airline-box')
+                .find('.airtickets-show-dd-timelong')
+                .find('.airtickets-show-dd-time-long')
+                .html(this.plane_information_json.back.plane_info.timediff);
+            $back.find('.popup-detail-title-airline').find('.popup-detail-title-airline-box')
+                .find('.airtickets-show-dd-end').find('.airtickets-show-dd-star-time')
+                .html(this.plane_information_json.back.plane_info.arriveOffTime)
+                .siblings('.airtickets-show-dd-start-add')
+                .html(this.plane_information_json.back.plane_info.arriveCityName + this.plane_information_json.back.plane_info.terminal.split(',')[1]);
+        }
+        if (this.plane_information_json.back) {
+            var $backFee = Number(this.pay_info.body.orderDetail[1].fuleprice) + Number(this.pay_info.body.orderDetail[1].taxprice);
+            var $backAllFee = (this.pay_info.body.orderDetail[1].cabinprice - this.pay_info.body.orderDetail[1].commissionMoney)
+            $('.air-total-fee-price')
+                .html(Number($goFee) + Number($backFee));
+            $('.info-show-price').html('￥' + (Number($backAllFee) + $backFee + (Number($goAllFee) + $goFee)));
+        } else {
+            $('.air-total-fee-price').html(Number($goFee));
+        }
+    }
+};
+var page = {
+
+    click_init: function () {
+        $('#make-sure').on('click', function () {
+            //$('.popup').fadeOut(300);
+            $('.popup').css('z-index', -10);
+        });
+        $('.info-show-price-detail').click(function () {
+            //$('.popup').fadeIn(300);
+            $('.popup').css('z-index', 110);
+
+        })
+    },
+    pay_way: function () {
+        connectWebViewJavascriptBridge(function (bridge) {
+            var uniqueId = 1;
+
+            function log(message, data) {
+                var log = document.getElementById('log')
+                var el = document.createElement('div')
+                el.className = 'logLine';
+                el.innerHTML = uniqueId++ + '. ' + message + ':<br/>' + JSON.stringify(data)
+                if (log.children.length) {
+                    log.insertBefore(el, log.children[0])
+                }
+                else {
+                    log.appendChild(el)
+                }
+            }
+
+            bridge.init(function (message, responseCallback) {
+                log('JS got a message', message)
+                var data = {'Javascript Responds': 'Wee!'}
+                log('JS responding with', data)
+                responseCallback(data);
+            });
+            Storage.set('orderNo', air_pay_data.pay_info.body.mainOrderVO.orderNo);
+
+            document.getElementById('AliPay').onclick = function (e) {
+                e.preventDefault();
+                var orderNo = air_pay_data.pay_info.body.mainOrderVO.orderNo;
+                bridge.callHandler('payPlaneTicket', {'orderNo': orderNo, 'payChannel': '01'}, function (response) {
+                    //alert(response);
+                    if (response.info == 0) {
+                        self.location.href = '../pages/air-successOrfail.html?sign=' + air_pay_data.sign + '&&type=1'
+                    } else {
+                        self.location.href = '../pages/air-successOrfail.html?sign=' + air_pay_data.sign + '&&type=2'
+                    }
+                    log('callback', response);
+                })
+            };
+            document.getElementById('wechat').onclick = function (e) {
+                e.preventDefault();
+
+                var orderNo = air_pay_data.pay_info.body.mainOrderVO.orderNo;
+                bridge.callHandler('payPlaneTicket', {'orderNo': orderNo, 'payChannel': '02'}, function (response) {
+                    //alert(response);
+                    //ZSH_Extent.creatconsoleeLoading('')
+                    console.log(response);
+                    if (response.info == 0) {
+                        self.location.href = '../pages/air-successOrfail.html?sign=' + air_pay_data.sign + '&&type=1'
+                    } else {
+                        self.location.href = '../pages/air-successOrfail.html?sign=' + air_pay_data.sign + '&&type=2'
+                    }
+                    log('callback', response);
+                })
+            }
+        });
+    }
+};
+function connectWebViewJavascriptBridge(callback) {
+    if (window.WebViewJavascriptBridge) {
+        callback(WebViewJavascriptBridge)
+    } else {
+        document.addEventListener('WebViewJavascriptBridgeReady', function () {
+            callback(WebViewJavascriptBridge)
+        }, false)
+    }
+}
+
+
+

@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<a name="aaa" id="bbb" onclick="a()">我是demo1,点击加载</a>
+
+<div id="div2"> </div>
+<script src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+function a(){
+    console.log("aa");
+    $('#div2').load('index1.html',{'key':'20'},function(data){
+        console.log(data);
+        console.log("key"+key);
+    });
+
+}
+</script>
+</body>
+</html>

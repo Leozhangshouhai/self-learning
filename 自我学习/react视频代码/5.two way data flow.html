@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>学习React！！</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="bower_components/react/react-with-addons.js"></script>
+    <script src="bower_components/react/JSXTransformer.js"></script>
+	<script type="text/jsx">
+		var EasyForm = React.createClass({
+			//LinkedStateMixin给你的React组件添加一个叫做linkState()的方法。linkState()返回一个ReactLink对象，
+			// 包含React state当前的值和一个用来改变它的回调函数。
+//			// LinkedStateMixin，用于简化用户表单输入数据和组件 state 之间的双向数据绑定
+			mixins: [ React.addons.LinkedStateMixin ],
+			getInitialState:function(){
+				return {
+					message: 'react is awesome!',
+					isReactAwesome: true,
+				}
+			},
+			render:function(){
+				return (
+					<div>
+						<h1>我想说： {this.state.message}</h1>
+						<h2>React是不是很好用？ {this.state.isReactAwesome?'非常好用！':'一般般。。。'}</h2>
+						<input type="text" valueLink={this.linkState('message')} />
+						<br/>
+						<input type="checkbox" checkedLink={this.linkState('isReactAwesome') } />
+						<input type="checkbox" />
+						<br/>
+						<SubComp messageqw={ this.linkState('message') } likeLink={this.linkState('isReactAwesome')} />
+					</div>
+				)
+			}
+		});
+
+		//  ...  属性传递
+		var SubComp = React.createClass({
+			render:function(){
+				return (
+					<div>
+						<h3>这是个子组件哦</h3>
+						<SubSubComp {...this.props } />
+					</div>
+				)
+			}
+		});
+
+		var SubSubComp = React.createClass({
+			render:function(){
+				return (
+					<div>
+						<p>你想说什么？</p>
+						<input type="text" valueLink={ this.props.messageqw } />
+						<p>你稀罕React么？</p>
+						<input type="checkbox" checkedLink = {this.props.likeLink } />
+					</div>
+				)
+			}
+		})
+
+
+		React.render( <EasyForm />, document.getElementById('app') );
+
+
+	</script>
+
+
+</body>
+
+</html>

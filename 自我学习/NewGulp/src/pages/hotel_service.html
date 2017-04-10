@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>酒店附加服务</title>
+    <link rel="stylesheet" href="../amazeUi/css/amazeui.css"/>
+    <link rel="stylesheet" href="../css/commonCss/swiper.min.css"/>
+    <link rel="stylesheet" href="../css/lessstyle/hotel_service.css"/>
+    <!--<link rel="stylesheet/less" type="text/less" href="../css/lessstyle/hotel_service.less"/>-->
+</head>
+<body>
+
+<div id="container">
+    <!-- 轮播 及板块内容   -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="../img/house_detail/house-pic.png" alt=""/></div>
+            <div class="swiper-slide"><img src="../img/house_detail/house-pic.png" alt=""/></div>
+            <div class="swiper-slide"><img src="../img/house_detail/house-pic.png" alt=""/></div>
+            <div class="swiper-slide"><img src="../img/house_detail/house-pic.png" alt=""/></div>
+            <div class="swiper-slide"><img src="../img/house_detail/house-pic.png" alt=""/></div>
+
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination " id="page-tool">
+        </div>
+        <!-- 轮播顶部图标定位-->
+
+        <img class="lunbo-imgsign-img" src="../img/house_detail/order-service-2px_03.png" alt=""/>
+
+
+        <!-- 轮播文本定位-->
+        <div class="lunbo-text-box">
+            <div class="lunbo-text-box-left">
+                <p class="lunbo-text-box-left-score">9.5</p>
+
+                <p class="lunbo-text-box-left-num">201条</p>
+            </div>
+            <div class="lunbo-text-box-right">
+                <p class="lunbo-text-box-left-score lunbo-text-box-right-name ">高级大床房</p>
+
+                <p class="lunbo-text-box-left-num">
+                    <img class="lunbo-text-box-right-star" src="../img/house_detail/order-service-2px_07.png" alt=""/>
+                    <img class="lunbo-text-box-right-star" src="../img/house_detail/order-service-2px_07.png" alt=""/>
+                    <img class="lunbo-text-box-right-star" src="../img/house_detail/order-service-2px_07.png" alt=""/>
+                    <img class="lunbo-text-box-right-star" src="../img/house_detail/order-service-2px_07.png" alt=""/>
+                    <img class="lunbo-text-box-right-star" src="../img/house_detail/order-service-2px_07.png" alt=""/>
+                </p>
+
+                <div class="lunbo-text-box-right-sign">
+                    <img class="lunbo-text-box-right-sign-img" src="../img/house_detail/order-service-2px_11.png"
+                         alt=""/>
+                    <img class="lunbo-text-box-right-sign-img" src="../img/house_detail/order-service-2px_13.png"
+                         alt=""/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  正文内容 -->
+    <div class="content-box">
+        <div class="btn-group">
+            <button class="btn btn-left">到店付 : 500元</button>
+            <button class="btn btn-right">预付 : 480元</button>
+        </div>
+        <div class="content-info">
+            <div class="info-box">
+                <p class="info-box-title">房费</p>
+                <p class="info-box-date">8月26日-27日
+                    <span class="info-box-time">2晚</span>（到店付）
+                <span class="info-box-house-money">1000元</span>
+                </p>
+                <p class="info-box-title">选购服务</p>
+                <!--   服务列表-->
+                <dl class="info-list-box">
+                    <dd class="info-list">
+                        <p class="info-box-date list-bold">早餐</p>
+                        <p class="info-box-date">38元/份</p>
+                        <span class="info-box-chooseNum">
+                            <img class="num-reduce logo-img" src="../img/house_detail/order-service-2px_18.png" alt=""/>
+                         <!--<span class="list-text">0份</span>-->
+                            0份
+                            <img class="num-add logo-img" src="../img/house_detail/order-service-2px_20.png" alt=""/>
+                        </span>
+                        <span class="info-box-breakfast-moeny">0元</span>
+                    </dd>
+                    <dd class="info-list">
+                        <p class="info-box-date list-bold">延住6小时</p>
+                        <p class="info-box-date">50元/份</p>
+                        <span class="info-box-chooseNum">
+                            <img class="num-reduce logo-img" src="../img/house_detail/order-service-2px_18.png" alt=""/>
+                         0份
+                            <img class="num-add logo-img" src="../img/house_detail/order-service-2px_20.png" alt=""/>
+                        </span>
+                        <span class="info-box-breakfast-moeny">0元</span>
+                    </dd>
+                    <dd class="info-list">
+                        <p class="info-box-date list-bold">行政酒廊</p>
+                        <p class="info-box-date">100元/份</p>
+                        <span class="info-box-chooseNum">
+                            <img class="num-reduce logo-img" src="../img/house_detail/order-service-2px_18.png" alt=""/>
+                     0份
+                            <img class="num-add logo-img" src="../img/house_detail/order-service-2px_20.png" alt=""/>
+                        </span>
+                        <span class="info-box-breakfast-moeny">0元</span>
+                    </dd>
+                </dl>
+                <!-- 更多 -->
+                <div class="am-dropdown " data-am-dropdown>
+                    <button class="am-btn am-btn-primary am-dropdown-toggle btn-down" data-am-dropdown-toggle>更多 <span class="am-icon-caret-down"></span></button>
+                </div>
+                <hr/>
+                <p class="content-all">总价：
+                    <span class="content-all-money">1150元</span></p>
+                <button type="button" class="am-btn am-btn-default am-round btn-sure">确 定</button>
+            </div>
+        </div>
+        <div class="overheadinfo-box">
+
+            <!-- 房间信息盒子-->
+            <div class="mode-box">
+                <p class="info-box-title overheadinfo-title">房间信息</p>
+                <dl class="overheadinfo-dl">
+                    <dd>
+                        <img class="overheadinfo-dl-dd-img" src="../img/house_detail/order-service-2px_36.png" alt="p"/>
+                        <p class="overheadinfo-dl-dd-text">15平米</p>
+                    </dd>
+                    <dd>
+                        <img class="overheadinfo-dl-dd-img" src="../img/house_detail/order-service-2px_33.png" alt="p"/>
+                        <p class="overheadinfo-dl-dd-text">两位客人</p>
+                    </dd>
+                    <dd>
+                        <img class="overheadinfo-dl-dd-img" src="../img/house_detail/order-service-2px_39.png" alt="p"/>
+                        <p class="overheadinfo-dl-dd-text">有窗</p>
+                    </dd>
+                </dl>
+                <p class="overheadinfo-tip">备注：无烟房，景观房，临湖...</p>
+                <hr class="overheadinfo-hr"/>
+            </div>
+
+            <!-- 床型信息盒子 -->
+            <div class="mode-box">
+                <p class="info-box-title overheadinfo-title">房间信息</p>
+                <dl class="overheadinfo-dl">
+                    <dd>
+                        <img class="overheadinfo-dl-dd-img img-small-style" src="../img/house_detail/order-service-2px_45.png" alt="p"/>
+                        <span class="overheadinfo-dl-dd-img-num">×1</span>
+                        <p class="overheadinfo-dl-dd-text">大床1.8米</p>
+                    </dd>
+                    <dd>
+                        <img class="overheadinfo-dl-dd-img  img-small" src="../img/house_detail/order-service-2px_48.png" alt="p"/>
+                        <span class="overheadinfo-dl-dd-img-num">×2</span>
+                        <p class="overheadinfo-dl-dd-text">小床1.5米</p>
+                    </dd>
+                    <dd>
+                        <img class="overheadinfo-dl-dd-img" src="../img/house_detail/order-service-2px_50.png" alt="p"/>
+                        <span class="overheadinfo-dl-dd-img-num">×1</span>
+                        <p class="overheadinfo-dl-dd-text">婴儿床1米</p>
+                    </dd>
+                </dl>
+                <hr class="overheadinfo-hr overheadinfo-Notip"/>
+            </div>
+
+            <!-- 客房设施盒子-->
+            <div class="mode-box">
+                <p class="info-box-title overheadinfo-title">房间信息</p>
+                <dl class="overheadinfo-dl overheadinfo-dl-kefang">
+                    <dd>
+                        <img class="overheadinfo-dl-dd-img" src="../img/house_detail/order-service-2px_64.png" alt="p"/>
+                        <p class="overheadinfo-dl-dd-text">无线</p>
+                    </dd>
+                    <dd>
+                        <img class="overheadinfo-dl-dd-img" src="../img/house_detail/order-service-2px_62.png" alt="p"/>
+                        <p class="overheadinfo-dl-dd-text">浴缸</p>
+                    </dd>
+                    <dd>
+                        <img class="overheadinfo-dl-dd-img" src="../img/house_detail/order-service-2px_59.png" alt="p"/>
+                        <p class="overheadinfo-dl-dd-text">电风扇</p>
+                    </dd>
+                    <dd>
+                        <img class="overheadinfo-dl-dd-img" src="../img/house_detail/order-service-2px_56.png" alt="p"/>
+                        <p class="overheadinfo-dl-dd-text">迷你吧</p>
+                    </dd>
+                    <dd>
+                        <img class="overheadinfo-dl-dd-img" src="../img/house_detail/order-service-2px_72.png" alt="p"/>
+                        <p class="overheadinfo-dl-dd-text">保险箱</p>
+                    </dd>
+                    <dd>
+                        <img class="overheadinfo-dl-dd-img" src="../img/house_detail/order-service-2px_74.png" alt="p"/>
+                        <p class="overheadinfo-dl-dd-text">电视</p>
+                    </dd>
+                    <dd>
+                        <img class="overheadinfo-dl-dd-img" src="../img/house_detail/order-service-2px_76.png" alt="p"/>
+                        <p class="overheadinfo-dl-dd-text">熨斗</p>
+                    </dd>
+                    <dd>
+                        <img class="overheadinfo-dl-dd-img" src="../img/house_detail/order-service-2px_70.png" alt="p"/>
+                        <p class="overheadinfo-dl-dd-text">洗漱品</p>
+                    </dd>
+
+                </dl>
+                <p class="overheadinfo-tip">其他：冰箱，电话，中央空调...</p>
+                <hr class="overheadinfo-hr"/>
+            </div>
+
+            <!-- 服务及其他盒子-->
+            <div class="mode-box">
+                <p class="info-box-title overheadinfo-title">服务及其他</p>
+
+                <p class="overheadinfo-tip last-one">唤醒服务,其他留言</p>
+                <hr class="overheadinfo-hr last-one"/>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="../js/common/jquery-3.0.0.min.js"></script>
+<script src="../js/common/autoSize(20).js"></script>
+<script src="../js/common/swiper.min.js"></script>
+<!--<script src="../js/common/less.js"></script>-->
+<script>
+    $(function(){
+        var mySwiper = new Swiper('.swiper-container', {
+            autoplay: 5000,  //自动轮播时间
+            direction: 'horizontal',  //水平轮滑
+            effect: 'slide',
+            loop: true,
+
+            // 如果需要分页器
+            pagination: '.swiper-pagination'
+        })
+        var height=$('.img-small-style').css('height');
+        $('.img-small').css('height',height);
+    })
+
+
+
+</script>
+</body>
+</html>

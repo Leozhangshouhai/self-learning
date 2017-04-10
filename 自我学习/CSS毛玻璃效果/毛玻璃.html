@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        .container{
+            width: 287px;
+            height:285px;
+            background-image: url(background.png);
+            background-repeat: no-repeat;
+            /*background-attachment: fixed;*/
+            overflow: hidden;
+            background-size: cover;
+
+
+        }
+
+        .frosted-glass,.img{
+            width: 287px;
+            position: relative;
+            height: 285px;
+            background: inherit;
+            -webkit-filter: blur(5px);
+            -moz-filter: blur(5px);
+            /*-ms-filter: blur(5px);*/
+            /*-o-filter: blur(5px);*/
+            filter: drop-shadow(5px 6px 15px  green);
+            filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false);
+        }
+
+        .weather{
+            width:80px;
+            height:80px;
+            margin-top:-200px;
+            margin-left: 100px;
+            position: relative;
+            display: block;
+            z-index: 999;
+        }
+
+    </style>
+</head>
+<body>
+<img src="background.png" alt="" class="img"/>
+    <div class='container'>
+        <div class='frosted-glass'></div>
+        <img class='weather' src='cloudy.png'>
+    </div>
+</body>
+</html>

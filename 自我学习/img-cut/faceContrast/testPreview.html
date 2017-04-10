@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div style="width:90px; height:110px; overflow:hidden; border:1px solid red;">
+    <div id="imgDiv"> </div>
+</div>
+<br>
+<input type="file" value="上传文件">
+
+<script src="js/jquery2.1.1/jquery.min.js"></script>
+<script src="js/test.js"></script>
+<script>
+    $(document).ready(function() {
+        $("input").uploadPreview({width: 90, height: 110, imgDiv: "#imgDiv", callFn : function(){
+            alert("ok");
+        }});
+    });
+</script>
+
+</body>
+</html>

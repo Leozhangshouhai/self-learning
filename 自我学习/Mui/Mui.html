@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mui</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link rel="stylesheet" href="css/mui.css"/>
+</head>
+<style type="text/css">
+    .mui-slider-item > img {
+        width: 100px;
+    }
+</style>
+
+
+<body>
+<div class="mui-iframe-wrapper" style="top: 45px; bottom: 0px;">
+    <div class="mui-slider">
+        <div class="mui-slider-group">
+            <!--第一个内容区容器-->
+            <div class="mui-slider-item">
+                <!-- 具体内容 -->
+                <img src="img/13.jpg" width="100px" alt="im"/>
+            </div>
+            <!--第二个内容区-->
+            <div class="mui-slider-item">
+                <!-- 具体内容 -->
+                <img src="img/8.jpg" alt=""/>
+
+            </div>
+        </div>
+    </div>
+</div>
+<button type="button" class="mui-btn mui-btn-royal">紫色</button>
+<button type="button" class="mui-btn mui-btn-primary mui-btn-outlined">蓝色</button>
+<script src="js/mui.js"></script>
+<script>
+    var item2Show = false,item3Show = false;//子选项卡是否显示标志
+    document.querySelector('.mui-slider').addEventListener('slide', function(event) {
+        if (event.detail.slideNumber === 1&&!item2Show) {
+            //切换到第二个选项卡
+            //根据具体业务，动态获得第二个选项卡内容；
+            var content =1;
+            //显示内容
+            document.getElementById("item2").innerHTML = content;
+            //改变标志位，下次直接显示
+            item2Show = true;
+        } else if (event.detail.slideNumber === 2&&!item3Show) {
+            //切换到第三个选项卡
+            //根据具体业务，动态获得第三个选项卡内容；
+            var content = ....
+            //显示内容
+            document.getElementById("item3").innerHTML = content;
+            //改变标志位，下次直接显示
+            item3Show = true;
+        }
+    });
+</script>
+</body>
+</html>

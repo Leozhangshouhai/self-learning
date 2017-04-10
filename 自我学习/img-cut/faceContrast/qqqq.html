@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
+
+    <!--<link rel="stylesheet" type="text/css" href="css/reset.css"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="css/index1.css"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="css/animations.css"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="css/load.css"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="cut/css/normalize.css"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="cut/css/default.css">-->
+    <link href="cut/css/bootstrap.min.css" rel="stylesheet">
+    <link href="cut/css/cropper.min.css" rel="stylesheet">
+    <!--<link href="cut/css/main.css" rel="stylesheet">-->
+    <!--<link href="css/style.css" rel="stylesheet"/>-->
+    <!--自定义样式-->
+    <style>
+        #img_container_1 {
+            width: 400px;
+            height: 200px;
+            border: 1px solid red;
+            position: absolute;
+            right: 0;
+            top: 10%;
+        }
+        /*#img_container_1>img{*/
+            /*width: 100%;!important;*/
+            /*height: 100%;!important;*/
+        /*}*/
+    </style>
+</head>
+<body>
+
+<div onclick="upload()" class="img_1" src="img/add1.png" style="width: 100px;height: 100px;background-color: red"></div>
+<div id="file_container_1">
+    <input id="file_1" style="display: none" class="file" type="file" data-type="1" multiple data-min-file-count="3"
+           data-preview-file-type="img">
+</div>
+
+<!-- 容器-->
+<div style="display: inline-block">
+    <div style="padding: 2px">
+        <div id="img_container_1" style="box-sizing: border-box;width: 114px; height: 114px;border-radius: 4px;border: 1px solid rgba(0,0,0,.7)">
+        </div>
+    </div>
+
+</div>
+
+<div id="us_warp_1" class="us_wrap" style="display: none">
+    <div id="file_pop_1" class="img-container ">
+        <img src="" id="img_pop_1">
+    </div>
+    <div class="col-xs-4">
+        <button data-type="1" data-method="getCroppedCanvas" class="btn btn-success">确定</button>
+    </div>
+    <div class="col-xs-4 col-xs-offset-4">
+        <button onclick="popCancel(1)" class="btn btn-primary">取消</button>
+    </div>
+</div>
+
+<!--<script src="js/zepto.min.js"></script>-->
+<!--<script src="js/touch.js"></script>-->
+<!--<script src="js/index.js"></script>-->
+<script src="js/jquery2.1.1/jquery.min.js"></script>
+<script src="js/test.js"></script>
+<!--<script src="cut/js/bootstrap.min.js"></script>-->
+<script src="cut/js/cropper.js"></script>
+<!--<script src="js/fileUpload.js"></script>-->
+<script src="cut/js/main-new.js"></script>
+<script>
+    function upload() {
+        $("#file_1").click();
+    }
+    var height = $(window).height() / 1.5;
+    var width = $(window).width() / 1.2;
+    $("#file_1").uploadPreview({
+        width: width, height: height, imgDiv: "#img_pop_1", callFn: function () {
+            popIn('1');
+            var $dataX = $('#dataX'),
+                    $dataY = $('#dataY'),
+                    $dataHeight = $('#dataHeight'),
+                    $dataWidth = $('#dataWidth');
+            var option = {
+                maxWidth: 400,
+                maxHeight: 600,
+//                aspectRatio: 1 / 1,
+                rotatable: false,
+                resizable: true,
+                dragCrop: true,
+                responsive: false,
+                crop: function (data) {
+                    $dataX.val(Math.round(data.x));
+                    $dataY.val(Math.round(data.y));
+                    $dataHeight.val(Math.round(data.height));
+                    $dataWidth.val(Math.round(data.width));
+//				$dataRotate.val(Math.round(data.rotate));
+                }
+            };
+            $("#file_pop_1 img").cropper(option);
+            var $image = $('#img_pop_1');
+            // Import image
+            var $inputImage = $('#inputImage'),
+                    URL = window.URL || window.webkitURL,
+                    blobURL;
+
+            if (URL) {
+                $inputImage.change(function () {
+                    var files = this.files,
+                            file;
+
+                    if (files && files.length) {
+                        file = files[0];
+
+                        if (/^image\/\w+$/.test(file.type)) {
+                            blobURL = URL.createObjectURL(file);
+                            $image.one('built.cropper', function () {
+                                URL.revokeObjectURL(blobURL); // Revoke when load complete
+                            }).cropper('reset', true).cropper('replace', blobURL);
+                            $inputImage.val('');
+                        } else {
+                            alert('Please choose an image file.');
+                        }
+                    }
+                });
+            } else {
+                $inputImage.parent().remove();
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

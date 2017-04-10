@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--
+ layer  详细地址
+http://layer.layui.com/mobile/api.html
+ -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0, user-scalable=0"/>
+    <link rel="stylesheet" href="need/layer.css">
+</head>
+<body  id="body">
+<button onclick=" messageBox()"> 信息框</button>
+<button onclick=" tips()"> 提示</button>
+<button onclick=" askBox()"> 询问框</button>
+<button onclick=" bottomBox()"> 底部对话框</button>
+<button onclick=" bottomTip()"> 底部提示</button>
+<button onclick=" selfStyle()"> 自定义标题风格</button>
+<button onclick=" page()"> 页面层</button>
+<button onclick=" loading()"> loading层</button>
+<button onclick=" loadingAndTxt()"> loading带文字</button>
+<button onclick=" bottomPopup()"> 底部弹出对话框</button>
+<button onclick=" setTime()"> 设置事件，自动消失</button>
+<button onclick=" popupClick()">不允许点击遮罩关闭</button>
+<button onclick=" wholeScreen()">全屏页面</button>
+<script src="layer.js"></script>
+<script>
+function wholeScreen(){
+    var pageii =layer.open({
+        type: 1
+        ,content: '我来了'
+        ,anim: 'up'
+        ,style: 'position:fixed; left:0; top:0; width:100%; height:100%; border: none; -webkit-animation-duration: .5s; animation-duration: .5s;'
+    });
+}
+function messageBox(){
+   //信息框
+        layer.open({
+        content: '移动版和PC版不能同时存在同一页面'
+        , btn: '我知道了'
+    });
+}
+function tips(){
+    //提示
+    layer.open({
+        content: 'hello layer'
+        , skin: 'msg'
+        , time: 2 //2秒后自动关闭
+    });
+}
+function askBox(){
+        //询问框
+        layer.Boxopen({
+        content: '您确定要刷新一下本页面吗？'
+        , btn: ['刷新', '不要']
+        , yes: function (index) {
+            location.reload();
+            layer.close(index);
+        }
+    });
+}
+function bottomBox(){
+    //    //底部对话框
+    layer.open({
+        content: '这是一个底部弹出的询问提示'
+        , btn: ['删除', '取消']
+        , skin: 'footer'
+        , yes: function (index) {
+            layer.open({content: '执行删除操作'})
+        }
+    });
+}
+function bottomTip() {
+     //底部提示
+    layer.open({
+        content: '一个没有任何按钮的底部提示'
+        , skin: 'footer'
+    });
+}
+function selfStyle() {
+     //自定义标题风格
+    layer.open({
+        title: [
+            '我是标题',
+            'background-color: #FF4351; color:#fff;'
+        ]
+        , content: '标题风格任你定义。'
+    });
+}
+function page() {
+    //页面层
+    layer.open({
+        type: 1
+        , content: '可传入任何内容，支持html。一般用于手机页面中'
+        , anim: 'up'
+        , style: 'position:fixed; bottom:0; left:0; width: 100%; height: 200px; padding:10px 0; border:none;'
+    });
+}
+function loading() {
+        //loading层
+    layer.open({type: 2});
+}
+function loadingAndTxt() {
+    //loading带文字
+    layer.open({
+        type: 2
+        , content: '加载中'
+    });
+}
+function bottomPopup() {
+//    底部弹出
+    layer.open({
+        title: [
+            '我是标题',
+            'background-color:#8DCE16; color:#fff;'
+        ]
+        ,anim: 'up'
+        ,content: '展现的是全部结构'
+        ,btn: ['确认', '取消']
+    });
+}
+function setTime() {
+    layer.open({
+    content: '通过style设置你想要的样式'
+    ,style: 'background-color:#09C1FF; color:#fff; border:none;' //自定风格
+    ,time: 3
+});
+}
+function popupClick() {
+    layer.open({
+        content: '不允许点击遮罩关闭',
+        btn: '我知道了',
+        shadeClose: false,
+        yes: function(){
+            layer.open({
+                content: '好的'
+                ,time: 2
+                ,skin: 'msg'
+            });
+        }
+    });
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <title>机票预定</title>
+    <link rel="stylesheet" href="../css/air-order.css"/>
+
+</head>
+<body>
+<div id="container" style="display: none">
+
+    <!-- 头部样式  -->
+    <div class="header">
+        <img class="header-return" src="../img/air/left_03.png" alt="span"/>
+        <span class="header-chufa">杭州</span>
+               <span class="header-middle-img">
+                  <img class="header-middle-img-left" src="../img/air/1222_03.png" alt=""/>
+                  <img class="header-middle-img-right" src="../img/air/1222_06.png" alt=""/>
+               </span>
+        <span class="header-daoda">北京</span>
+    </div>
+
+    <!-- 机票信息展示区 -->
+    <div class="popup-detail">
+        <!--  第一版  出发-->
+        <div id="popup-detail-title-go" class="popup-detail-title-box">
+            <p class="popup-detail-title-time">
+                <span class="popup-detail-title-time-name">去程</span>
+                <span class="popup-detail-title-time-date">12月10日</span>
+               <span class="popup-detail-title-time-price">
+
+            </span>
+            </p>
+            <p class="popup-detail-title-airline">
+                <img src="" alt="" class="popup-detail-title-airline-img"/>
+                <span class="popup-detail-title-airline-company">中国东方航空</span>
+                <span class="popup-detail-title-time-airline-name">MU9157</span>
+            </p>
+            <p class="popup-detail-title-counter">
+                <span class="popup-detail-title-airline-company">值机柜台</span>
+                <span class="popup-detail-title-time-name">Z52</span>
+            </p>
+            <div class="popup-detail-title-airline">
+                <div class="popup-detail-title-airline-box">
+                    <div class="airtickets-show-dd-star">
+                        <span class="airtickets-show-dd-star-time">22:20</span>
+
+                        <p class="airtickets-show-dd-start-add">萧山T3</p>
+                    </div>
+                    <!--<div class="airtickets-show-dd-timelong">-->
+                        <!--<p class="airtickets-show-dd-time-long">-->
+                          <!--2小时15分钟-->
+                        <!--</p>-->
+                    <!--</div>-->
+                    <div class="airtickets-show-dd-end">
+                        <span class="airtickets-show-dd-star-time">00:20</span>
+                        <p class="airtickets-show-dd-start-add"> 首都T2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--返程 -->
+        <div id="popup-detail-title-back" class="popup-detail-title-box" style="display: none">
+
+            <p class="popup-detail-title-time">
+                <span class="popup-detail-title-time-name">返程</span>
+                <span class="popup-detail-title-time-date"></span>
+            <span class="popup-detail-title-time-price">
+
+            </span>
+            </p>
+
+            <p class="popup-detail-title-airline">
+                <img src="" alt="" class="popup-detail-title-airline-img"/>
+                <span class="popup-detail-title-airline-company">中国东方航空</span>
+                <span class="popup-detail-title-time-airline-name"></span>
+            </p>
+
+            <p class="popup-detail-title-counter ">
+                <span class="popup-detail-title-airline-company">值机柜台</span>
+                <span class="popup-detail-title-time-name"></span>
+            </p>
+
+            <div class="popup-detail-title-airline  ">
+                <div class="popup-detail-title-airline-box">
+                    <div class="airtickets-show-dd-star">
+                        <span class="airtickets-show-dd-star-time">22:20</span>
+
+                        <p class="airtickets-show-dd-start-add">萧山T3</p>
+                    </div>
+                    <!--<div class="airtickets-show-dd-timelong">-->
+                        <!--<p class="airtickets-show-dd-time-long">-->
+                            <!--<span>2小时</span>-->
+                            <!--<span>15分钟</span>-->
+                        <!--</p>-->
+                    <!--</div>-->
+                    <div class="airtickets-show-dd-end">
+                        <span class="airtickets-show-dd-star-time">00:20</span>
+                        <p class="airtickets-show-dd-start-add"> 首都T2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--   确定按钮-->
+        <p class="air-total-fee">
+            <span class="">机票总价</span><span class="air-total-fee-price"></span>
+        </p>
+    </div>
+    <div class="make-sure-pay-box">
+        <div class="make-sure-pay">预&nbsp;&nbsp;&nbsp;&nbsp;订</div>
+    </div>
+</div>
+<div id="popup">
+    <div class="popup-box">
+        <div class="popup-title-box">
+            <p class="popup-title">Oops!</p>
+            <p class="popup-title">您的搜索的航班已更新，请返回并重新搜索！</p>
+        </div>
+        <div id="popup-return">
+            返回
+        </div>
+    </div>
+</div>
+
+<script src="../js/common/jquery-3.0.0.min.js"></script>
+<script src="../js/autoSize(new).js"></script>
+
+<!--  接口js-->
+<script src="../js/jiekoutext/base.js"></script>
+<script src="../js/jiekoutext/storage.js"></script>
+<script src="../js/jiekoutext/md5.js"></script>
+<script src="../js/jiekoutext/base64.js"></script>
+<script src="../js/jiekoutext/3DES.js"></script>
+<script src="../js/jiekoutext/ajax_bao.js"></script>
+<!--页面数据交互 -->
+<script src="../js/air-order-data.js"> </script>
+
+<script>
+    $(function(){
+//        部分CSS样式修正
+        function css_right() {
+            var padding = $('.airtickets-show-dd-star').height() - $('.airtickets-show-dd-timelong').height();
+            var padding_top = padding / 2;
+            $('.airtickets-show-dd-time-long').css({
+                'padding-top': padding_top + 'px',
+                'padding-bottom': padding_top + 'px'
+            })
+        };
+        css_right();
+    });
+
+
+</script>
+</body>
+</html>

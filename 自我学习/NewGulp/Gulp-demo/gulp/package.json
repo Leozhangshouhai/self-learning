@@ -1,0 +1,11 @@
+{
+  "name": "package",
+  "version": "1.0",
+  "description": "项目描述",
+  "author": "442627268",
+  "livense": "MIT",
+  "devDependencies": {
+    "gulp": "gulpjs/gulp#4.0",
+    "gulp-jade": "^1.1.0"
+  }
+}

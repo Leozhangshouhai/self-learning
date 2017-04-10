@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/JSXTransformer.js"></script>
+
+    <!--<script src="../build/browser.min.js"></script>-->
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/jsx">
+        var num=12;
+        var Input = React.createClass({
+        getInitialState: function() {
+          return {
+          value: 'Hello!',
+          value1:num,
+          };
+        },
+        handleChange: function(event) {
+          this.setState({value: event.target.value});
+          this.setState({value1:this.state.value1+=1});
+        },
+        Change:function(event){
+       console.log(event.target.innerHTML)
+        },
+        render: function () {
+          var value = this.state.value;
+          return (
+            <div value="div111" id="ee" name="owow">
+              <input id="mom" type="text" value={value} onChange={this.handleChange} />
+              <div>{this.state.value1}</div>
+              <p onClick={this.Change}>{value}</p>
+             <span>{this.props.value}</span>
+            </div>
+          );
+        }
+      });
+
+      ReactDOM.render(<Input value="!@21"/>, document.getElementById('example'));
+    </script>
+  </body>
+</html>

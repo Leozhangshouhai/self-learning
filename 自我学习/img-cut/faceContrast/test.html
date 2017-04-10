@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>微信 </title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="format-detection" content="email=no"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/index1.css" />
+	<link rel="stylesheet" type="text/css" href="css/animations.css" />
+	<link rel="stylesheet" type="text/css" href="css/load.css" />
+	<link rel="stylesheet" type="text/css" href="cut/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="cut/css/default.css">
+	<link href="cut/css/bootstrap.min.css" rel="stylesheet">
+	<link href="cut/css/cropper.min.css" rel="stylesheet">
+	<link href="cut/css/main.css" rel="stylesheet">
+	<link  href="css/style.css" rel="stylesheet"/><!--自定义样式-->
+	<script src="js/jweixin-1.0.0.js"></script>
+	<!--<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>-->
+</head>
+<body>
+	<div id="content" style="display:none">
+		<div class="page page-1-1 page-current">
+			<div class="wrap">
+				<img class="img_1" src="img/bg1.jpg" />
+				<div class="img_1_text">PS：图片仅做游戏使用，我们将不保存您的照片信息</div>
+				<div onclick="Touch.moveUp()" class="page-1-1-btn">
+					开始游戏
+				</div>
+				<img class="img_3 pt-page-moveIconUp" src="img/icon_up.png" />
+			</div>
+		</div>
+		<form action="" method="post" enctype="multipart/form-data">
+			<div class="page page-2-1 hide">
+				<div class="wrap">
+					<div class="page-2-div">
+						<div id="img_container_1" style="margin-bottom: 10%;max-height: 40%">
+							<img id="img4" class="img_4" src="img/img1.jpg">
+						</div>
+						<!--<div class="page-border1"></div>-->
+						<img  onclick="upload()"  class="img_1" src="img/add1.png">
+						<div id="file_container_1">
+							<input id="file_1" style="display: none" class="file" type="file" data-type="1"  multiple data-min-file-count="3" data-preview-file-type="img">
+						</div>
+					</div>
+					<img class="img_6" src="img/vs.png" />
+
+					<div class="page-2-div">
+						<div id="img_container_2" style="margin: 0 auto;">
+							<img id="img5" class="img_5" src="img/img2.jpg">
+						</div>
+						<img  onclick="upload2()" class="img_2" src="img/add1.png" />
+						<input id="file_2" style="display: none" class="file" type="file" data-type="2" multiple data-min-file-count="3" data-preview-file-type="img">
+					</div>
+					<div id="contrast_btn"  class="page-1-1-btn">
+						开始对比
+					</div>
+					<img class="img_3 pt-page-moveIconUp" src="img/icon_up.png" />
+				</div>
+			</div>
+		</form>
+		<!--<div class="page page-3-1 hide">-->
+			<!--<div class="wrap">-->
+
+				<!--<div class="page-3-div">-->
+					<!--<img class="img_1 " src="img/add1.png" />-->
+					<!--<p>我有点晕，看不清人脸</p>-->
+				<!--</div>-->
+				<!--<div class="page-1-1-btn">-->
+					<!--再来一次-->
+				<!--</div>-->
+				<!--<img class="img_3" src="img/icon_up.png" />-->
+			<!--</div>-->
+		<!--</div>-->
+		<div class="page page-3-1 hide">
+			<div class="wrap">
+				<div class="page-3-div">
+					<h4>相似指数<i id="pics_scale"></i></h4>
+					<p id="pics_desc">哇塞！你们长得简直太像了</p>
+				</div>
+				<div class="page-3-img">
+					<img id="dis_pic1" class="page-3-img-left" src="img/img1.jpg">
+					<img id="dis_pic2" class="page-3-img-right" src="img/img2.jpg">
+				</div>
+				<img class="img_1" src="img/vs.png" />
+				<div class="page-3-cont">
+					<a href="javaScript:" onclick="again()" class="page-4-btn">再来一次</a>
+					<p>快来分享给朋友们吧！</p>
+					<ul class="page-3-ul">
+						<li><a herf=""><img src="img/icon1.png"></a></li>
+						<li><a herf=""><img src="img/icon2.png"></a></li>
+						<li><a herf=""><img src="img/icon3.png"></a></li>
+					</ul>
+				</div>
+				<div class="page-3-footer">
+					<img src="img/footer1.png" class="img_2">
+					<a href="http://www.zaichengdu.com/cd_portal/downApp/downApp.jsp"  class="download"><img src="img/footer2.png"></a>
+				</div>
+			</div>
+		</div>
+	<div id="audiocontainer"></div>
+	<div id="textsuper">
+	<div id="textsub"><img id="fontimg" />
+	</div></div>
+	<div id="share" onClick="closeDialog()">
+		<div class="shareImg"></div>
+	</div>
+	<div id="pic_pop_1" class="ajax-loading-overlay1" style="display: none"></div>
+	<div id="us_warp_1" class="us_wrap" style="display: none">
+		<div id="file_pop_1" class="img-container ">
+			<img src="" id="img_pop_1">
+		</div>
+		<div class="col-xs-4">
+			<button  data-type="1" data-method="getCroppedCanvas" class="btn btn-success">确定</button>
+		</div>
+		<div class="col-xs-4 col-xs-offset-4">
+			<button onclick="popCancel(1)" class="btn btn-primary">取消</button>
+		</div>
+	</div>
+
+	<div id="pic_pop_2" class="ajax-loading-overlay1" style="display: none"></div>
+	<div id="us_warp_2" class="us_wrap" style="display: none">
+		<div id="file_pop_2" class="img-container">
+			<img src="" id="img_pop_2">
+		</div>
+		<div class="col-xs-4">
+			<button  data-type="2" data-method="getCroppedCanvas" class="btn btn-success">确定</button>
+		</div>
+		<div class="col-xs-4 col-xs-offset-4">
+			<button onclick="popCancel(2)" class="btn btn-primary">取消</button>
+		</div>
+	</div>
+
+	<div id="over" class="over"></div>
+	<div id="layout" class="layout"><img src="img/loading.gif" alt="" /></div>
+</div>
+
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script src="js/index.js"></script>
+<script src="js/jquery2.1.1/jquery.min.js"></script>
+<script src="js/test.js"></script>
+<script src="cut/js/bootstrap.min.js"></script>
+<script src="cut/js/cropper.js"></script>
+<script src="js/fileUpload.js"></script>
+
+
+<script src="cut/js/main.js?123"></script>
+<script type="text/javascript">
+	document.onreadystatechange = loading;
+	function loading(){
+		if(document.readyState == "complete")
+		{
+			$("#loading").hide();
+			$("#content").show();
+			playbksound();
+		}
+	}
+	function shareDialog(){
+		 $("#share").show();
+	}
+	function closeDialog(){
+		$("#share").hide();
+	}
+	function upload(){
+		$("#file_1").click();
+	}
+	var height = $(window).height() / 1.5;
+	var width = $(window).width() /1.2;
+	$("#file_1").uploadPreview({width: width,height:height, imgDiv: "#img_pop_1", callFn : function(){
+		popIn('1');
+		var $dataX = $('#dataX'),
+				$dataY = $('#dataY'),
+				$dataHeight = $('#dataHeight'),
+				$dataWidth = $('#dataWidth');
+		var option = {
+			maxWidth : 500,
+			maxHeight : 300,
+			aspectRatio: 1/1,
+			rotatable: false,
+			resizable: false,
+			dragCrop: false,
+			responsive: false,
+			crop: function (data) {
+				$dataX.val(Math.round(data.x));
+				$dataY.val(Math.round(data.y));
+				$dataHeight.val(Math.round(data.height));
+				$dataWidth.val(Math.round(data.width));
+//				$dataRotate.val(Math.round(data.rotate));
+			}};
+		$("#file_pop_1 img").cropper(option);
+		var $image = $('#img_pop_1');
+		// Import image
+		var $inputImage = $('#inputImage'),
+				URL = window.URL || window.webkitURL,
+				blobURL;
+
+		if (URL) {
+			$inputImage.change(function () {
+				var files = this.files,
+						file;
+
+				if (files && files.length) {
+					file = files[0];
+
+					if (/^image\/\w+$/.test(file.type)) {
+						blobURL = URL.createObjectURL(file);
+						$image.one('built.cropper', function () {
+							URL.revokeObjectURL(blobURL); // Revoke when load complete
+						}).cropper('reset', true).cropper('replace', blobURL);
+						$inputImage.val('');
+					} else {
+						alert('Please choose an image file.');
+					}
+				}
+			});
+		} else {
+			$inputImage.parent().remove();
+		}
+	}});
+
+
+	function upload2(){
+		$("#file_2").click();
+	}
+
+
+	$("#file_2").uploadPreview({width: width,height:height, imgDiv: "#img_pop_2", callFn : function(){
+		popIn('2');
+
+		var $image = $('#img_pop_2');
+		// Import image
+		var $inputImage = $('#inputImage'),
+				URL = window.URL || window.webkitURL,
+				blobURL;
+
+		if (URL) {
+			$inputImage.change(function () {
+				var files = this.files,
+						file;
+
+				if (files && files.length) {
+					file = files[0];
+
+					if (/^image\/\w+$/.test(file.type)) {
+						blobURL = URL.createObjectURL(file);
+						$image.one('built.cropper', function () {
+							URL.revokeObjectURL(blobURL); // Revoke when load complete
+						}).cropper('reset', true).cropper('replace', blobURL);
+						$inputImage.val('');
+					} else {
+						alert('Please choose an image file.');
+					}
+				}
+			});
+		} else {
+			$inputImage.parent().remove();
+		}
+
+		var $dataX = $('#dataX'),
+				$dataY = $('#dataY'),
+				$dataHeight = $('#dataHeight'),
+				$dataWidth = $('#dataWidth');
+		var option = {
+			maxWidth : 400,
+			maxWidth : 600,
+			aspectRatio: 1/1,
+			rotatable: false,
+			resizable: false,
+			dragCrop: false,
+			responsive: false,
+			crop: function (data) {
+				$dataX.val(Math.round(data.x));
+				$dataY.val(Math.round(data.y));
+				$dataHeight.val(Math.round(data.height));
+				$dataWidth.val(Math.round(data.width));
+//				$dataRotate.val(Math.round(data.rotate));
+			}};
+		$("#file_pop_2 img").cropper(option);
+
+	}});
+
+	$("#contrast_btn").click(function(){
+		showLoading();
+		setTimeout("send()", 100);
+	});
+
+	function send(){
+		if(!pic1 || !pic2){
+			alert("请选择照片！");
+			hideLoading();
+			return;
+		}
+		var fd = new FormData();
+		fd.append("pic1", pic1, "image.png");
+		fd.append("pic2", pic2, "image.png");
+		var xhr = new XMLHttpRequest();
+//		xhr.open('POST', 'http://192.168.1.76:8000/vision/match', false);
+		xhr.open('POST', 'http://10.150.39.22:8001/vision/match', false);
+		xhr.send(fd);
+		xhr.onreadystatechange = doResult(xhr,function(){
+			var response = JSON.parse(xhr.responseText);
+			if(response.head.rtnCode == '000000'){
+				if(response.body.face1_detected == true && response.body.face2_detected == true){
+					toResult(response.body.similarity);
+					Touch.moveUp();
+				}else if(response.body.face1_detected == false && response.body.face2_detected == false){
+					alert("两张图片我看不清脸，请重新尝试！");
+				}else if(response.body.face1_detected == false ){
+					alert(" 第一张图片我看不清脸，请重新尝试！");
+				}else {
+					alert(" 第二张图片我看不清脸，请重新尝试！");
+				}
+				hideLoading();
+			}else if(response.head.rtnCode == '000001'){
+				alert("请求失败！，请重新尝试！");
+				hideLoading();
+			} else {
+				alert("请求失败！");
+				hideLoading();
+			}
+		});
+	}
+
+
+	function doResult(xmlHttpReg, callback) {
+		if (xmlHttpReg.readyState == 4) {//4代表执行完成
+			if (xmlHttpReg.status == 200) {//200代表执行成功
+				//alert(xmlHttpReg.responseText);
+				callback(xmlHttpReg);
+			}
+		}
+
+	}
+	function toResult(scale){
+		var height = $(window).height() / 4.025;
+		var width = $(window).width() / 2.3;
+		$("#pics_scale").html(scale);
+		var scaleNum = scale.substring(0,5);
+		if(scaleNum >= 50)
+			$("#pics_desc").html("哇塞！你们长得简直太像了!");
+		else if(scaleNum >= 30 && scaleNum<50)
+			$("#pics_desc").html("额，你们不太像!");
+		else
+			$("#pics_desc").html("一点都不像呢！");
+
+//		alert($("#img_container_1 >img").attr("src"));
+		$("#dis_pic1").attr("src", $("#img_container_1 >img").attr("src")).css("height",height).css("width", width);
+		$("#dis_pic2").attr("src", $("#img_container_2 >img").attr("src")).css("height",height).css("width", width);
+	}
+
+	function again(){
+		window.location.reload();
+	}
+
+	function popCancel(type){
+		popOut(type);
+		$("#file_pop_"+type).html('<img src="" id="img_pop_'+type+'">');
+		$("#file_"+type).val('');
+	}
+
+	function showLoading()
+	{
+		document.getElementById("over").style.display = "block";
+		document.getElementById("layout").style.display = "block";
+	}
+
+	function hideLoading(){
+		document.getElementById("over").style.display = "none";
+		document.getElementById("layout").style.display = "none";
+	}
+
+</script>
+</body>
+</html>

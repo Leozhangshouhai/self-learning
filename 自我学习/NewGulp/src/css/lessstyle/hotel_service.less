@@ -1,0 +1,360 @@
+/**
+ * Created by leo on 2016/11/12.
+
+ */
+*, body {
+  margin: 0;
+  padding: 0;
+}
+
+//轮播样式 以及板块内容样式
+.swiper-slide > img {
+  width: 100%;
+}
+
+#page-tool {
+  position: absolute;
+  bottom: 20%;
+}
+
+.lunbo-text-box {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+  font-size: 0;
+  //height: 3rem;
+
+}
+
+.lunbo-text-box > div {
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+//**************  定义声明 ************//
+@lineHeight: 1rem;
+//行高
+@margin-top: .4rem;
+//顶部上距离
+@logo-img-width: 1.8rem;
+//图标宽度
+
+.lunbo-text-box-left {
+  text-align: center;
+  width: 20%;
+  color: white;
+  background-color: #2C3039;
+}
+
+.lunbo-text-box-left-score {
+  font-size: 1rem;
+  color: #C6D77A;
+  margin: 0;
+  margin-top: @margin-top;
+}
+
+.lunbo-text-box-left-num {
+  font-size: .5rem;
+  margin: 0;
+  //margin-top: @margin-top;
+  padding-bottom: @margin-top+.1rem;
+
+}
+
+.lunbo-text-box-right {
+  width: 80%;
+  padding: 0 3%;
+  font-size: 1rem;
+  color: white;
+  position: relative;
+  background-color: rgba(0, 0, 0, .4);
+  //height: 3rem;
+}
+
+.lunbo-text-box-right-name {
+  color: white;
+}
+
+.lunbo-text-box-right-star {
+  width: .5rem;
+}
+
+.lunbo-text-box-right-sign {
+  position: absolute;
+  top: 50%;
+  margin-top: -.9rem;
+  right: 6%;
+
+}
+
+.lunbo-text-box-right-sign-img {
+  width: @logo-img-width;
+  //padding: .25rem;
+  margin-left: .4rem;
+}
+
+.lunbo-imgsign-img {
+  position: absolute;
+  top: 6/7*@logo-img-width;
+  left: 5%;
+  z-index: 9;
+  width: 6/7*@logo-img-width;
+}
+
+// **************  正文内容 ************
+@btn-radiu: .3rem;
+@content-padding: 1%;
+@border-color: #E1E1E1;
+@font-color1: #001A58;
+@font-color2: #989898;
+@font-color3:#FCB819;
+.btn-group {
+  padding: .4rem 3*@content-padding;
+  width: 100%;
+  font-size: 0;
+}
+
+.btn {
+  padding: .5rem;
+  border: none;
+  color: white;
+  font-weight: 600;
+  width: 50%;
+  text-align: center;
+  font-size: .8rem;
+}
+
+.btn-left {
+  background-color: #535353;
+  border-radius: @btn-radiu 0 0 @btn-radiu;
+}
+
+.btn-right {
+  background-color: #D7D7D7;
+  border-radius: 0 @btn-radiu @btn-radiu  0;
+}
+
+.content-info {
+  padding: 0 5*@content-padding;
+}
+
+.info-box {
+  border-top: 1px solid @border-color;
+  padding: 0 2*@content-padding;
+  font-size: 0;
+  overflow: auto;
+  padding-bottom: 2*@margin-top;
+  //border-bottom: 1px solid @border-color;
+}
+
+.info-box-title {
+  padding: 1.5*@margin-top 0;
+  font-size: .7rem;
+  font-weight: bolder;
+  margin: 0;
+  color: @font-color1;
+}
+
+.info-box-date {
+  margin: 0;
+  font-size: .8rem;
+  position: relative;
+  color: @font-color2;
+}
+.info-box-time{
+  padding: 0 .2rem;
+}
+.info-box-house-money{
+  color: @font-color3;
+ font-weight: bolder;
+  font-size: .8rem;
+  float: right;
+}
+
+//  信息列表
+.info-list-box{
+  margin: 0;
+}
+.info-list{
+  position: relative;
+  margin-bottom:2.125*@margin-top;
+
+}
+.list-bold{
+  font-weight: bolder;
+}
+
+.info-box-chooseNum{
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+  width: 40%;
+  top: 50%;
+  //vertical-align:middle;
+  font-size: .9rem;
+  line-height: 1.8rem;
+  color: @font-color2;
+  margin-top: -.9rem;
+  right: 20%;
+  z-index: 9;
+
+}
+.logo-img{
+  width: 6/7*@logo-img-width;
+}
+.num-reduce{
+  float: left;
+}
+.num-add{
+  float: right;
+}
+.list-text{
+  display: inline-block;
+  font-size: .9rem;
+  color: @font-color2;
+}
+.info-box-breakfast-moeny{
+  position: absolute;
+  color: @font-color3;
+  font-weight: bolder;
+  font-size: .8rem;
+  top: 50%;
+  display: inline-block;
+  margin-top: -0.4rem;
+  right: 0;
+  z-index: 9;
+}
+
+//  更多
+.btn-down{
+  background-color: @font-color3;
+  width: 3.7rem;
+   border: none;
+  font-size: .8rem;
+  border-radius: @btn-radiu;
+  margin-bottom: 2*@margin-top;
+}
+.btn-down:hover,.btn-down:focus{
+  background-color: @font-color3;
+}
+.content-all{
+  text-align: right;
+  font-size: .7rem;
+  margin-bottom: 1.75*@margin-top;
+  color: @font-color1;
+  font-weight: bolder;
+  margin-top: 1.75*@margin-top;
+}
+hr{
+  padding: 0;
+  margin: 0;
+}
+.content-all-money{
+  color: @font-color3;
+  font-size: 1.2rem;
+}
+.btn-sure{
+  font-size:1rem ;
+  width: 5rem;
+  padding: .3rem 0;
+  color: white;
+  float: right;
+  background-color: @font-color3;
+
+}
+
+
+// 附加信息
+.overheadinfo-box{
+  background-color: #F0F0F0;
+  background-image: url("../../img/house_detail/bg22_07.png");
+  background-repeat: repeat;
+  padding: 1.5*@margin-top 5*@content-padding 1.05*@margin-top 5*@content-padding;
+}
+
+.overheadinfo-title{
+  margin-bottom:2.5*@margin-top ;
+  padding: 0;
+}
+
+.overheadinfo-dl{
+  margin: 0;
+  padding: 0;
+  padding: 0 3*@content-padding;
+  overflow: auto;
+}
+.overheadinfo-dl>dd{
+  float: left;
+  position: relative;
+  text-align: center;
+  margin-left: 10*@content-padding;
+}
+.overheadinfo-dl>dd:nth-child(4n+1){
+  margin-left: 0;
+}
+.overheadinfo-dl>dd:nth-child(n+5){
+  margin-top: 2.2*@margin-top;
+}
+
+.overheadinfo-dl-dd-img{
+    //width: 1.8rem;
+  height: 1.3rem;
+}
+.img-small{
+  width: auto;
+}
+.overheadinfo-dl-dd-text{
+  padding: 0;
+  margin: 0;
+  margin-top: @margin-top;
+  font-size: .6rem;
+  text-align: center;
+  color: @font-color2;
+}
+.overheadinfo-tip{
+  margin: 0;
+  padding: 2*@margin-top 3*@content-padding;
+   color: @font-color2;
+  font-weight: bolder;
+  font-size: .5rem;
+  word-spacing: .1rem;
+  letter-spacing: .1rem;
+}
+.overheadinfo-hr{
+  margin-bottom: 1.5*@margin-top;
+  border-color: @font-color2;
+  opacity: .2;
+}
+.overheadinfo-Notip{
+  margin-top: 2*@margin-top;
+}
+
+.overheadinfo-dl-dd-img-num{
+  position: absolute;
+  right: -2.5*@margin-top;
+  top: 1*@margin-top;
+  display: inline-block;
+  width:2.6*@margin-top;
+  height: 2.6*@margin-top;
+  border-radius: 1000px;
+  text-align: center;
+  font-size: .6rem;
+  background-color: @font-color2;
+  line-height: 2.6*@margin-top;
+  color:white;
+}
+
+// 单独客房设置设施盒子 样式调节
+.overheadinfo-dl-kefang>dd{
+  margin-left: 14*@content-padding;
+
+}
+.overheadinfo-dl-kefang>dd>img{
+  height: 1.2rem;
+}
+
+.last-one{
+padding-top: 0;
+  font-weight: normal;
+}

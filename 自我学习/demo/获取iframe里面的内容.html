@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="jquery-1.11.3.js"></script>
+</head>
+<body>
+<iframe id="frame" width="100%" height="550" class="share_self"  frameborder="0" scrolling="no"
+        src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=1726300151&verifier=39b7a8cb&colors=d6f3f7,ffffff,666666,666666,ffffff&dpc=1"></iframe>
+<iframe id="frame1" width="100%" height="550"
+        src="http://www.baidu.com"
+        ></iframe>
+<iframe id="www" src="111.html" width="800px" height="200px" frameborder="0"></iframe>
+<script>
+
+
+$('#frame1').load("http://www.baidu.com",function () {
+   $('#frame1').contents().find('a').on("click",function(){return false;});
+  console.log("jjjjj  ; "+$('#frame1').contents().find('a').length)
+//          .attr("href","");
+   //以iframe中找元素a为例,
+});
+$('#www').load(function () {
+    $('#www').contents().find('a').on("click",function(){return false;});
+    console.log("come ini n ")
+    //以iframe中找元素a为例
+});
+</script>
+</body>
+</html>

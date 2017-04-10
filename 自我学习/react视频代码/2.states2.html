@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>学习React！！</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="bower_components/react/react.js"></script>
+    <script src="bower_components/react/JSXTransformer.js"></script>
+	<script type="text/jsx">
+		var ClickApp = React.createClass({
+			getInitialState:function(){
+				return {
+					clickCount: 0	,
+					num:12,
+				}
+			},
+			handleClick: function(e){
+				this.setState({
+					num: this.state.num + 1
+				})
+				console.log(e)
+			},
+			add:function(){
+			 this.setState({
+				 clickCount:this.state.clickCount+2
+			 })
+			},
+			render: function(){
+				var s=this.state.num+"我点击了"+this.state.clickCount;
+				return (
+					<div>
+						<h2>点击下面按钮</h2>
+						<button onClick={this.add}>点击我</button>
+						<input onChange={this.handleClick}  value={this.state.clickCount+"  wo zje "+this.state.num}/>
+					</div>
+				)
+			}
+		});
+
+		var clickComponent = React.render(
+			<ClickApp />,
+			document.getElementById('app')
+		)
+
+
+	</script>
+
+
+</body>
+
+</html>

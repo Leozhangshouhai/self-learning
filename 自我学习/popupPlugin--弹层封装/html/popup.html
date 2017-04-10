@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>示例</title>
+</head>
+<style>
+	html,body{ padding:0; margin:0; text-align: center;}
+	.click-me{ font-size:14px; color: #fff; width:23%; height: 30px; background:#20a1e0; text-align: center; line-height: 30px; display:inline-table}
+	.click-me:active{ background:#1a89bf }
+</style>
+<body>
+
+<div class="click-me popup1">提示弹窗</div>
+<div class="click-me popup2">GIF加载</div>
+<div class="click-me popup3">PNG加载</div>
+<div class="click-me popup4">只有图片</div>
+
+<link href="../css/popupCss.css" rel="stylesheet">
+
+<script src="../js/commonJs/jquery-3.0.0.min.js"></script>
+<script src="../js/commonJs/autoSize(20).js"></script>
+<script src="../js/popupJs.js"></script>
+<script>
+$(function () {
+    //调用pOpup
+	/*
+		_pOpupTxt:'加载中...',			   		  //提示文字,为('')表示没有提示文字
+		_pOpupImg:'loading.png',	  			//图片
+		_pOpupTime:3000,						//提示弹窗显示时间,默认为3秒
+		_hAvaImg:false,			   				//ture表示有图片，false表示没有图片
+		_iSGif:'png'			   				//gif表示GIF图片，png表示png图片(由CSS完成旋转)
+	*/
+	
+	//提示弹窗
+    $('.popup1').on('click',function(){
+        $.fn.pOpup({
+			_pOpupTxt:'请输入正确手机号码',			   //提示文字,为('')表示没有提示文字
+			_pOpupTime:3000,						//提示弹窗显示时间,默认为3秒
+			_hAvaImg:false,			   				//ture表示有图片，false表示没有图片
+        });
+    });
+	//GIF加载
+    $('.popup2').on('click',function(){
+        $.fn.pOpup({
+			_pOpupTxt:'加载中...',			   		  //提示文字,为('')表示没有提示文字
+            _pOpupImg:'../img/loadingGif.gif',	  	//图片
+			_hAvaImg:true,			   				//ture表示有图片，false表示没有图片
+			_iSGif:'gif'			   				//gif表示GIF图片，png表示png图片(由CSS完成旋转)
+        });
+    });
+	//PNG加载
+    $('.popup3').on('click',function(){
+        $.fn.pOpup({
+			_pOpupTxt:'4565456489715456454564566...',			   		  //提示文字,为('')表示没有提示文字
+            _pOpupImg:'../img/loadingPng.png',	  	//图片
+			_hAvaImg:true,			   				//ture表示有图片，false表示没有图片
+			_iSGif:'png'			   				//gif表示GIF图片，png表示png图片(由CSS完成旋转)
+        });
+    });
+	//只有图片
+    $('.popup4').on('click',function(){
+        $.fn.pOpup({
+			_pOpupTxt:'',			   		  		//提示文字,为('')表示没有提示文字
+            _pOpupImg:'../img/loadingPng.png',	  	//图片
+			_hAvaImg:true,			   				//ture表示有图片，false表示没有图片
+			_iSGif:'png'			   				//gif表示GIF图片，png表示png图片(由CSS完成旋转)
+        });
+    });
+	
+	$('body').on('click','.prompt-txt',function(){
+		//关闭弹窗
+		$.fn.pOpup.cLosePopup();
+    });
+	
+	
+});
+	
+
+</script>
+
+</body>
+</html>

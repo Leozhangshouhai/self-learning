@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <title>box-orient_CSS参考手册_web前端开发参考手册系列</title>
+    <meta name="author" content="Joy Du(飘零雾雨), dooyoe@gmail.com, www.doyoe.com" />
+    <style>
+        h1{font:bold 20px/1.5 georgia,simsun,sans-serif;}
+        .box{display:-webkit-flex;display:-moz-box;display:-ms-box;width:600px;height:180px;margin:0;padding:0;list-style:none;}
+        #box{flex-direction:row-reverse;
+            -webkit-flex-direction: row-reverse;
+          }
+        #box2{-webkit-box-orient:vertical;-moz-box-orient:vertical;-ms-box-orient:vertical;}
+        .box li:nth-child(1){
+            display: flex;
+            background:#666;}
+        .box li:nth-child(2){display: flex;background:#999;}
+        .box li:nth-child(3){display: flex;background:#ccc;}
+        .box1 {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            -webkit-box-pack:center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            width:500px;
+            height: 200px;
+            background: red;
+            color: #fff;
+            font-weight: bold;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body style="overflow-y: hidden">
+<h1>子元素横向排列 box-orient:horizontal;</h1>
+<ul id="box" class="box">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+<h1>子元素纵向排列 box-orient:vertical;</h1>
+<ul id="box2" class="box">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+<div  class="box1"><h2>你好啊</h2>
+</div>
+<script>
+    window.ready = function () {
+        console.log("window.ready");
+    }
+
+    document.ready=function(){
+        console.log("document.ready")
+    }
+
+    document.onload=function () {
+        console.log("document.onload");
+
+    }
+    window.onload = function () {
+        console.log("window.onload");
+    }
+</script>
+
+</body>
+</html>
+

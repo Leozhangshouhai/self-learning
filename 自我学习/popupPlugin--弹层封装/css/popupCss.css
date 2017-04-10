@@ -1,0 +1,77 @@
+/*==µ¯´°ÌáÊ¾==*/
+.prompt{
+    position: fixed;
+    display: table;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+	opacity: 0;
+}
+.prompt-tab{
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+	font-size: 0;
+}
+.prompt-box{
+    width:75%;
+    display: inline-block;
+}
+.prompt-txt {
+    line-height: .75rem;/*30px*/
+    background:#000;
+    background:rgba(0, 0, 0, .5);
+    border-radius: .5rem; /*20px*/
+    display: inline-table;
+    font-size: .65rem;/*26px*/
+    color: #fff;
+    padding:.62rem;/*25px*/
+    text-align: justify;
+    word-wrap:break-word;
+}
+.prompt-txt img{
+	vertical-align:middle;	
+	margin:0 5px 0 0;
+	width:.8rem;/*32px*/
+}
+/*==Ðý×ª==*/
+.rotate {
+ 	-webkit-animation:rotating .8s linear infinite; 
+	-moz-animation: rotating .8s linear infinite;
+	-o-animation: rotating .8s linear infinite;
+ 	animation:rotating .8s linear infinite 
+}
+
+@-webkit-keyframes rotating {
+	from {
+		-webkit-transform: rotate(0)
+	}
+
+	to {
+		-webkit-transform: rotate(360deg)
+	}
+}
+
+@keyframes rotating {
+	from {
+		transform: rotate(0)
+	}
+
+	to {
+		transform: rotate(360deg)
+	}
+}
+
+@-moz-keyframes rotating {
+	from {
+		-moz-transform: rotate(0)
+	}
+
+	to {
+		-moz-transform: rotate(360deg)
+	}
+}

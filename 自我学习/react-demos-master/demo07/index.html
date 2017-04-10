@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/JSXTransformer.js"></script>
+
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/jsx">
+var MyComponent = React.createClass({
+  handleClick: function() {
+    this.refs.myTextInput111.focus();
+    this.refs.pp.style.color="red";
+//    alert("wo dj")
+  },
+  output:function(){
+    alert("wo xtet")
+  },
+  getDefaultProps : function () {
+    return {
+      title : 'Hello World'
+    };
+  },
+  render: function() {
+    return (
+      <div>
+        <input type="text" ref="myTextInput111"  onClick={this.output} />
+        <input type="button" value="Focus the text input" onClick={this.handleClick}/>
+        <p ref="pp">{this.props.title}</p>
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <MyComponent />,
+  document.getElementById('example')
+);
+    </script>
+  </body>
+</html>

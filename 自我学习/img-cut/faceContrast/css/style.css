@@ -1,0 +1,54 @@
+body,div,a,h1,h2,h3,h4,h5,span,ul,li,p{ padding: 0; margin: 0; text-decoration: none; list-style: none;}
+body{font-family:  "Microsoft Yahei";}
+input{outline:none;-webkit-appearance: none; border: 0;}
+.header{ overflow: hidden;padding: 0 3%; background: #36353a;}
+.hedader-blcok{width: 14px;float: left; background: url(../img/block.png) left center no-repeat; text-indent:-999px;}
+.header-title{width: 73%; float: left;margin-left:8%; text-align: center;color: #fff; font-size:5vw;line-height: 40px; font-weight: normal;}
+.header-right{width: 14%; float: right;text-align: right;color: #fff; font-size: 8vw;font-weight: bold;}
+
+.ajax-loading-overlay1 {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    _padding: 0 20px 0 0;
+    background: #000;
+    display: block;
+}
+.us_wrap{ width: 90%; max-height:85%;padding:6% 3%;border-radius: 5px; display: block;background: #fff; position: fixed; left: 5%; z-index: 2000;  }
+
+.over {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5f5;
+    opacity:0.5;
+    z-index: 1000;
+}
+.layout {
+    display: none;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: 20%;
+    height: 20%;
+    z-index: 1001;
+    text-align:center;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #demo1{
+        height: 300px;
+            background-color: red;
+        }
+        #demo2{
+         height: 300px;
+            background-color: green;
+        }
+
+    </style>
+</head>
+<body>
+<div id="demo1" onclick="demo1()">我是demo1-red</div>
+<div id="demo2" onclick="demo2()">我是demo2-green</div>
+</body>
+<script>
+    var index=1;
+    function demo1(){
+        var demo1=document.getElementById('demo1');
+        demo1.style.backgroundColor='pink';
+        history.pushState({}, "","test"+(index++)+".html");
+    }
+    function demo2(){
+        var demo2=document.getElementById('demo2');
+        demo2.style.backgroundColor='blue';
+        history.pushState({}, "","test"+(index++)+".html");
+    }
+</script>
+</html>

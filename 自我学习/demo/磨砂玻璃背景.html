@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            background: url("tiger.jpg") 50% / cover fixed;
+        }
+
+        #main::before {
+            background: url("tiger.jpg") 50% / cover fixed;
+            /*background-color: rgba(0,0,0,.5);*/
+
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #main {
+            /*  hsla指颜色  参数顺序分别是  色调，饱和度，亮度，透明度*/
+            /*  通过调节饱和度和亮度，可以设置成不容颜色*/
+            background: hsla(0, 0%, 100%, .3);
+            overflow: hidden;
+            padding: 30px;
+            box-sizing: border-box;
+            width: 600px;
+            height: 400px;
+            line-height: 150%;
+            font-size: 18px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        #main::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            /*background: rgba(255, 0, 0, .5); /!* for debugging *!/*/
+            filter: blur(6px);
+            margin: -20px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="main">
+    <cite>
+        半透明颜色的一种应用是，使用它们作为背景。在照片或者颜色比较复杂的背景下，通过降低对比度，提高文本的可读性。结果非常有效，但是阅读起来仍然不是那么好，特别是非常低透明度的颜色或非常杂乱的背景的情况下。比如说，看看下图效果：著作权归作者所有。
+    </cite>
+</div>
+</body>
+</html>

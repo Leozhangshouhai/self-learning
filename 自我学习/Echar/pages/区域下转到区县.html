@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<!--***************http://www.w2bc.com/Article/18033  **********-->
+<script type="text/javascript">
+    for (var city in cityMap) {
+        mapType.push(city);
+// 自定义扩展图表类型
+        mapGeoData.params[city] = {//city
+            getGeoJson: (function (c) {//city对应的县级数据
+                var geoJsonName = cityMap[c];
+                return function (callback) {
+                    $.getJSON('geoJson/china-main-city/' + geoJsonName + '.json', callback);
+                }
+            })(city)
+        }
+    }
+    /* 加载县级数据 */
+    var cityMap = {
+        "长沙市": "430100",
+        "株洲市": "430200",
+        "湘潭市": "430300",
+        "衡阳市": "430400",
+        "邵阳市": "430500",
+        "岳阳市": "430600",
+        "常德市": "430700",
+        "张家界市": "430800",
+        "益阳市": "430900",
+        "郴州市": "431000",
+        "永州市": "431100",
+        "怀化市": "431200",
+        "娄底市": "431300",
+        "湘西土家族苗族自治州": "433100"
+    };
+    var mapType = [];
+    var base = '<%=request.getContextPath()%>';
+    var mapGeoData = require('/szft/js/echarts/src/util/mapData/params');
+    //这是需要扩展的文件(将县级数据存档 )
+    //（这个路径要写对，否则报js错误：...is not exist
+    for (var city in cityMap) {//加载14市的县级地图数据 mapType.push(city);
+        //将14个市加入到params.js文件中 // 自定义扩展图表类型
+        mapGeoData.params[city] = {
+            //回调，加载14个市对应的县级数据
+            echarts: util.mapData.params.params[city] = {
+                //回调，加载14个市对应的县级数据 （这个路径要写对，否则报js错误：...is not exist）
+                getGeoJson: (function (c) { var geoJsonName = cityMap[c]; return function (callback) { $.getJSON(base + '/js/echarts/doc/example/geoJson/china-main-city/' + geoJsonName + '.json', callback); } })(city)
+            }
+        }
+        /** * 选中地图 */function selectedMap() {
+            myChart.on(echarts.config.EVENT.MAP_SELECTED, function (param) {
+                //市级的点击事件
+                var selectedCity = param.target;
+                //点击获取对应的市的名称
+                var flag = false; var selected = param.selected; for (var p in selected) {
+                    getVodList(mapUtil.findFbdm(selectedCity), selectedCity);
+                    //加载右侧的列表
+                    if (p == selectedCity) {
+                        flag = true;
+                        //所选的是14个市之一
+                        selectedCity = p;
+                    }
+                } if (flag) {
+                    //所选的市是14个市之一 ，就重新画地图进入到该市的县级地图 (下钻到县级 )
+                    var map = new Map(); map = getMap(selectedCity, 3); initMap(map, selectedCity, 'xj'); $('#Header').css('display', '');
+                    //显示隐藏的返回按钮
+                    myChart.on(echarts.config.EVENT.MAP_SELECTED, function (param) {
+                        //下级县的点击事件
+                        var selectedTown = param.target;
+                        //点击获取对应的县的名称
+                        getVodList(mapUtil.findFbdm(selectedTown), selectedTown);
+                        //加载右侧的列表
+                    });
+                }
+            });
+        }
+    }
+</script>
+</body>
+</html>
