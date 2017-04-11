@@ -37,11 +37,14 @@ var air_pay_data = {
         var timearr = this.plane_information_json.go.data.split('-');
         var $go = $('#popup-detail-title-go');
 
-        var $goAllFee = (this.pay_info.body.orderDetail[0].cabinprice - this.pay_info.body.orderDetail[0].commissionMoney);
+        var $goAllFee = this.pay_info.body.orderDetail[0].cabinprice;
         var $goFee = Number(this.pay_info.body.orderDetail[0].fuleprice) + Number(this.pay_info.body.orderDetail[0].taxprice);
-        $('.info-show-price').html('￥' + (Number($goAllFee) + $goFee));
+        // $('.info-show-price').html('￥' + (Number($goAllFee) + $goFee));
+        $('.info-show-price').html('￥' + this.pay_info.body.mainOrderVO.orderMoney);
         $go.find('.popup-detail-title-time-date').first().html(timearr[1] + '月' + timearr[2] + '日');
-        $go.find('.popup-detail-title-time-price').html('折后' + (this.pay_info.body.orderDetail[0].cabinprice - this.pay_info.body.orderDetail[0].commissionMoney));
+        // $go.find('.popup-detail-title-time-price').html('折后' + (this.pay_info.body.orderDetail[0].cabinprice - this.pay_info.body.orderDetail[0].commissionMoney));
+        $go.find('.popup-detail-title-time-price').html( '￥' +Number($goAllFee)*this.pay_info.body.orderDetail[0].pcount);
+        $('.oil-fee-total').html( '￥' +Number($goFee)*this.pay_info.body.orderDetail[0].pcount);
         $go.find('.popup-detail-title-airline-img').attr('src', this.plane_information_json.go.plane_info.airLogo);
         $go.find('.popup-detail-title-airline').find('.popup-detail-title-airline-company').html(this.plane_information_json.go.plane_info.airName);
         $go.find('.popup-detail-title-time-airline-name').html(this.plane_information_json.go.plane_info.airCode + this.plane_information_json.go.plane_info.flightNo);
@@ -64,12 +67,10 @@ var air_pay_data = {
         if (this.plane_information_json.back) {
             this.sign=2;
             $('.info-show-title-name').html('往返');
-
-
             var $back = $('#popup-detail-title-back');
             $back.fadeIn(300);
             $back.find('.popup-detail-title-time-date').html(timearr[1] + '月' + timearr[2] + '日');
-            $back.find('.popup-detail-title-time-price').html('折后' + (this.pay_info.body.orderDetail[1].cabinprice - this.pay_info.body.orderDetail[1].commissionMoney));
+            //            $back.find('.popup-detail-title-time-price').html('折后' + (this.pay_info.body.orderDetail[1].cabinprice - this.pay_info.body.orderDetail[1].commissionMoney));
             $back.find('.popup-detail-title-airline-img').attr('src', this.plane_information_json.back.plane_info.airLogo);
             $back.find('.popup-detail-title-airline').find('.popup-detail-title-airline-company').html(this.plane_information_json.back.plane_info.airName);
             $back.find('.popup-detail-title-time-airline-name').html(this.plane_information_json.back.plane_info.airCode + this.plane_information_json.back.plane_info.flightNo);
@@ -92,12 +93,13 @@ var air_pay_data = {
         }
         if (this.plane_information_json.back) {
             var $backFee = Number(this.pay_info.body.orderDetail[1].fuleprice) + Number(this.pay_info.body.orderDetail[1].taxprice);
-            var $backAllFee = (this.pay_info.body.orderDetail[1].cabinprice - this.pay_info.body.orderDetail[1].commissionMoney)
-            $('.air-total-fee-price')
-                .html(Number($goFee) + Number($backFee));
-            $('.info-show-price').html('￥' + (Number($backAllFee) + $backFee + (Number($goAllFee) + $goFee)));
+            // var $backAllFee = (this.pay_info.body.orderDetail[1].cabinprice - this.pay_info.body.orderDetail[1].commissionMoney)
+            var $backAllFee = this.pay_info.body.orderDetail[1].cabinprice;
+            $back.find('.popup-detail-title-time-price').html('￥' + ((Number($backAllFee)+ Number($goAllFee))*this.pay_info.body.orderDetail[0].pcount));
+            $('.oil-fee-total').html( '￥' +(Number($goFee)+$backFee)*this.pay_info.body.orderDetail[0].pcount);
+
         } else {
-            $('.air-total-fee-price').html(Number($goFee));
+
         }
     }
 };

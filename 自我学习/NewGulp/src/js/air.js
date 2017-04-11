@@ -57,7 +57,7 @@ var air = {
         });
         $('.middle-time-box').on('click', function () {
             $(this).addClass('selected').siblings('.middle-time-box').removeClass('selected');
-        });
+        })
         $('#start').on('click', function () {
             var div = '<div id="ca"></div>';
             $('#calendar-box').empty().append(div);
@@ -101,7 +101,7 @@ var air = {
                 if (json_sign.type == 1) {
                     json_sign.date = date_arr[3] + '-' + monthday + '-' + today;
                 }
-
+                console.log(json_sign)
                 //*****************************************
                 $('.middle-time-box.only,.middle-time-box.selected').find('.middle-time-time').
                     html(monthday + '月' + today + '日').attr('year', date_arr[3])
@@ -235,7 +235,7 @@ var air = {
                json.code_3_back_json.parameters.keywords=encodeURI(json_sign.ecity);
                Ajax_json(json.code_3_back_json);
            }
-        });
+        })
     },
 
     //提交按钮
@@ -257,7 +257,7 @@ var air = {
             }
 
 
-        });
+        })
     }
 
 };

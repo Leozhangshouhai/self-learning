@@ -2,18 +2,6 @@
  * Created by leo on 2017/1/12.
  */
 
-    /*
-var json = {
-    url: 'http://118.178.225.32/hmp_website/yiplain/getairportlist.json',
-    parameters: {
-        'keywords': encodeURI("上海")
-    },
-    success: function (data) {
-        console.log('come in');
-        console.log(data);
-    }
-}
-*/
 var Ajax_accessTicket='';
 
 function Ajax_json(json) {
@@ -27,7 +15,7 @@ function Ajax_json(json) {
             Storage.set('login.accessticket', Ajax_accessTicket);
         }
         var accessTicket =Ajax_accessTicket!=''?Ajax_accessTicket: Storage.get('login.accessticket');
-        //var accessTicket ='JP2017032209001490144417606339';
+        // var accessTicket ='74b917d990e044d1a556c51af77a2fd1';
 console.log(accessTicket);
             //Storage.get('login.accessticket');
         var version = "2.0";

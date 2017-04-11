@@ -47,11 +47,14 @@ var air_info_confirm = {
                 self.location.href='../pages/air-pay.html';
             }else{
               ZSH_Extent.createLoading('订单创建失败，请确保信息正确');
+              $('#popup').hide();
             }
 
         },
         error:function(data){
             ZSH_Extent.createLoading('订单创建失败，请确保信息正确');
+            $('#popup').hide();
+
         }
     }
 };

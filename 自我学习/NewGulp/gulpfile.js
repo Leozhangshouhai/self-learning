@@ -4,7 +4,9 @@
 var  gulp = require('gulp'),
     concat = require('gulp-concat'),
     connect = require('gulp-connect'),
-    //less = require('gulp-less'),
+   browserSync = require('browser-sync').create(),
+    less = require('gulp-less'),
+    gulpif = require('gulp-if'),
     minifyCss = require('gulp-minify-css'),
     minify = require('gulp-minify'),
     zip = require('gulp-zip'),
@@ -18,23 +20,24 @@ var  gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     imgmin = require('gulp-imagemin'),
     jshint=require('gulp-jshint'),
+    stylish = require('jshint-stylish'),
     htmlmin = require('gulp-htmlmin');
     //ngAnnotate = require('gulp-ng-annotate');
 var path={
     input:{
         html:['src/pages/*.html'],
         js:['src/js/*.js'],
-        css:['src/css/*.css'],
-        image:['src/img/*/*'],
-        fonts:['src/fonts/*/*'],
-        copycss:'src/css/**'  //**表示所有后代，*表示子代
+        css:['src/css/**'],
+        image:['src/img/**'],
+        fonts:['src/fonts/**'],
+        copy:'src/fonts/**'  //**表示所有后代，*表示子代
     },
     output:{
-        css:'dist/minCss',
-        html:'dist/minHtml',
-        js:'dist/minJs',
+        css:'dist/css',
+        html:'dist/pages',
+        js:'dist/js',
         img:'dist/img' ,
-        copy:'dist/plus'
+        copy:'dist/fonts'
 
     },
     del:{
@@ -59,11 +62,16 @@ gulp.task('minhtml',function(){
        .pipe(htmlmin(options))
         .on('error',function(error){
             console.log(error.message);
-            // console.log(error)
         })
         .pipe(gulp.dest(path.output.html))
 
-})
+});
+// less 编译
+gulp.task('less', function () {
+    return gulp.src('src/css/lessstyle/*.less')
+        .pipe(less())
+        .pipe(gulp.dest('src/css'));
+});
 // css 压缩
 gulp.task('mincss',function(){
    return  gulp.src(path.input.css)
@@ -72,11 +80,25 @@ gulp.task('mincss',function(){
 });
 // JS 压缩并混淆加密
 gulp.task('minjs',function(){
+ /*
+  * JShint语法配置
+  * http://www.jianshu.com/p/4cb23f9e19d3
+ * */
+    var jshintConfig={
+        asi:true,//忽略缺少;
+        strict:false,//不使用严格模式
+        eqnull:true,
+        eqeqeq: false,
+    };
+
     gulp.src(path.input.js)
-        .pipe(uglify(options))
-        // .pipe(concat('index.js'))
+        .pipe(jshint(jshintConfig))
+        .pipe(jshint.reporter(stylish))
+        .pipe(uglify())
+        .on('error',function (error) {
+            console.log(error.message)
+        })
         .pipe(gulp.dest(path.output.js))
-        //.pipe(jshint())
 });
 
 // JS 语法检查
@@ -86,8 +108,6 @@ function Jshit(){
         .pipe(jshint.reporter())
         .pipe(concat('allindex.js'))
         .pipe(gulp.dest(path.output.js))
-
-
 }
 gulp.task('jshint', Jshit);
 // 图片压缩
@@ -104,7 +124,7 @@ gulp.task('imgmin',function(){
 });
 // 文件copy
 function file_copy(){
-    gulp.src(path.input.copycss)
+    gulp.src(path.input.copy)
         .pipe(gulp.dest(path.output.copy))
 }
 gulp.task('copy',file_copy);
@@ -116,7 +136,11 @@ gulp.task('clean',function(){
     del_file('dist/');
 });
 
-// 实时刷新
+/*
+* 实时刷新  connect+watch
+* 不能自动打开浏览器
+*
+* */
 gulp.task('connect',function(){
     connect.server({
          root:'src',
@@ -124,13 +148,26 @@ gulp.task('connect',function(){
          livereload:true
      });
 });
-// 打出提示，注册任务
-gulp.task('css', function () {
-    gulp.src(path.input.css)
+gulp.task('allfile', function () {
+    gulp.src('src/**')
         .pipe(connect.reload());
 });
-//实时监听
 gulp.task('watch',function(){
-    gulp.watch(path.input.css,['css']);
+    gulp.watch('src/**',['allfile']);
 });
 gulp.task('liveport',['connect','watch']);
+//   实时监听 browser  支持浏览器窗口弹出
+gulp.task('browser-sync', function() {
+    browserSync.init({
+        server: {
+            baseDir: "src/",
+            directory: true  // 是否打开文件目录
+        }
+    });
+    gulp.watch("src/**",['minhtml','mincss','minjs','copy']);
+    gulp.watch("src/**").on('change', browserSync.reload);
+
+});
+gulp.task('default',['minhtml','less','mincss','minjs','copy']);
+
+

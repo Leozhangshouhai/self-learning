@@ -3,7 +3,7 @@
     margin: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
-    /*-webkit-appearance: none;*/
+    -webkit-appearance: none;
     font-family: PingFang TC;
 }
 

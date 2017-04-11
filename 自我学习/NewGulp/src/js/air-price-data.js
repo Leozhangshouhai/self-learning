@@ -205,19 +205,20 @@ var air_price = {
     delete_arr_null:function(data_arr,sign){
         var arr= data_arr.body.flightlist.responseData.flightData.firstFlightList;
         for(var i=0;i<arr.length;i++){
-           if(arr[i].cabinSeatList.length==0){
+           if(arr[i].cabinSeatList.length===0){
                arr.splice(i,1);
+               i--;
            }
         }
         if(sign=='2'){
             var arr_back= data_arr.body.flightlist.responseData.flightData.secondFlightList;
             for(var j=0;j<arr_back.length;j++){
-                if(arr_back[j].cabinSeatList.length==0){
+                if(arr_back[j].cabinSeatList.length===0){
                     arr_back.splice(j,1);
+                    j--;
                 }
             }
         }
-
     },
 
     // 获取航班信息
@@ -227,7 +228,7 @@ var air_price = {
         success: function (data) {
             console.log('航班信息');
             console.log(data);
-            if (data.head.rtnCode == '000000'&&data.body.flightlist.responseData.flightData.firstFlightList?data.body.flightlist.responseData.flightData.firstFlightList.length>0:false) {
+            if (data.head.rtnCode === '000000'&&data.body.flightlist.responseData.flightData.firstFlightList?data.body.flightlist.responseData.flightData.firstFlightList.length>0:false) {
                 air_price.delete_arr_null(data);
                 air_price.all_plane.firstFlightList = data.body.flightlist.responseData.flightData.firstFlightList;
                 if (data.body.type == '2') {

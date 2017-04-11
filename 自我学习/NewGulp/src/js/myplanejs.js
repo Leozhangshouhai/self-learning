@@ -2,6 +2,7 @@
  * Created by leo on 2017/2/16.
  */
 var Ajax_accessTicket='';
+var sign = 1;
 function css_right() {
     var padding = parseInt($('.airtickets-show-dd-star').css('height')) - $('.airtickets-show-dd-timelong').height();
     var padding_top = padding / 2;
@@ -45,7 +46,12 @@ $(function(){
             e.preventDefault();
             var orderNo=$('#orderNO').html();
             bridge.callHandler('payPlaneTicket', {'orderNo':orderNo,'payChannel':'01'},function(response) {
-                //alert(response);
+                //alert(response);\
+                if (response.info == 0) {
+                    self.location.href = '../../../pages/air-successOrfail.html?sign=' + sign + '&&type=1'
+                } else {
+                    self.location.href = '../../../pages/air-successOrfail.html?sign=' + sign + '&&type=2'
+                }
                 log('callback', response)
             })
         };
@@ -54,8 +60,11 @@ $(function(){
 
             var orderNo=$('#orderNO').html();
             bridge.callHandler('payPlaneTicket', {'orderNo':orderNo,'payChannel':'02'},function(response) {
-                //alert(response);
-                //ZSH_Extent.createLoading('')
+                if (response.info == 0) {
+                    self.location.href = '../../../pages/air-successOrfail.html?sign=' + sign + '&&type=1'
+                } else {
+                    self.location.href = '../../../pages/air-successOrfail.html?sign=' + sign + '&&type=2'
+                }
                 log('callback', response)
             })
         }
@@ -146,7 +155,9 @@ $(function(){
                 }
                 if(obj.secondline == null || obj.secondline.airco == null || obj.secondline.airco == ''){
                     $('#popup-detail-title-back').hide();
+                    sign = 1;
                 }else{
+                    sign = 2;
                     var secondstarttime = new Date(obj.secondline.startdate);
                     $('#secondstarttime').html(secondstarttime.toLocaleString());
 
