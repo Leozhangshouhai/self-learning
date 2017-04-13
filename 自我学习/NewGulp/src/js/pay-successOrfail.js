@@ -82,53 +82,46 @@ var page = {
                 if (log.children.length) { log.insertBefore(el, log.children[0]) }
                 else { log.appendChild(el) }
             }
-            bridge.init(function(message, responseCallback) {
-                log('JS got a message', message);
-                var data = { 'Javascript Responds':'Wee!' };
-                log('JS responding with', data);
-                responseCallback(data);
-            });
-
+            setupWebViewJavascriptBridge(function(bridge) {});
 
             document.getElementById('return-index').onclick = function(e) {
                 e.preventDefault();
-                bridge.callHandler('reBookPlane',
+                WebViewJavascriptBridge.callHandler('reBookPlane',
                     null,
                     function(response) {
-                        //alert(response);
-                        log('reBookPlane', response)
-                    })
+
+                    });
                 //page.clear_storage();
             };
             document.getElementById('my-order').onclick = function(e) {
                 e.preventDefault();
-                bridge.callHandler('handler：openNativeOrderList', null, function(response) {
-                })
+                WebViewJavascriptBridge.callHandler('openNativeOrderList', null, function(response) {
+
+                });
                 //page.clear_storage();
             };
             document.getElementById('AliPay').onclick = function(e) {
                 e.preventDefault();
                 var orderNo= Storage.get('orderNo');
-                bridge.callHandler('payPlaneTicket', {'orderNo':orderNo,'payChannel':'01'},function(response) {
-                    //alert(response);
-                    log('callback', response)
-                })
+                WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo':orderNo,'payChannel':'01'},function(response) {
+                    if(response.info==0){
+                        self.location.href='../pages/air-successOrfail.html?sign='+MoniJson.sign+'&&type=1'
+                    }else{
+                        self.location.href='../pages/air-successOrfail.html?sign='+MoniJson.sign+'&&type=2'
+                    }
+                });
             };
             document.getElementById('wechat').onclick = function(e) {
                 e.preventDefault();
                 var orderNo= Storage.get('orderNo');
-                bridge.callHandler('payPlaneTicket', {'orderNo':orderNo,'payChannel':'02'},function(response) {
-                    //alert(response);
-                    //ZSH_Extent.creatconsoleeLoading('')
-                    //console.log(response);
-                    console.log(response)
-                  if(response.info==0){
-                      self.location.href='../pages/air-successOrfail.html?sign='+MoniJson.sign+'&&type=1'
-                  }else{
-                      self.location.href='../pages/air-successOrfail.html?sign='+MoniJson.sign+'&&type=2'
-                  }
-                    log('callback', response)
-                })
+                WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo':orderNo,'payChannel':'02'},function(response) {
+                    // alert(response);
+                    if(response.info==0){
+                        self.location.href='../pages/air-successOrfail.html?sign='+MoniJson.sign+'&&type=1'
+                    }else{
+                        self.location.href='../pages/air-successOrfail.html?sign='+MoniJson.sign+'&&type=2'
+                    }
+                });
             }
         });
     },
@@ -144,12 +137,13 @@ var page = {
 $(function () {
     page.init();
 });
-function connectWebViewJavascriptBridge(callback) {
-    if (window.WebViewJavascriptBridge) {
-        callback(WebViewJavascriptBridge)
-    } else {
-        document.addEventListener('WebViewJavascriptBridgeReady', function() {
-            callback(WebViewJavascriptBridge)
-        }, false)
-    }
-}
+function setupWebViewJavascriptBridge(callback) {
+    if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
+    if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+    window.WVJBCallbacks = [callback];
+    var WVJBIframe = document.createElement('iframe');
+    WVJBIframe.style.display = 'none';
+    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+    document.documentElement.appendChild(WVJBIframe);
+    setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+};

@@ -11,8 +11,6 @@ $(function () {
      * 故模拟执行一次单程点击事件
      * */
     $('#choose-btn').find('div').first().click();
-
-
     air.get_today();
     air.submit_click();
     air.get_3code();
