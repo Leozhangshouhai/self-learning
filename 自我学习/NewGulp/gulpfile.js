@@ -164,7 +164,7 @@ gulp.task('browser-sync', function() {
             directory: true  // 是否打开文件目录
         }
     });
-    gulp.watch("src/**",['minhtml','mincss','minjs','copy']);
+    // gulp.watch("src/**",['minhtml','mincss','minjs','copy']);
     gulp.watch("src/**").on('change', browserSync.reload);
 
 });
