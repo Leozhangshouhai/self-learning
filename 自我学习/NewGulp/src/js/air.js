@@ -227,11 +227,11 @@ var air = {
            if($(this).attr('name')==='middle-data-name-go'){
                json_sign.scity=$(this).val();
                json.code_3_go_json.parameters.keywords=encodeURI(json_sign.scity);
-               Ajax_json(json.code_3_go_json);
+               Ajax_json(json.code_3_go_json,change_Ip);
            }else if($(this).attr('name')==='middle-data-name-back'){
                json_sign.ecity=$(this).val();
                json.code_3_back_json.parameters.keywords=encodeURI(json_sign.ecity);
-               Ajax_json(json.code_3_back_json);
+               Ajax_json(json.code_3_back_json,change_Ip);
            }
         })
     },
@@ -273,13 +273,13 @@ var json_sign={
 var json = {
     // json 模型
     code_3_go_json: {
-        url: 'http://118.178.225.32/hmp_website/yiplain/getairportlist.json',
+        url: 'http://101.37.32.245/hmp_website/yiplain/getairportlist.json',
       parameters: {
             'keywords': encodeURI(json_sign.scity)
        },
         success: function (data) {
 
-            console.log('gogoog');
+
             console.log(data.body.list);
             var data_arr=data.body.list;
             if(data_arr.length>0){
@@ -345,6 +345,15 @@ var json = {
         }
     }
 };
+/*
+* 改变接口地址IP
+* */
+function change_Ip(hmp_website_Ip) {
+  json.code_3_go_json.url=hmp_website_Ip+'hmp_website/yiplain/getairportlist.json';
+  json.code_3_back_json.url=hmp_website_Ip+'hmp_website/yiplain/getairportlist.json';
+  json.go_json.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
+  json.go_back_json.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
+}
 //Ajax_json(json.go_back_airplane_json);
 
 

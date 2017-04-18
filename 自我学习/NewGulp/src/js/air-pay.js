@@ -117,71 +117,41 @@ var page = {
         })
     },
     pay_way: function () {
-        connectWebViewJavascriptBridge(function (bridge) {
-            var uniqueId = 1;
 
-            function log(message, data) {
-                var log = document.getElementById('log')
-                var el = document.createElement('div')
-                el.className = 'logLine';
-                el.innerHTML = uniqueId++ + '. ' + message + ':<br/>' + JSON.stringify(data)
-                if (log.children.length) {
-                    log.insertBefore(el, log.children[0])
-                }
-                else {
-                    log.appendChild(el)
-                }
-            }
-
-            bridge.init(function (message, responseCallback) {
-                log('JS got a message', message)
-                var data = {'Javascript Responds': 'Wee!'}
-                log('JS responding with', data)
-                responseCallback(data);
-            });
             Storage.set('orderNo', air_pay_data.pay_info.body.mainOrderVO.orderNo);
-
             document.getElementById('AliPay').onclick = function (e) {
                 e.preventDefault();
                 var orderNo = air_pay_data.pay_info.body.mainOrderVO.orderNo;
-                bridge.callHandler('payPlaneTicket', {'orderNo': orderNo, 'payChannel': '01'}, function (response) {
+                WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo': orderNo, 'payChannel': '01'}, function (response) {
                     //alert(response);
                     if (response.info == 0) {
-                        self.location.href = '../pages/air-successOrfail.html?sign=' + air_pay_data.sign + '&&type=1'
+                        self.location.href = '../pages/pay-successOrfail.html?sign=' + air_pay_data.sign + '&&type=1'
                     } else {
-                        self.location.href = '../pages/air-successOrfail.html?sign=' + air_pay_data.sign + '&&type=2'
+                        self.location.href = '../pages/pay-successOrfail.html?sign=' + air_pay_data.sign + '&&type=2'
                     }
-                    log('callback', response);
+
                 })
             };
             document.getElementById('wechat').onclick = function (e) {
                 e.preventDefault();
-
                 var orderNo = air_pay_data.pay_info.body.mainOrderVO.orderNo;
-                bridge.callHandler('payPlaneTicket', {'orderNo': orderNo, 'payChannel': '02'}, function (response) {
+                WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo': orderNo, 'payChannel': '02'}, function (response) {
                     //alert(response);
                     //ZSH_Extent.creatconsoleeLoading('')
                     console.log(response);
                     if (response.info == 0) {
-                        self.location.href = '../pages/air-successOrfail.html?sign=' + air_pay_data.sign + '&&type=1'
+                        self.location.href = '../pages/pay-successOrfail.html?sign=' + air_pay_data.sign + '&&type=1'
                     } else {
-                        self.location.href = '../pages/air-successOrfail.html?sign=' + air_pay_data.sign + '&&type=2'
+                        self.location.href = '../pages/pay-successOrfail.html?sign=' + air_pay_data.sign + '&&type=2'
                     }
                     log('callback', response);
                 })
             }
-        });
-    }
-};
-function connectWebViewJavascriptBridge(callback) {
-    if (window.WebViewJavascriptBridge) {
-        callback(WebViewJavascriptBridge)
-    } else {
-        document.addEventListener('WebViewJavascriptBridgeReady', function () {
-            callback(WebViewJavascriptBridge)
-        }, false)
-    }
+
+
 }
+}
+
 
 
 

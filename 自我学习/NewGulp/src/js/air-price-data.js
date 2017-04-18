@@ -64,7 +64,7 @@ var fun = {
                 air_price.get_planeInfo.parameters.ecity = air_price.air_json.ecity_3;
                 air_price.get_planeInfo.parameters.date = air_price.air_json.date;
             }
-            Ajax_json(air_price.get_planeInfo);
+            Ajax_json(air_price.get_planeInfo,change_Ip);
 
         }
 
@@ -261,8 +261,11 @@ var air_price = {
             ZSH_Extent.createLoading('未查寻到相应航班','error');
         }
     }
-
 };
+function change_Ip(hmp_website_Ip) {
+    air_price.get_planeInfo.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
+
+}
 //console.log(GetQueryString('jsonString'));
 
 

@@ -56,7 +56,10 @@ var air_info_confirm = {
             $('#popup').hide();
 
         }
-    }
+    },
+    json_accident:{},
+    json_delay:{}
+
 };
 var page = {
     init: function () {
@@ -199,7 +202,7 @@ var page = {
             }
             console.log(air_info_confirm.create_order);
             popup.loading_show();
-            Ajax_json(air_info_confirm.create_order);
+            Ajax_json(air_info_confirm.create_order,change_Ip);
         })
 
     },
@@ -311,7 +314,7 @@ var page = {
         })
     },
     get_fee: function () {
-        var json_accident = {
+        air_info_confirm.json_accident = {
             url: 'http://118.178.225.32/hmp_website/yiplain/getinsuranceprice.json',
             parameters: {
                 type: '20'
@@ -320,7 +323,7 @@ var page = {
                 $($('.text-box-baoxian').find('.text-box-baoxian-money')[0]).html(data.body);
             }
         };
-        var json_delay = {
+        air_info_confirm.json_delay = {
             url: 'http://118.178.225.32/hmp_website/yiplain/getinsuranceprice.json',
             parameters: {
                 type: '21'
@@ -329,8 +332,8 @@ var page = {
                 $($('.text-box-baoxian').find('.text-box-baoxian-money')[1]).html(data.body);
             }
         };
-        Ajax_json(json_accident);
-        Ajax_json(json_delay);
+        Ajax_json(air_info_confirm.json_accident,change_Ip);
+        Ajax_json(air_info_confirm.json_delay,change_Ip);
     },
     data_bind: function () {
         $('.header-chufa').html(air_info_confirm.plane_json.go.city);
@@ -473,3 +476,9 @@ var popup={
         $('#popup').fadeOut(300);
     }
 };
+function change_Ip(hmp_website_Ip) {
+    air_info_confirm.create_order.url=hmp_website_Ip+'hmp_website/yiplain/getpolicyandcreateorder.json';
+    air_info_confirm.json_accident.url=hmp_website_Ip+'hmp_website/yiplain/getinsuranceprice.json';
+    air_info_confirm.json_delay.url=hmp_website_Ip+'hmp_website/yiplain/getinsuranceprice.json';
+
+}

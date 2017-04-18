@@ -72,25 +72,9 @@ var page = {
         $('.air-pay-box-title').find('img').on('click',function(){
             $('#popup-pay').fadeOut(100);
         });
-        connectWebViewJavascriptBridge(function(bridge) {
-            var uniqueId = 1;
-            function log(message, data) {
-                var log = document.getElementById('log');
-                var el = document.createElement('div');
-                el.className = 'logLine';
-                el.innerHTML = uniqueId++ + '. ' + message + ':<br/>' + JSON.stringify(data)
-                if (log.children.length) { log.insertBefore(el, log.children[0]) }
-                else { log.appendChild(el) }
-            }
-            setupWebViewJavascriptBridge(function(bridge) {});
-
             document.getElementById('return-index').onclick = function(e) {
                 e.preventDefault();
-                WebViewJavascriptBridge.callHandler('reBookPlane',
-                    null,
-                    function(response) {
-
-                    });
+              self.location.href='../pages/air.html';
                 //page.clear_storage();
             };
             document.getElementById('my-order').onclick = function(e) {
@@ -105,9 +89,9 @@ var page = {
                 var orderNo= Storage.get('orderNo');
                 WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo':orderNo,'payChannel':'01'},function(response) {
                     if(response.info==0){
-                        self.location.href='../pages/air-successOrfail.html?sign='+MoniJson.sign+'&&type=1'
+                        self.location.href='../pages/pay-successOrfail.html?sign='+MoniJson.sign+'&&type=1'
                     }else{
-                        self.location.href='../pages/air-successOrfail.html?sign='+MoniJson.sign+'&&type=2'
+                        self.location.href='../pages/pay-successOrfail.html?sign='+MoniJson.sign+'&&type=2'
                     }
                 });
             };
@@ -117,13 +101,12 @@ var page = {
                 WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo':orderNo,'payChannel':'02'},function(response) {
                     // alert(response);
                     if(response.info==0){
-                        self.location.href='../pages/air-successOrfail.html?sign='+MoniJson.sign+'&&type=1'
+                        self.location.href='../pages/pay-successOrfail.html?sign='+MoniJson.sign+'&&type=1'
                     }else{
-                        self.location.href='../pages/air-successOrfail.html?sign='+MoniJson.sign+'&&type=2'
+                        self.location.href='../pages/pay-successOrfail.html?sign='+MoniJson.sign+'&&type=2'
                     }
                 });
             }
-        });
     },
     clear_storage:function(){
         Storage.remove('json_plane_order_personInfo');
@@ -137,13 +120,4 @@ var page = {
 $(function () {
     page.init();
 });
-function setupWebViewJavascriptBridge(callback) {
-    if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
-    if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
-    window.WVJBCallbacks = [callback];
-    var WVJBIframe = document.createElement('iframe');
-    WVJBIframe.style.display = 'none';
-    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
-    document.documentElement.appendChild(WVJBIframe);
-    setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
-};
+
