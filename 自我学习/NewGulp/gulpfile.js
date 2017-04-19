@@ -74,7 +74,9 @@ gulp.task('less', function () {
 });
 // css 压缩
 gulp.task('mincss',function(){
-   return  gulp.src(path.input.css)
+   return  gulp.src(
+       path.input.css
+   )
         .pipe(minifyCss())
         .pipe(gulp.dest(path.output.css))
 });
