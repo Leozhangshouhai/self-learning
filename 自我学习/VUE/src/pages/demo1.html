@@ -5,7 +5,18 @@
     <title>Title</title>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
-<body>
+<body >
+<div id="app-9" >
+    <div v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username">
+    </div>
+    <div v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address">
+    </div>
+    <button v-on:click="loginTypeChange">点击</button>
+</div>
 <div id="app">
     {{ mesage }}
 </div>
@@ -22,8 +33,6 @@
     <p>{{ message }}</p>
     <button v-on:click="clickFunction">逆转消息</button>
 </div>
-
-
 <div id="app-7">
     <ol>
         <!-- 现在我们为每个todo-item提供待办项对象    -->
@@ -37,6 +46,23 @@
     </div>
 
 </div>
+<div id="app-8">
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+    <label for="jack">Jack</label>
+    <input type="checkbox" id="john" value="John" v-model="checkedNames">
+    <label for="john">John</label>
+    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames" v-on:click="click">
+    <label for="mike">Mike</label>
+    <br>
+    <input
+            type="checkbox"
+            v-model="toggle"
+            v-bind:true-value="aaa"
+            v-bind:false-value="bbb"
+    >
+    <span>Checked names: {{ checkedNames }}</span>
+</div>
+
 <script>
     Vue.component('todo-item', {
 //         todoitem 组件现在接受一个
@@ -44,9 +70,34 @@
         // 这个属性名为 todo。
         props: ['todo'],
         template: '<li>{{ todo.text }}</li>'
-    })
+    });
+    var app_8=new Vue({
+        el: '#app-8',
+        data: {
+            checkedNames: [],
+            ss:'',
+            toggle:"888888",
+            aaa:'1234',
+            bbb:'6789'
+        },
+        methods:{
+            click:function(){
+                app_8.ss=this;
 
-
+            }
+        }
+    });
+    var app_if=new Vue({
+        el:'#app-9',
+        data:{
+            loginType:'username'
+        },
+        methods:{
+            loginTypeChange:function () {
+                return this.loginType=this.loginType==='username'?'sss':'username';
+            }
+        }
+    });
     var app7 = new Vue({
         el: '#app-7',
         data: {
@@ -55,10 +106,10 @@
                 {text:"小红"},
                 {text:"小网"},
                 {text:"小系"}
+
             ]
         }
-    })
-
+    });
     var app5 = new Vue({
         el: '#app-5',
         data: {
@@ -72,7 +123,7 @@
                 app5.message='点击后效果'
             }
         }
-    })
+    });
     var app2 = new Vue({
         el: '#app-2',
         data: {
@@ -85,13 +136,14 @@
             ]
 
         }
-    })
+    });
     var app = new Vue({
         el: '#app',
         data: {
             mesage: 'Helloue!'
         }
-    })
+    });
 </script>
+<script src="../js/zepto.js"></script>
 </body>
 </html>

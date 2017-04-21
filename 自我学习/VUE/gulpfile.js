@@ -90,7 +90,6 @@ gulp.task('minjs',function(){
         eqnull:true,
         eqeqeq: false,
     };
-
     gulp.src(path.input.js)
         .pipe(jshint(jshintConfig))
         .pipe(jshint.reporter(stylish))
