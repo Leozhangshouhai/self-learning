@@ -33,10 +33,8 @@ var air_pay_data = {
         //  初始化绑定
         $('.info-show-title-add').html(this.plane_information_json.go.city + '-' + this.plane_information_json.go.ecity);
         $('.info-show-title-name').html('单程');
-
         var timearr = this.plane_information_json.go.data.split('-');
         var $go = $('#popup-detail-title-go');
-
         var $goAllFee = this.pay_info.body.orderDetail[0].cabinprice;
         var $goFee = Number(this.pay_info.body.orderDetail[0].fuleprice) + Number(this.pay_info.body.orderDetail[0].taxprice);
         // $('.info-show-price').html('￥' + (Number($goAllFee) + $goFee));

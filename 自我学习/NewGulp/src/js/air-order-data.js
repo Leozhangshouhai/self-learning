@@ -49,7 +49,7 @@ var air_order = {
         var timearr = this.plane_information_json.go.data.split('-');
         var $go= $('#popup-detail-title-go');
         $go.find('.popup-detail-title-time-date').html(timearr[1] + '月' + timearr[2] + '日');
-        $go.find('.popup-detail-title-time-price').html(this.plane_information_json.go.plane_info_seat.cabinSeatPrice);
+        $go.find('.popup-detail-title-time-price').html(this.plane_information_json.go.plane_info_seat.cabinSeatPrice4Show);
         $go.find('.popup-detail-title-airline-img').attr('src',this.plane_information_json.go.plane_info.airLogo);
         $go.find('.popup-detail-title-airline').find('.popup-detail-title-airline-company').html(this.plane_information_json.go.plane_info.airName);
         $go.find('.popup-detail-title-time-airline-name').html(this.plane_information_json.go.plane_info.airCode+this.plane_information_json.go.plane_info.flightNo);
@@ -74,7 +74,7 @@ var air_order = {
 
             $back.fadeIn(300);
             $back.find('.popup-detail-title-time-date').html(timearr[1] + '月' + timearr[2] + '日');
-            $back.find('.popup-detail-title-time-price').html(this.plane_information_json.back.plane_info_seat.cabinSeatPrice);
+            $back.find('.popup-detail-title-time-price').html(this.plane_information_json.back.plane_info_seat.cabinSeatPrice4Show);
             $back.find('.popup-detail-title-airline-img').attr('src',this.plane_information_json.back.plane_info.airLogo);
             $back.find('.popup-detail-title-airline').find('.popup-detail-title-airline-company').html(this.plane_information_json.back.plane_info.airName);
             $back.find('.popup-detail-title-time-airline-name').html(this.plane_information_json.back.plane_info.airCode+this.plane_information_json.back.plane_info.flightNo);
@@ -96,10 +96,10 @@ var air_order = {
                 .html(this.plane_information_json.back.plane_info.arriveCityName+this.plane_information_json.back.plane_info.terminal.split(',')[1]);
         }
         if(this.plane_information_json.back){
-            $('.air-total-fee-price').html(Number(this.plane_information_json.go.plane_info_seat.cabinSeatPrice)+ Number(this.plane_information_json.back.plane_info_seat.cabinSeatPrice));
+            $('.air-total-fee-price').html(Number(this.plane_information_json.go.plane_info_seat.cabinSeatPrice4Show)+ Number(this.plane_information_json.back.plane_info_seat.cabinSeatPrice4Show));
 
         }else{
-            $('.air-total-fee-price').html(Number(this.plane_information_json.go.plane_info_seat.cabinSeatPrice));
+            $('.air-total-fee-price').html(Number(this.plane_information_json.go.plane_info_seat.cabinSeatPrice4Show));
         }
     }
 }

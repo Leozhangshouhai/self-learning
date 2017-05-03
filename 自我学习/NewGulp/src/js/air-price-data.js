@@ -46,7 +46,7 @@ var fun = {
             $($('#fixed .fixed-choose-detail')[1]).html(temp_arr[temp_arr.length-1].takeOffTime);
              temp_arr=air_price.bubbling_order(air_price.all_plane.secondFlightList,'price');//默认价格排序
             air_price.date_bind(temp_arr);
-            $($('#fixed .fixed-choose-detail')[0]).html(temp_arr[temp_arr.length-1].cabinSeatList[0].cabinSeatPrice);
+            $($('#fixed .fixed-choose-detail')[0]).html(temp_arr[temp_arr.length-1].cabinSeatList[0].cabinSeatPrice4Show);
             $('#container').show(200);
             $('#fixed').show(200);
             page.change_click();
@@ -123,7 +123,7 @@ var air_price = {
                     break;
                 }
                 for (j = i + 1; j < arr.length; j++) {
-                    if (air_price.order_by_price(arr[i].cabinSeatList[0].cabinSeatPrice,arr[j].cabinSeatList[0].cabinSeatPrice)) {
+                    if (air_price.order_by_price(arr[i].cabinSeatList[0].cabinSeatPrice4Show,arr[j].cabinSeatList[0].cabinSeatPrice4Show)) {
                     } else {
                         temp = arr[i];
                         arr[i] = arr[j];
@@ -180,14 +180,14 @@ var air_price = {
                 "<div class='airtickets-show-dd-timelong'><p class='airtickets-show-dd-time-long'>" + data[i].timediff + "</p></div>" +
                 "<div class='airtickets-show-dd-end'><span class='airtickets-show-dd-star-time'>" + data[i].arriveOffTime + "</span>" +
                 "<p class='airtickets-show-dd-start-add'>" + data[i].arriveCityName + data[i].terminal.substring(3, 5) + "</p></div>" +
-                "<div class='airtickets-show-dd-price'><span class='airtickets-show-dd-price-money'>" + data[i].cabinSeatList[0].cabinSeatPrice + "</span>" +
+                "<div class='airtickets-show-dd-price'><span class='airtickets-show-dd-price-money'>" + data[i].cabinSeatList[0].cabinSeatPrice4Show + "</span>" +
                 "<p class='airtickets-show-dd-price-sort'>" + data[i].cabinSeatList[0].cabinSeatGrade + "</p></div></div>" +
                 "</dd>");
                 var $demo_dl = $('<dl class="airtickets-show-dd-detail"></dl>');
                 for (var j = 0; j < data[i].cabinSeatList.length; j++) {
                     var demo_dl_dd = ' <dd class="airtickets-show-dd-detail-dd" j='+j+' i='+i+ '>' +
                         '<p class="airtickets-show-dd-detail-dd-sort">' + data[i].cabinSeatList[j].cabinSeatGrade + '</p>' +
-                        '<p class="airtickets-show-dd-detail-dd-money">' + data[i].cabinSeatList[j].cabinSeatPrice + '</p>' +
+                        '<p class="airtickets-show-dd-detail-dd-money">' + data[i].cabinSeatList[j].cabinSeatPrice4Show + '</p>' +
                         '<p class="airtickets-show-dd-detail-dd-rest">' + data[i].cabinSeatList[j].taxPrice + '(机建费)</p>' +
                         '</dd>';
                     $demo_dl.append(demo_dl_dd);
@@ -242,7 +242,7 @@ var air_price = {
                 $($('#fixed .fixed-choose-detail')[1]).html(temp_arr[temp_arr.length-1].takeOffTime);
                 temp_arr=air_price.bubbling_order(air_price.all_plane.firstFlightList,'price');//默认价格排序
                 air_price.date_bind(temp_arr);
-                $($('#fixed .fixed-choose-detail')[0]).html(temp_arr[temp_arr.length-1].cabinSeatList[0].cabinSeatPrice);
+                $($('#fixed .fixed-choose-detail')[0]).html(temp_arr[temp_arr.length-1].cabinSeatList[0].cabinSeatPrice4Show);
 
                 page.change_click();
                 $('#popup').fadeOut(200);

@@ -341,14 +341,14 @@ var page = {
         var $go_contentBox_dd = $('#go_contentBox_dd');
         $go_contentBox_dd.find('.go_contentBox_dd_date').html(air_info_confirm.plane_json.go.data.split('-')[1] + '月' + air_info_confirm.plane_json.go.data.split('-')[2] + '日')
         $go_contentBox_dd.find('.go_contentBox_dd_time').html(air_info_confirm.plane_json.go.plane_info.takeOffTime);
-        $go_contentBox_dd.find('.go_contentBox_dd_money').html(air_info_confirm.plane_json.go.plane_info_seat.cabinSeatPrice);
+        $go_contentBox_dd.find('.go_contentBox_dd_money').html(air_info_confirm.plane_json.go.plane_info_seat.cabinSeatPrice4Show);
         $('.air-info-otherfree-content-money').html(Number(air_info_confirm.plane_json.go.plane_info_seat.taxPrice) + Number(air_info_confirm.plane_json.go.plane_info_seat.fuelPrice));
         if (air_info_confirm.plane_json.back) {
             var $back_contentBox_dd = $('#back_contentBox_dd');
             $back_contentBox_dd.fadeIn(100);
             $back_contentBox_dd.find('.go_contentBox_dd_date').html(air_info_confirm.plane_json.back.data.split('-')[1] + '月' + air_info_confirm.plane_json.back.data.split('-')[2] + '日')
             $back_contentBox_dd.find('.go_contentBox_dd_time').html(air_info_confirm.plane_json.back.plane_info.takeOffTime);
-            $back_contentBox_dd.find('.go_contentBox_dd_money').html(air_info_confirm.plane_json.back.plane_info_seat.cabinSeatPrice);
+            $back_contentBox_dd.find('.go_contentBox_dd_money').html(air_info_confirm.plane_json.back.plane_info_seat.cabinSeatPrice4Show);
             var fee = Number(air_info_confirm.plane_json.go.plane_info_seat.taxPrice) + Number(air_info_confirm.plane_json.go.plane_info_seat.fuelPrice) +
                 Number(air_info_confirm.plane_json.back.plane_info_seat.taxPrice) + Number(air_info_confirm.plane_json.back.plane_info_seat.fuelPrice)
             $('.air-info-otherfree-content-money').html(fee);
@@ -435,7 +435,6 @@ var page = {
             //**********************增加 失去焦点事件，
             page.regular_verify();
             birthday_show();
-
             $li.find('.text-box-idCard-add').on('click', function () {
                 var fee = $('.air-info-otherfree-content').find('.air-info-otherfree-content-money').first().html(),
                     fee_ave = parseInt(fee / $('#text-box-idCard-box').find('li').length);

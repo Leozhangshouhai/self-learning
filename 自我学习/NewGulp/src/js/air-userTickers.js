@@ -22,6 +22,6 @@ function getUserTicketClick() {
 
 }
 $(function () {
-setTimeout(getUserTicketClick,400)
+setTimeout(getUserTicketClick,800)
 });
 //

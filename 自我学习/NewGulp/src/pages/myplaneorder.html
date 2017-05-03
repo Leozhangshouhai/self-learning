@@ -233,32 +233,5 @@
 <script src="../js/jiekoutext/ajax_bao.js"></script>
 <script src="../js/air-userTickers.js"></script>
 <script src="../js/myplanejs.js"></script>
-<script>
-    //Storage.set('login.accessticket','6d20887c68424a6c84a5f285e8b60938');
-    function createparam(param){
-
-        var appid = "BAS5-520100-0001";
-        var appkey = "02e45ae192526ce470d8352e7403134a92526ce470d8352e";
-
-        var b = new Base64();
-        var sign = encrypt_string(appkey, hex_md5(b.encode(appid + JSON.stringify(param))));
-        if(Ajax_accessTicket!='') {
-            Storage.set('login.accessticket', Ajax_accessTicket);
-        }
-        var accessTicket =Ajax_accessTicket!=''?Ajax_accessTicket: Storage.get('login.accessticket');
-        var version = "2.0";
-        var req = {
-            "body": param,
-            "head": {
-                "sign": sign,
-                "accessTicket": accessTicket,
-                "appid": appid,
-                "version": version
-            }
-        }
-        return req;
-    };
-
-</script>
 </body>
 </html>
