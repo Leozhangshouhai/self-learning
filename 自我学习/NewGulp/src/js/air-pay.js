@@ -40,7 +40,6 @@ var air_pay_data = {
         // $('.info-show-price').html('￥' + (Number($goAllFee) + $goFee));
         $('.info-show-price').html('￥' + this.pay_info.body.mainOrderVO.orderMoney);
         $go.find('.popup-detail-title-time-date').first().html(timearr[1] + '月' + timearr[2] + '日');
-        // $go.find('.popup-detail-title-time-price').html('折后' + (this.pay_info.body.orderDetail[0].cabinprice - this.pay_info.body.orderDetail[0].commissionMoney));
         $go.find('.popup-detail-title-time-price').html( '￥' +Number($goAllFee)*this.pay_info.body.orderDetail[0].pcount);
         $('.oil-fee-total').html( '￥' +Number($goFee)*this.pay_info.body.orderDetail[0].pcount);
         $go.find('.popup-detail-title-airline-img').attr('src', this.plane_information_json.go.plane_info.airLogo);

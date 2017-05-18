@@ -341,14 +341,14 @@ var page = {
         var $go_contentBox_dd = $('#go_contentBox_dd');
         $go_contentBox_dd.find('.go_contentBox_dd_date').html(air_info_confirm.plane_json.go.data.split('-')[1] + '月' + air_info_confirm.plane_json.go.data.split('-')[2] + '日')
         $go_contentBox_dd.find('.go_contentBox_dd_time').html(air_info_confirm.plane_json.go.plane_info.takeOffTime);
-        $go_contentBox_dd.find('.go_contentBox_dd_money').html(air_info_confirm.plane_json.go.plane_info_seat.cabinSeatPrice4Show);
+        $go_contentBox_dd.find('.go_contentBox_dd_money').html(air_info_confirm.plane_json.go.plane_info_seat.cabinSeatPrice);
         $('.air-info-otherfree-content-money').html(Number(air_info_confirm.plane_json.go.plane_info_seat.taxPrice) + Number(air_info_confirm.plane_json.go.plane_info_seat.fuelPrice));
         if (air_info_confirm.plane_json.back) {
             var $back_contentBox_dd = $('#back_contentBox_dd');
             $back_contentBox_dd.fadeIn(100);
             $back_contentBox_dd.find('.go_contentBox_dd_date').html(air_info_confirm.plane_json.back.data.split('-')[1] + '月' + air_info_confirm.plane_json.back.data.split('-')[2] + '日')
             $back_contentBox_dd.find('.go_contentBox_dd_time').html(air_info_confirm.plane_json.back.plane_info.takeOffTime);
-            $back_contentBox_dd.find('.go_contentBox_dd_money').html(air_info_confirm.plane_json.back.plane_info_seat.cabinSeatPrice4Show);
+            $back_contentBox_dd.find('.go_contentBox_dd_money').html(air_info_confirm.plane_json.back.plane_info_seat.cabinSeatPrice);
             var fee = Number(air_info_confirm.plane_json.go.plane_info_seat.taxPrice) + Number(air_info_confirm.plane_json.go.plane_info_seat.fuelPrice) +
                 Number(air_info_confirm.plane_json.back.plane_info_seat.taxPrice) + Number(air_info_confirm.plane_json.back.plane_info_seat.fuelPrice)
             $('.air-info-otherfree-content-money').html(fee);

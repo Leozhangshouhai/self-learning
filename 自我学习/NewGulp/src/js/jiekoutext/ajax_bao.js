@@ -21,8 +21,6 @@ function Ajax_json(json ,change_Ip) {
         if(Ajax_accessTicket!='') {
             Storage.set('login.accessticket', Ajax_accessTicket);
         }
-
-
         var accessTicket =Ajax_accessTicket!=''?Ajax_accessTicket: Storage.get('login.accessticket');
         // var accessTicket ='74b917d990e044d1a556c51af77a2fd1';
         console.log('accessTicket'+accessTicket)
