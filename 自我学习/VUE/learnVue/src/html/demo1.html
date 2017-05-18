@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-touch-fullscreen" content="YES" />
+	<meta name="format-detection" content="telephone=no" />
+	<title>组件的使用</title>
+	<script src="../js/lib/autoSize(100).js"></script>
+	<script src="../js/lib/zepto.min.js"></script>
+	<script src="../js/lib/vue2.js"></script>
+	<link rel="stylesheet" href="../css/index.css" />
+</head>
+
+<body>
+<div id="container">
+	<my-demo @click="orderBy('age')" title="年龄" ref="demo1"></my-demo>
+	<my-demo @click="orderBy('paying')" title="薪水" ref="demo2" id="demo2"></my-demo>
+	<my-demo @click="orderBy('birthday')" title="生日"></my-demo>
+	<div>
+		<ul>
+			<li v-for="demo in list "  ref="ss">
+				<div class="list">
+					<p>姓名：{{ demo.name}}</p>
+					<p>年龄：{{ demo.age}}</p>
+					<p>工资：{{ demo.paying}}</p>
+					<p>生日：{{ demo.birthday}}</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<script src="../js/lib/base.js"></script>
+<script src="../js/lib/md5.js"></script>
+<script src="../js/lib/base64.js"></script>
+<script src="../js/lib/3DES.js"></script>
+<script src="../js/lib/ajax_bao.js"></script>
+<script src="../js/define/demo1.js"></script>
+</body>
+</html>

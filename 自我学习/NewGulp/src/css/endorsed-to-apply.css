@@ -1,0 +1,130 @@
+*, body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    font-family: PingFang TC;
+}
+#container{
+    padding: 0 5%;
+    display: none;
+    margin-bottom: 4.5rem;
+}
+.header {
+    padding: 1.5rem 2.5rem 1.5rem 2.5rem;
+    font-size: 0;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid #e1e1e1
+}
+
+.header > span {
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 1.8rem
+}
+
+.header-return {
+    vertical-align: middle;
+    height: 1.6rem;
+    margin-top: -0.8rem;
+    position: absolute;
+    left: 2.5rem;
+    top: 50%;
+}
+.my-li-box{
+    padding: 0.9rem 0% .9rem 0;
+
+    margin-left: 5%;
+    margin-right: 5%;
+    position: relative;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.my-li-box>*{
+    vertical-align: middle;
+
+}
+.my-li-img{
+   position: absolute;
+    width: 1.8rem;
+    height:1.8rem;
+   top: 50%;
+    margin-top: -.9rem;
+
+
+}
+.my-li-p{
+    font-size: 1.8rem;
+    display: inline-block;
+    padding-left: 10%;
+    text-align: justify;
+
+}
+
+
+
+#header {
+    padding: 2rem 0 2rem 0;
+    border-bottom: 1px solid #e0e0e0
+}
+
+#choose-btn {
+    width: 100%;
+    border: 1px solid #0077db;
+    font-size: 0;
+    border-radius: 1000px !important
+}
+
+#choose-btn > div {
+    border-radius: 1000px !important;
+    background-color: transparent;
+    border: 1px solid transparent !important;
+    height: 3rem;
+    width: 50%;
+    text-align: center;
+    line-height: 3rem;
+    color: #0077db;
+    font-size: 1.5rem;
+    display: inline-block
+}
+
+.active, .selected {
+    background-color: #0077db !important;
+    color: #fff !important
+}
+
+.selected > * {
+    color: #fff !important
+}
+
+
+/* 确认建样式 */
+.endorsed-sure-btn{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+/*  公用组件样式 */
+.make-sure-pay-box {
+    width: 100%;
+    box-shadow: 0 -1px 1px 1px #eee;
+    bottom: 0;
+    padding: .8rem 2.5rem
+}
+
+.make-sure-pay {
+width: 100%;
+    border: none;
+    text-align: center;
+    display: block;
+    border-radius: .7rem;
+    font-size: 1.5rem;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    color: white;
+    background-color:#7F7F7F
+}
+.selected{    background-color: #0077DB}
+.notselected{  background-color: #7F7F7F}

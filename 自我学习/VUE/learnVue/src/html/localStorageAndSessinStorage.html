@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+
+    <title>localStorage、sessionStorage</title>
+</head>
+<body>
+<button onclick="localStorageon(JSON.stringify({
+a:'1234',
+b:'7890'
+}))">localStorage</button>
+<button onclick="unique([-1,-2,-3,45,-2,-3,88,32,2,1])"> 哈希表数组去重</button>
+<button onclick="sessionStorageon('7890')">sessionStorage</button>
+<script type="text/javascript">
+ var ssss,a={a:11};
+    function unique(arr) {
+        var hash = {};
+        return ssss=arr.filter(function (n) {
+            hash[n] = (hash[n] || 0);
+            return (++hash[n] <= 1);
+        });
+    }
+function localStorageon(local) {
+   localStorage.setItem('local',local);
+    var ss=localStorage.getItem('local');
+    console.log(ss);
+}
+function sessionStorageon(local) {
+    sessionStorage.setItem('session',local);
+    var ss=sessionStorage.getItem('session');
+    console.log(ss);
+}
+</script>
+</body>
+</html>

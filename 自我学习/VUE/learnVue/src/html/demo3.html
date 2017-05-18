@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ABC-PC端：组件套用</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+<div id="container">
+<dl class="dl-box">
+     <mokuai-all v-for="(demo,index) in  lists" :judge="demo.judge" :list="demo.list" :title="demo.title" :color="demo.color" :json="demo"></mokuai-all>
+</dl>
+
+</div>
+
+<script src="../js/lib/vue.js"></script>
+<script src="../js/define/demo3.js"></script>
+</body>
+</html>

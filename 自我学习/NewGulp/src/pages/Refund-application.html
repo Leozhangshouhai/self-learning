@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>退票申请</title>
+    <link rel="stylesheet" href="../css/endorsed-to-apply.css">
+</head>
+<div id="container">
+    <div class="header">
+        <img class="header-return" src="../img/air/left_03.png" alt="span"/>
+        <span class="header-chufa">退票申请</span>
+    </div>
+    <div id="header">
+        <div id="choose-btn">
+            <div :class="{ active :isActive }" @click="chooseTitle">自愿退票</div>
+            <div :class="{ active :isActive2 }"  @click="chooseTitle">其他原因</div>
+        </div>
+    </div>
+    <my-li v-show="refunListChoose" v-for="(demo,index) in refundList" :id="index" :text="demo.reasonContent"></my-li>
+    <sure-btn class="endorsed-sure-btn" :selected="selected" :disable="refund_disable" @refund_click="refund_click"></sure-btn>
+
+</div>
+<body>
+<script src="../js/common/zepto-1.2.0.js"></script>
+<script src="../js/autoSize(new).js"></script>
+
+<script src="../js/jiekoutext/base.js"></script>
+<script src="../js/jiekoutext/storage.js"></script>
+<script src="../js/jiekoutext/md5.js"></script>
+<script src="../js/jiekoutext/base64.js"></script>
+<script src="../js/jiekoutext/3DES.js"></script>
+<script src="../js/jiekoutext/ajax_bao.js"></script>
+<script src="../js/common/vue2.js"></script>
+<script src="../js/Endorsed-to-apply.js"></script>
+</body>
+</html>

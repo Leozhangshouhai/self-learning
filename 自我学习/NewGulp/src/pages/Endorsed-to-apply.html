@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>改签申请</title>
+    <link rel="stylesheet" href="../css/endorsed-to-apply.css">
+</head>
+<body>
+<div id="container">
+    <div class="header">
+        <img class="header-return" src="../img/air/left_03.png" alt="span"/>
+        <span class="header-chufa">改签申请</span>
+    </div>
+       <my-li  v-for='(demo,index) in list' :id="index" :text="demo.reasonContent"></my-li>
+       <sure-btn class="endorsed-sure-btn" :selected="Endorsed_selected"></sure-btn>
+</div>
+
+<script src="../js/common/zepto-1.2.0.js"></script>
+<script src="../js/autoSize(new).js"></script>
+
+
+<script src="../js/jiekoutext/base.js"></script>
+<script src="../js/jiekoutext/storage.js"></script>
+<script src="../js/jiekoutext/md5.js"></script>
+<script src="../js/jiekoutext/base64.js"></script>
+<script src="../js/jiekoutext/3DES.js"></script>
+<script src="../js/jiekoutext/ajax_bao.js"></script>
+
+
+<script src="../js/common/vue2.js"></script>
+<script src="../js/Endorsed-to-apply.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+#container{
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+  .classname{
+    position: relative;
+    display:inline-block ;
+    width: 33.3%;
+    text-align: center;
+    font-size: 0.45rem;
+    padding: 0.35rem 0;
+    background-color: #3db6e5;
+    border-right: 1px solid rebeccapurple;
+
+  }
+  @mixin last($num, $type: false) { @if ($num ==1) and ($type == true) { &:last-of-type{ @content; } } @if ($num == 1) and ($type == false) { &:last-child{ @content; } } @if ($num !=1) and ($type == true) { &:nth-last-of-type(-n + #{$num}){ @content; } } @if ($num != 1) and ($type == false) { &:nth-last-child(-n + #{$num}){ @content; } } };
+  .imgsrc{
+    position: absolute;
+    right: 0.15rem;
+    top: 50%;
+  }
+  .list{
+   font-size: 0.3rem;
+    line-height: 1.5;
+    padding: 0.15rem 0;
+    border-bottom: 1px solid red;
+    background-color: #2ac845;
+    //@include last(1,false){
+    //  border-bottom: 10px solid gold;
+    //}
+  }
+  .select{
+    background-color: rebeccapurple;
+  }
+  .allclass{
+    background-color: transparent;
+  }
+
+}
+
+.list:nth-last-of-type(1){
+  border-bottom: 0px solid gold ;
+}
+.classname:nth-last-of-type(1){
+    border-right: 0px solid gold;
+  }

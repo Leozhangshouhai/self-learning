@@ -170,6 +170,7 @@ gulp.task('browser-sync', function() {
     gulp.watch("src/**").on('change', browserSync.reload);
 
 });
-gulp.task('default',['minhtml','less','mincss','minjs','copy']);
+gulp.task('default',['browser-sync']);
+gulp.task('min',['minhtml','less','mincss','minjs','copy']);
 
 

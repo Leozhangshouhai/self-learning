@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>v-for 和组件</title>
+    <script src="../js/lib/autoSize(100).js"></script>
+    <script src="../js/lib/zepto.min.js"></script>
+    <script src="../js/lib/lodash/lodash.js"></script>
+    <script src="../js/lib/vue.js"></script>
+
+    <link rel="stylesheet" href="../css/index.css" />
+</head>
+<body>
+<div id="container">
+    <my-demo2   v-for="(demo,index) in demolist"  v-bind:title="demo.text">
+        <!--<p>{{ index}},我是{{ demo.text}}</p>-->
+    </my-demo2>
+    <div>
+        <ul>
+            <li v-for="(demo,index) in evenorder"  ref="ss">
+                <div class="list">
+                    <p>姓名：{{ demo.name}}</p>
+                    <p>年龄：{{ demo.age}}</p>
+                    <p>工资：{{ demo.paying}}</p>
+                    <p>生日：{{ demo.birthday}}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<script src="../js/define/demo2.js"></script>
+</body>
+</html>

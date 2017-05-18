@@ -1,0 +1,79 @@
+.dl-box>dt,.dl-box dd{
+  padding: 20px 0;
+  position: relative;
+}
+.head-dl{
+  color: #866D31;
+}
+.head-dd{
+  color: #7F7F7F;
+}
+.head-dl>*,.head-dd>*{
+  vertical-align: middle;
+}
+.left-title{
+  font-size: 22px;
+  font-weight: bold;
+  width: 15%;
+  display: inline-block;
+  padding-left: 5%;
+}
+.right-mode{
+  display: inline-block;
+  font-size: 16px;
+  text-align: center;
+  /*width: 15%;*/
+  line-height: 35px;
+  padding: 0 2%;
+}
+.end-box{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 70px;
+  height: 100%;
+}
+.end-text{
+  width: 10px;
+  height: 40px;
+  position: absolute;
+  left: 50%;
+  margin-left: -5px;
+  top: 50%;
+  margin-top: -20px;
+}
+.end-info{
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  height: 50px;
+  line-height: 50px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  margin-top: -25px;
+}
+.head-dd-dl{
+  position: relative;
+}
+.color1{
+  background-color: #D9C79A;
+}
+.bg-color1{
+  background-color: rgba(0,0,0,.2);
+}
+.bg-color3{
+  background-color: rgba(0,0,0,.2);
+}
+.color2{
+  background-color: #DCDCDC;
+
+}
+.bg-color2{
+  background-color: rgba(0,0,0,.45);
+}
+.color3{
+  background-color:#F2F2F2;
+}
