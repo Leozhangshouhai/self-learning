@@ -4,7 +4,6 @@
 
 
 function getUserTicketClick() {
-console.log('getUserTicketClick')
        WebViewJavascriptBridge.callHandler('getUserTicket', null, function(response) {
            Ajax_accessTicket=JSON.parse(response).userTicket;
            console.log(response);
@@ -15,7 +14,6 @@ console.log('getUserTicketClick')
            console.log(response);
            console.log(hmp_website_Ip);
        })
-
 }
 setTimeout(function () {
     getUserTicketClick();

@@ -171,7 +171,7 @@ var air_price = {
             if (data[i].cabinSeatList.length > 0) {
                 var src = data[i].airLogo;
                 var $demo = $("<dd class='airtickets-show-dd'><div class='airtickets-show-dd-box'>" +
-                "<p class='airtickets-show-dd-name'>" + data[i].airName + "</p>" +
+                "<p class='airtickets-show-dd-name'>" + data[i].airName +"&nbsp;&nbsp;"+ data[i].originCode+ data[i].flightNo+"</p>" +
                 "<div class='airtickets-show-dd-logo'>" +
                 "<img src=" + src + " alt='航空logo'/></div>" +
                 "<div class='airtickets-show-dd-star'>" +

@@ -71,7 +71,7 @@ var container = new Vue({
             }
         },
         refund_click:function () {
-            console.log(12334)
+            getJson.send_refund.parameters.outticketorderid=ZSH_Extent.getPostUrl('yiorderid');
             Ajax_json(getJson.send_refund,changeIp)
         }
     },
@@ -132,14 +132,23 @@ var getJson={
         url: 'http://118.178.225.32/hmp_website/yiplain/refundticketapply.json',
         parameters: {
             'applyForType': '1',
-            'outticketorderid ':'JP2017042416301493022638034384',
+            'outticketorderid':'JP2017042416301493022638034384',
             'applyForReason':'【旅客自愿退票】：已取消PNR编码；已作废行程单'
             // 'id':'JP2017042416301493022638034384'
         },
-        success: function (databack) {
-            console.log(123456);
-            console.log(databack);
-            data.list= databack.body.list;
+        success: function (data) {
+       console.log(data);
+          if(data.head.rtnCode === '000000'){
+              // 退票成功，返回机票入口页
+              ZSH_Extent.createLoading('退票已成功','error');
+          }else{
+            //  其他情况
+            }
+        },
+        error:function (error) {
+            console.log(error);
+            // 业务异常
+            ZSH_Extent.createLoading(error.head.rtnMsg)
         }
     }
 };

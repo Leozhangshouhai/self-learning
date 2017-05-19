@@ -23,17 +23,6 @@
     };
     $(function(){
         setTimeout(function () {
-            // WebViewJavascriptBridge.callHandler('getUserTicket', null, function(response) {
-            //
-            //     Ajax_accessTicket=JSON.parse(response).userTicket;
-            //     console.log('getUserTicketClick')
-            // });
-            // WebViewJavascriptBridge.callHandler('getServiceHost', null, function(response) {
-            //     hmp_website_Ip=JSON.parse(response).serviceHost;
-            //     console.log(123213213131);
-            //     console.log(response);
-            //     console.log(hmp_website_Ip);
-            // });
             Ajax_json(planeJson.getPlaneInfo,planeJson.changeIp)
         },800);
         document.getElementById('AliPay').onclick = function(e) {
@@ -42,9 +31,9 @@
             WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo':orderNo,'payChannel':'01'},function(response) {
                 //alert(response);\
                 if (response.info == 0) {
-                    self.location.href = '../../../pages/air-successOrfail.html?sign=' + sign + '&&type=1'
+                    self.location.href = '../pages/air-successOrfail.html?sign=' + sign + '&&type=1'
                 } else {
-                    self.location.href = '../../../pages/air-successOrfail.html?sign=' + sign + '&&type=2'
+                    self.location.href = '../pages/air-successOrfail.html?sign=' + sign + '&&type=2'
                 }
 
             })
@@ -55,9 +44,9 @@
             var orderNo=$('#orderNO').html();
             WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo':orderNo,'payChannel':'02'},function(response) {
                 if (response.info == 0) {
-                    self.location.href = '../../../pages/air-successOrfail.html?sign=' + sign + '&&type=1'
+                    self.location.href = '../pages/air-successOrfail.html?sign=' + sign + '&&type=1'
                 } else {
-                    self.location.href = '../../../pages/air-successOrfail.html?sign=' + sign + '&&type=2'
+                    self.location.href = '../pages/air-successOrfail.html?sign=' + sign + '&&type=2'
                 }
 
             })
@@ -119,8 +108,6 @@
                     }else if(obj.firstline.orderstatus == '6'){
                         $('#firstairlinestatus').html("已申请退票");
                     }else if(obj.firstline.orderstatus == '1'){
-                        planeJson.changeIp;
-
                         $('#refundorderfirst').attr('href',planeJson.refundOrder.url + obj.firstline.yiorderid);
                         $('#refundorderfirst').show();
                         //$('#changeorderfirst').show();
@@ -160,11 +147,8 @@
                         }else if(obj.secondline.orderstatus == '6'){
                             $('#secondairlinestatus').html("已申请退票");
                         }else if(obj.secondline.orderstatus == '1'){
-                            planeJson.changeIp;
-
                             $('#refundordersecond').attr('href',planeJson.refundOrder.url + obj.secondline.yiorderid);
                             $('#refundordersecond').show();
-                            //$('#changeordersecond').show();
                         }
                     }
 
@@ -271,7 +255,7 @@
             }
         },
         refundOrder:{
-            url: "http://118.178.225.32/hmp_website/pages/plain/pages/Refund-application.html?yiorderid="
+            url: "../pages/Refund-application.html?yiorderid="
         },
         changeIp:function (hmp_website_Ip) {
             console.log('hmp_website_Ip'+hmp_website_Ip);
