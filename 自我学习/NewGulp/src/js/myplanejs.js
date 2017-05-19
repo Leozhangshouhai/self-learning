@@ -2,7 +2,7 @@
  * Created by leo on 2017/2/16.
  */
 
-$(function () {
+
     var sign = 1;
     function css_right() {
         var padding = parseInt($('.airtickets-show-dd-star').css('height')) - $('.airtickets-show-dd-timelong').height();
@@ -23,10 +23,17 @@ $(function () {
     };
     $(function(){
         setTimeout(function () {
-            WebViewJavascriptBridge.callHandler('getUserTicket', null, function(response) {
-
-                Ajax_accessTicket=JSON.parse(response).userTicket;
-            });
+            // WebViewJavascriptBridge.callHandler('getUserTicket', null, function(response) {
+            //
+            //     Ajax_accessTicket=JSON.parse(response).userTicket;
+            //     console.log('getUserTicketClick')
+            // });
+            // WebViewJavascriptBridge.callHandler('getServiceHost', null, function(response) {
+            //     hmp_website_Ip=JSON.parse(response).serviceHost;
+            //     console.log(123213213131);
+            //     console.log(response);
+            //     console.log(hmp_website_Ip);
+            // });
             Ajax_json(planeJson.getPlaneInfo,planeJson.changeIp)
         },800);
         document.getElementById('AliPay').onclick = function(e) {
@@ -67,7 +74,7 @@ $(function () {
             $('#popup-pay').hide();
         })
 
-    })
+    });
 //  AJax 请求
     var planeJson={
         getPlaneInfo:   {
@@ -267,9 +274,9 @@ $(function () {
             url: "http://118.178.225.32/hmp_website/pages/plain/pages/Refund-application.html?yiorderid="
         },
         changeIp:function (hmp_website_Ip) {
+            console.log('hmp_website_Ip'+hmp_website_Ip);
             planeJson.getPlaneInfo.url=hmp_website_Ip+'hmp_website/order/detail.json';
             planeJson.cancelOrder.url=hmp_website_Ip+'hmp_website/yiplain/cancelorder.json';
             planeJson.refundOrder.url = hmp_website_Ip + 'hmp_website/pages/plain/pages/Refund-application.html?yiorderid=';
         }
     }
-})
