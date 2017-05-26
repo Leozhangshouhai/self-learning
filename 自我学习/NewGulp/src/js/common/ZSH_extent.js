@@ -113,7 +113,15 @@ var ZSH_Extent = {
         $('#createPopup').find('.popup-make').on('click',function(){
            $popup.remove();
             if(error=='error'){
-               self.location.href='../pages/air.html';
+                if(ZSH_Extent.getPostUrl('yiorderid')!='false'){
+                    self.location.href='../pages/air.html?yiorderid='+ZSH_Extent.getPostUrl('yiorderid');
+                }else{
+                    self.location.href='../pages/air.html';
+                }
+
+            }else if(error=='index'){
+               //   跳转入机票入口页
+                reBookPlaneClick();
             }
        });
 

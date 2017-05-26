@@ -14,12 +14,23 @@ $(function () {
     air.get_today();
     air.submit_click();
     air.get_3code();
-
-
+    air.endorsed_judge();
+  //   显示整个页面
+      air.showAll()
 });
 //页面初始化
 var air = {
+    showAll:function () {
+           $('#container').css('visibility','visible');
+    },
     deadline:'',
+    someCommonClick:function () {
+        // 切换出发到达 城市 功能
+        $('#change-position').on('click',function () {
+            setTimeout(air.change_position,500);
+        });
+
+    },
     page_click: function () {
         $('#choose-btn').find('div').on('click', function () {
             $(this).addClass('active').siblings('div').removeClass('active');
@@ -70,6 +81,7 @@ var air = {
 
         });
     },
+    //  日历初始化
     calendar_init: function (id, deadline) {
         var width = parseInt($('#header').css('width'));
         var height = width * 0.85;
@@ -83,9 +95,7 @@ var air = {
                 var weekday = air.judge_week(date_arr[0]);
                 var monthday = air.judge_month(date_arr[1]);
                 var today = $(this).html();
-
                 //   进行数值日期匹配
-                //*&*************************************
                 if (id == 'ca') {
                     air.deadline = '' + date_arr[3] + '/' + monthday + '/' + today;
                     if (json_sign.type == 2) {
@@ -99,8 +109,6 @@ var air = {
                 if (json_sign.type == 1) {
                     json_sign.date = date_arr[3] + '-' + monthday + '-' + today;
                 }
-                console.log(json_sign)
-                //*****************************************
                 $('.middle-time-box.only,.middle-time-box.selected').find('.middle-time-time').
                     html(monthday + '月' + today + '日').attr('year', date_arr[3])
                     .siblings('.middle-time-week').html(weekday);
@@ -235,11 +243,9 @@ var air = {
            }
         })
     },
-
     //提交按钮
     submit_click: function () {
         $('.sure-btn').on('click', function () {
-
             if($('.middle-data-name[name="middle-data-name-go"]').val()!=''&&$('.middle-data-name[name="middle-data-name-back"]').val()!=''){
                 json_sign.scity_3=$('#position-go').find("option:selected").attr('name');
                 json_sign.scity=$('#position-go').find("option:selected").attr('city-name');
@@ -248,14 +254,35 @@ var air = {
                 json_sign.weekday=$('#start').find(".middle-time-week").html();
                 var jsonString=JSON.stringify(json_sign);
                 Storage.set('json_plane',jsonString);
-                self.location.href='air-price.html?type='+json_sign.type+'&&sign='+json_sign.type;
-
+                var yiorderid=ZSH_Extent.getPostUrl('yiorderid')===null?false:ZSH_Extent.getPostUrl('yiorderid');
+                self.location.href='air-price.html?type='+json_sign.type+'&&sign='+json_sign.type+'&&yiorderid='+yiorderid;
             }else{
                 ZSH_Extent.createLoading('出发城市不能为空');
             }
-
-
         })
+    },
+    //交换出发和到达日期
+    change_position:function () {
+       //   克隆替换选项内容
+       var $clone_go=$('#position-go').clone(true).attr('id','position-back');
+      var $clone_back=$('#position-back').replaceWith($clone_go).attr('id','position-go');
+       $('#position-go').replaceWith($clone_back);
+    //    克隆交换出发城市，到达城市,并且克隆相关函数
+        var $clone_city_go=$($('.middle-data-name')[0]).clone(true).attr('name','middle-data-name-back').attr('placeholder','输入到达城市')
+        var $clone_city_back=$($('.middle-data-name')[1]).clone(true).attr('name','middle-data-name-go').attr('placeholder','输入出发城市')
+        $($('.middle-data-name')[0]).replaceWith($clone_city_back);
+        $($('.middle-data-name')[1]).replaceWith($clone_city_go);
+    },
+    endorsed_judge:function () {
+       var yiorderid=ZSH_Extent.getPostUrl('yiorderid')|| null;
+       // true --正常流程进来   false--表示改签进来
+       if( yiorderid ===null){
+           air.someCommonClick();
+       }else{
+           //  禁用顶部
+           $('#header').hide();
+          Ajax_json(json.getYiorderid,change_Ip);
+       }
     }
 
 };
@@ -271,6 +298,29 @@ var json_sign={
     weekday:''
 };
 var json = {
+    // 获取改签订单的详情
+    getYiorderid:  {
+        url: 'http://101.37.32.245/hmp_website/yiplain/getchildorderdetailbyyiorderid.json',
+        parameters: {
+            'yiorderid': ZSH_Extent.getPostUrl('yiorderid')
+        },
+        success: function (data) {
+            console.log(data)
+            if(data.head.rtnCode==='000000'){
+                $($('.middle-data-name')[0]).val(data.body.citynamestart) ;
+                $($('.middle-data-name')[1]).val(data.body.citynameend) ;
+                var option=' <option value="" class="middle-data-airname-select-option"  city-name='+data.body.citynamestart+' name='+data.body.scity+'>'+data.body.airportnamestart+'</option>';
+                $('#position-go').html(option);
+
+                var option1=' <option value="" class="middle-data-airname-select-option" city-name='+data.body.citynameend+' name='+data.body.ecity+'>'+data.body.airportnameend+'</option>';
+                $('#position-back').html(option1);
+                $('.middle-data-name').attr('disabled','disabled');   // 禁止一切函数和修改
+            }
+        },
+        error:function (error) {
+            ZSH_Extent.createLoading(error.msg);
+        }
+    },
     // json 模型
     code_3_go_json: {
         url: 'http://101.37.32.245/hmp_website/yiplain/getairportlist.json',
@@ -278,9 +328,7 @@ var json = {
             'keywords': encodeURI(json_sign.scity)
        },
         success: function (data) {
-
-
-            console.log(data.body.list);
+            console.log(data);
             var data_arr=data.body.list;
             if(data_arr.length>0){
                 $('#position-go').empty();
@@ -300,7 +348,7 @@ var json = {
             'keywords': encodeURI(json_sign.ecity)
         },
         success: function (data) {
-            console.log('backback');
+
             var data_arr=data.body.list;
             console.log(data_arr);
             if(data_arr.length>0){
@@ -329,7 +377,6 @@ var json = {
             console.log(data);
         }
     },
-
     go_back_json: {
         url: 'http://118.178.225.32/hmp_website/yiplain/getplainlist.json',
         parameters: {
@@ -353,8 +400,10 @@ function change_Ip(hmp_website_Ip) {
   json.code_3_back_json.url=hmp_website_Ip+'hmp_website/yiplain/getairportlist.json';
   json.go_json.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
   json.go_back_json.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
+  json.getYiorderid.url=hmp_website_Ip+'hmp_website/yiplain/getchildorderdetailbyyiorderid.json'
+
 }
-//Ajax_json(json.go_back_airplane_json);
+
 
 
 

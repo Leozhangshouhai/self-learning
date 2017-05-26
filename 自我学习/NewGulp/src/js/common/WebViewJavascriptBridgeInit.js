@@ -59,7 +59,6 @@ function reBookPlaneClick() {
     WebViewJavascriptBridge.callHandler('reBookPlane',
         null,
         function(response) {
-            alert(response);
             document.getElementById("returnValue").value = response;
         });
 }

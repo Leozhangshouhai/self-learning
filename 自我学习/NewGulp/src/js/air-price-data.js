@@ -2,18 +2,11 @@
 // * Created by leo on 2017/2/23.
 // */
 $(function () {
-    air_price.type = GetQueryString('type');
-    air_price.sign = GetQueryString('sign');
+    air_price.type = ZSH_Extent.getPostUrl('type');
+    air_price.sign = ZSH_Extent.getPostUrl('sign');
     fun.judge_go_And_back();
 
 });
-//   url传值不安全
-function GetQueryString(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    var r = window.location.search.substr(1).match(reg);
-    if (r != null)return unescape(r[2]);
-    return null;
-}
 var fun = {
     judge_go_And_back: function () {
         var contral_sign = (air_price.type == 1 && air_price.sign == 2);
@@ -227,15 +220,14 @@ var air_price = {
         parameters: {},
         success: function (data) {
             console.log('航班信息');
-            console.log(data);
-            if (data.head.rtnCode === '000000'&&data.body.flightlist.responseData.flightData.firstFlightList?data.body.flightlist.responseData.flightData.firstFlightList.length>0:false) {
+            console.log(data.body.flightlist.responseData);
+            if (data.head.rtnCode === '000000'&&data.body.flightlist.responseData!=null&&data.body.flightlist.responseData.flightData.firstFlightList?data.body.flightlist.responseData.flightData.firstFlightList.length>0:false) {
                 air_price.delete_arr_null(data);
                 air_price.all_plane.firstFlightList = data.body.flightlist.responseData.flightData.firstFlightList;
                 if (data.body.type == '2') {
                     air_price.delete_arr_null(data,'2');
                     air_price.all_plane.secondFlightList = data.body.flightlist.responseData.flightData.secondFlightList;
                 }
-
                 var  temp_arr=air_price.bubbling_order(air_price.all_plane.firstFlightList,'speed');//默认时长排序
                 $($('#fixed .fixed-choose-detail')[2]).html(temp_arr[temp_arr.length-1].timediff);
                 temp_arr=air_price.bubbling_order(air_price.all_plane.firstFlightList,'time');//默认起飞时间排序
@@ -243,12 +235,10 @@ var air_price = {
                 temp_arr=air_price.bubbling_order(air_price.all_plane.firstFlightList,'price');//默认价格排序
                 air_price.date_bind(temp_arr);
                 $($('#fixed .fixed-choose-detail')[0]).html(temp_arr[temp_arr.length-1].cabinSeatList[0].cabinSeatPrice);
-
                 page.change_click();
                 $('#popup').fadeOut(200);
                 $('#container').show(200);
                 $('#fixed').show(200);
-
                 // 数据渲染
             } else {
               if($('#popup')){
@@ -266,7 +256,7 @@ function change_Ip(hmp_website_Ip) {
     air_price.get_planeInfo.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
 
 }
-//console.log(GetQueryString('jsonString'));
+
 
 
 

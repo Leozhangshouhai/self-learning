@@ -73,6 +73,11 @@ var container = new Vue({
         refund_click:function () {
             getJson.send_refund.parameters.outticketorderid=ZSH_Extent.getPostUrl('yiorderid');
             Ajax_json(getJson.send_refund,changeIp)
+        },
+        endorse_click:function () {
+            bridge.callHandler('airPlaneChanged', {'yiorderid': ZSH_Extent.getPostUrl('yiorderid')}, function(response) {
+
+            })
         }
     },
     components: {
@@ -108,7 +113,6 @@ var getJson={
         url: 'http://118.178.225.32/hmp_website/yiplain/getrefundticketreason.json',
         parameters: {
             'type': '3'
-            // 'id':'JP2017042416301493022638034384'
         },
         success: function (databack) {
             console.log(databack);
@@ -123,7 +127,6 @@ var getJson={
             // 'id':'JP2017042416301493022638034384'
         },
         success: function (databack) {
-            console.log(databack);
             data.refundList= databack.body.list;
             $('#container').show();
         }
@@ -137,10 +140,9 @@ var getJson={
             // 'id':'JP2017042416301493022638034384'
         },
         success: function (data) {
-       console.log(data);
           if(data.head.rtnCode === '000000'){
               // 退票成功，返回机票入口页
-              ZSH_Extent.createLoading('退票已成功','error');
+              ZSH_Extent.createLoading('退票已成功','index');
           }else{
             //  其他情况
             }
@@ -154,8 +156,8 @@ var getJson={
 };
 
 $(function () {
-    Ajax_json(getJson.get_endorsed,changeIp)
-    Ajax_json(getJson.get_refund,changeIp)
+    Ajax_json(getJson.get_endorsed,changeIp);
+    Ajax_json(getJson.get_refund,changeIp);
     $('.header-return').on('click',function () {
         history.go(-1);
     });

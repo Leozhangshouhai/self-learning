@@ -18,35 +18,39 @@ var page = {
             // 如果是往返则执行2，单程就不执行
             if (air_price.sign == 2 && air_price.type == 2) {
                 Storage.set('json_plane_back', air_price.all_plane);
-                Storage.set('json_plane_go_index',{I:$(this).attr('i'),J:$(this).attr('j')});
+                Storage.set('json_plane_go_index', {I: $(this).attr('i'), J: $(this).attr('j')});
                 self.location.href = '../pages/air-price.html?type=1&&sign=2';
             } else {
-                if((air_price.type == '1' && air_price.sign =='2' )){
-                    air_price.plane_back_index={I:$(this).attr('i'),J:$(this).attr('j')};
-                }else{
-                    air_price.plane_go_index={I:$(this).attr('i'),J:$(this).attr('j')};
+                if ((air_price.type == '1' && air_price.sign == '2' )) {
+                    air_price.plane_back_index = {I: $(this).attr('i'), J: $(this).attr('j')};
+                } else {
+                    air_price.plane_go_index = {I: $(this).attr('i'), J: $(this).attr('j')};
                 }
                 Storage.set('json_plane_order', air_price);
+                if (ZSH_Extent.getPostUrl('yiorderid') != 'false') {
+                    self.location.href = '../pages/air-order.html?yiorderid='+ZSH_Extent.getPostUrl('yiorderid') ;
+                } else {
+                    self.location.href = '../pages/air-order.html';
+                }
 
-                self.location.href='../pages/air-order.html';
             }
         })
 
 
     },
     // 底部切换 点击事件
-    change_click:function(){
+    change_click: function () {
         $('.fixed-choose').on('click', function () {
             var temp_arr_a;
-            if((air_price.type == 1 && air_price.sign == 2)){
+            if ((air_price.type == 1 && air_price.sign == 2)) {
                 //  返程信息
                 $('#airtickets-show-dl').empty();
-                temp_arr_a=air_price.bubbling_order(air_price.all_plane.secondFlightList,$(this).attr('name'));//默认价格排序
+                temp_arr_a = air_price.bubbling_order(air_price.all_plane.secondFlightList, $(this).attr('name'));//默认价格排序
             }
-            else{
+            else {
                 //  去程l
                 $('#airtickets-show-dl').empty();
-                temp_arr_a=air_price.bubbling_order(air_price.all_plane.firstFlightList,$(this).attr('name'));//默认价格排序
+                temp_arr_a = air_price.bubbling_order(air_price.all_plane.firstFlightList, $(this).attr('name'));//默认价格排序
             }
 
             air_price.date_bind(temp_arr_a);
@@ -67,9 +71,9 @@ var page = {
                     num++;
                     if (i == 3) {
                         dd = '<dd class="time-show-dd time-show-dd-center">' +
-                        '<p class="time-show-dd-date">' + calendar.arr[i].day + '</p>' +
-                        '<p class="time-show-dd-weekday">' + calendar.arr[i].weekday + '</p>' +
-                        '</dd>';
+                            '<p class="time-show-dd-date">' + calendar.arr[i].day + '</p>' +
+                            '<p class="time-show-dd-weekday">' + calendar.arr[i].weekday + '</p>' +
+                            '</dd>';
                     }
                     $('.time-show-dl').append(dd);
                 } else {
@@ -79,9 +83,9 @@ var page = {
                         '</dd>';
                     if (i == 3) {
                         dd = '<dd class="time-show-dd1 time-show-dd-center">' +
-                        '<p class="time-show-dd-date">' + calendar.arr[i].day + '</p>' +
-                        '<p class="time-show-dd-weekday">' + calendar.arr[i].weekday + '</p>' +
-                        '</dd>';
+                            '<p class="time-show-dd-date">' + calendar.arr[i].day + '</p>' +
+                            '<p class="time-show-dd-weekday">' + calendar.arr[i].weekday + '</p>' +
+                            '</dd>';
                     }
                     $('.time-show-dl1').append(dd);
                 }
@@ -108,9 +112,9 @@ var page = {
                     '</dd>';
                 if (j == 3) {
                     dd = '<dd class="time-show-dd time-show-dd-center">' +
-                    '<p class="time-show-dd-date">' + calendar.arr[j].day + '</p>' +
-                    '<p class="time-show-dd-weekday">' + calendar.arr[j].weekday + '</p>' +
-                    '</dd>';
+                        '<p class="time-show-dd-date">' + calendar.arr[j].day + '</p>' +
+                        '<p class="time-show-dd-weekday">' + calendar.arr[j].weekday + '</p>' +
+                        '</dd>';
                 }
                 $('.time-show-dl').append(dd);
 

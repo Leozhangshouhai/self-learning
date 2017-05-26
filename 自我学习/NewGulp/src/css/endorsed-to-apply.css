@@ -6,6 +6,10 @@
     -webkit-appearance: none;
     font-family: PingFang TC;
 }
+html{
+    background-color: white !important;
+    height: 100%;
+}
 #container{
     padding: 0 5%;
     display: none;

@@ -107,10 +107,10 @@
                         $('#firstairlinestatus').html("已申请改签");
                     }else if(obj.firstline.orderstatus == '6'){
                         $('#firstairlinestatus').html("已申请退票");
-                    }else if(obj.firstline.orderstatus == '1'){
-                        $('#refundorderfirst').attr('href',planeJson.refundOrder.url + obj.firstline.yiorderid);
-                        $('#refundorderfirst').show();
-                        //$('#changeorderfirst').show();
+                    }else if(obj.firstline.orderstatus == '2'){
+                        $('#refundorderfirst,#endorsedApplyfirst').attr('href',planeJson.refundOrder.url + obj.firstline.yiorderid);
+                        $('#refundorderfirst,#endorsedApplyfirst').show();
+
                     }
                     if(obj.secondline == null || obj.secondline.airco == null || obj.secondline.airco == ''){
                         $('#popup-detail-title-back').hide();
@@ -147,8 +147,8 @@
                         }else if(obj.secondline.orderstatus == '6'){
                             $('#secondairlinestatus').html("已申请退票");
                         }else if(obj.secondline.orderstatus == '1'){
-                            $('#refundordersecond').attr('href',planeJson.refundOrder.url + obj.secondline.yiorderid);
-                            $('#refundordersecond').show();
+                            $('#refundordersecond，#endorsedApplysecond').attr('href',planeJson.refundOrder.url + obj.secondline.yiorderid);
+                            $('#refundordersecond，#endorsedApplysecond').show();
                         }
                     }
 

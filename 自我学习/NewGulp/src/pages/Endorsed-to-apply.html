@@ -16,7 +16,7 @@
         <span class="header-chufa">改签申请</span>
     </div>
        <my-li  v-for='(demo,index) in list' :id="index" :text="demo.reasonContent"></my-li>
-       <sure-btn class="endorsed-sure-btn" :selected="Endorsed_selected"></sure-btn>
+       <sure-btn class="endorsed-sure-btn" :selected="Endorsed_selected" @refund_click="endorse_click"></sure-btn>
 </div>
 
 <script src="../js/common/zepto-1.2.0.js"></script>
@@ -29,8 +29,6 @@
 <script src="../js/jiekoutext/base64.js"></script>
 <script src="../js/jiekoutext/3DES.js"></script>
 <script src="../js/jiekoutext/ajax_bao.js"></script>
-
-
 <script src="../js/common/vue2.js"></script>
 <script src="../js/Endorsed-to-apply.js"></script>
 </body>

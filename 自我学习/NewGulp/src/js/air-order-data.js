@@ -37,7 +37,6 @@ var air_order = {
                 plane_info_seat:this.information.all_plane.secondFlightList[Number(this.information.plane_back_index.I)].cabinSeatList[this.information.plane_back_index.J]
             }
             this.plane_information_json.back.plane_info.cabinSeatList= this.plane_information_json.back.plane_info_seat;
-
         }
 
     },
@@ -59,19 +58,14 @@ var air_order = {
             .html(this.plane_information_json.go.plane_info.takeOffTime)
             .siblings('.airtickets-show-dd-start-add')
             .html(this.plane_information_json.go.plane_info.originCityName+this.plane_information_json.go.plane_info.terminal.split(',')[0]);
-        //$go.find('.popup-detail-title-airline')
-        //    .find('.popup-detail-title-airline-box')
-        //    .find('.airtickets-show-dd-timelong')
-        //    .find('.airtickets-show-dd-time-long')
-        //    .html(this.plane_information_json.go.plane_info.timediff);
         $go.find('.popup-detail-title-airline').find('.popup-detail-title-airline-box')
             .find('.airtickets-show-dd-end').find('.airtickets-show-dd-star-time')
             .html(this.plane_information_json.go.plane_info.arriveOffTime)
             .siblings('.airtickets-show-dd-start-add')
             .html(this.plane_information_json.go.plane_info.arriveCityName+this.plane_information_json.go.plane_info.terminal.split(',')[1]);
+        //  加载返程信息
         if(judge){
             var $back= $('#popup-detail-title-back');
-
             $back.fadeIn(300);
             $back.find('.popup-detail-title-time-date').html(timearr[1] + '月' + timearr[2] + '日');
             $back.find('.popup-detail-title-time-price').html(this.plane_information_json.back.plane_info_seat.cabinSeatPrice);
@@ -84,11 +78,6 @@ var air_order = {
                 .html(this.plane_information_json.back.plane_info.takeOffTime)
                 .siblings('.airtickets-show-dd-start-add')
                 .html(this.plane_information_json.back.plane_info.originCityName+this.plane_information_json.back.plane_info.terminal.split(',')[0]);
-            //$back.find('.popup-detail-title-airline')
-            //    .find('.popup-detail-title-airline-box')
-            //    .find('.airtickets-show-dd-timelong')
-            //    .find('.airtickets-show-dd-time-long')
-            //    .html(this.plane_information_json.back.plane_info.timediff);
             $back.find('.popup-detail-title-airline').find('.popup-detail-title-airline-box')
                 .find('.airtickets-show-dd-end').find('.airtickets-show-dd-star-time')
                 .html(this.plane_information_json.back.plane_info.arriveOffTime)
@@ -97,7 +86,6 @@ var air_order = {
         }
         if(this.plane_information_json.back){
             $('.air-total-fee-price').html(Number(this.plane_information_json.go.plane_info_seat.cabinSeatPrice)+ Number(this.plane_information_json.back.plane_info_seat.cabinSeatPrice));
-
         }else{
             $('.air-total-fee-price').html(Number(this.plane_information_json.go.plane_info_seat.cabinSeatPrice));
         }
@@ -105,9 +93,19 @@ var air_order = {
 }
 var page={
     make_sure:function(){
+        if(ZSH_Extent.getPostUrl('yiorderid') != 'false'){
+            $('.make-sure-pay').html('改&nbsp;&nbsp;&nbsp;&nbsp;签');
+        };
         $('.make-sure-pay-box').on('click',function(){
-            Storage.set('json_plane_order_personInfo',air_order.plane_information_json)
-          self.location.href='../pages/air_info_confirm.html';
+            Storage.set('json_plane_order_personInfo',air_order.plane_information_json);
+            if(ZSH_Extent.getPostUrl('yiorderid') != 'false'){
+            //     改签接口操作
+            //    *********************
+
+            }else{
+                self.location.href='../pages/air_info_confirm.html';
+            }
+
         })
     }
 }

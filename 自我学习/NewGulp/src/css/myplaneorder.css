@@ -6,6 +6,7 @@
     -webkit-appearance: none;
     font-family: PingFang TC;
 }
+
 a{
     text-decoration:none;
 }
@@ -148,6 +149,7 @@ a{
 .refundorder{
     color: white;
     font-size: 1.5rem;
+    display: none;
 }
 
 /* 出发-到达时间 */
