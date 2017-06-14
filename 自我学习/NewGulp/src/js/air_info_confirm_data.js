@@ -4,13 +4,14 @@
 $(function () {
     air_info_confirm.plane_json = Storage.get('json_plane_order_personInfo');
     page.init();
+    $('#container').css('visibility','visible');
 
 
 });
 //数据以及数据交互
 var air_info_confirm = {
     create_order: {
-        url: 'http://118.178.225.32/hmp_website/yiplain/getpolicyandcreateorder.json',
+        url: 'http://101.37.32.245/hmp_website/yiplain/getpolicyandcreateorder.json',
         parameters: {
             //type: '2',
             //scity: 'CTU',
@@ -37,13 +38,18 @@ var air_info_confirm = {
             //secondcabinPrice: "850.0",
             //secondfuelPrice: "0.0",
             //secondtaxPrice: "50.0",
-            //date_back: "2017-03-12"
+            //date_back: "2017-03-12"，
+            // needInvoince:'',
+            // invoinceaddress:'',
+            // invoincename:'',
+            // invoincephone:''
         },
         success: function (data) {
             console.log(data);
             popup.loading_dis();
             if(data.head.rtnCode=='000000'){
                 Storage.set('air-pay-data',data);
+                Storage.remove('PassengerData');
                 self.location.href='../pages/air-pay.html';
             }else{
               ZSH_Extent.createLoading('订单创建失败，请确保信息正确');
@@ -52,14 +58,39 @@ var air_info_confirm = {
 
         },
         error:function(data){
+            console.log(data);
             ZSH_Extent.createLoading('订单创建失败，请确保信息正确');
             $('#popup').hide();
 
         }
     },
     json_accident:{},
-    json_delay:{}
+    json_delay:{},
+    get_initaddress: {
+        url: 'http://101.37.32.245/hmp_website/user/getdefaultaddress.json',
+        parameters: {
 
+        },
+        success: function (data) {
+            console.log('获取订单成功');
+            console.log(data);
+            if (data.head.rtnCode === '000000') {
+               var success=data.body.address;
+               $('.postBoxMiddle-add').html(success.province+success.city+success.area+success.address);
+               $('.postBoxMiddle-name-name').html(success.name);
+               $('.postBoxMiddle-name-phone').html(success.phone);
+               $('.postBoxRight-money').html('￥'+data.body.price);
+                // 退票成功，返回机票入口页
+            } else {
+                //  其他情况
+            }
+        },
+        error: function (error) {
+            console.log(error);
+            // 业务异常
+            ZSH_Extent.createLoading(error.head.rtnMsg)
+        }
+    },
 };
 var page = {
     init: function () {
@@ -70,6 +101,9 @@ var page = {
         this.regular_verify();
         this.check_submit();
         this.submit_click();
+        Ajax_json(air_info_confirm.get_initaddress,change_Ip);
+        this.editAddressClick();
+        this.judge_special();
     },
     regular_express: {
         phone: function (s) {
@@ -184,7 +218,11 @@ var page = {
                 firsttaxPrice: air_info_confirm.plane_json.go.plane_info.cabinSeatList.taxPrice,
                 passengersarr: passenger_info_arr,
                 contactCellPhone: $('#contact-phone').find('.info_content_input').val(),
-                contactName: $('#contact-name').find('.info_content_input').val()
+                contactName: $('#contact-name').find('.info_content_input').val(),
+                needInvoince: $('.content-dd-right-img-2').attr('index'),
+                invoinceaddress:$('.postBoxMiddle-add').html(),
+                invoincename:$('.postBoxMiddle-name-name').html(),
+                invoincephone:$('.postBoxMiddle-name-phone').html()
             };
             // 往返程则增加返程数据;
             if (air_info_confirm.plane_json.back) {
@@ -362,7 +400,16 @@ var page = {
             } else {
                 $(this).attr('src', '../img/air/air-info-2.png').attr('choose', 'true');
             }
-        })
+        });
+        $('.content-dd-right-img-2').on('click',function(){
+            var index=$('.content-dd-right-img-2').attr('index');
+            if(index==='1'){
+                $('.content-dd-right-img-2').attr('src','../img/air/addNewAddress-03.png').attr('index','0');
+            }else{
+                $('.content-dd-right-img-2').attr('src','../img/air/addNewAddress-02.png').attr('index','1');
+            }
+        });
+
     },
     add_infoBox: function () {
         $('.text-box-idCard-add').on('click', function () {
@@ -463,7 +510,70 @@ var page = {
 
         //  初始化增加出生日的事件
         birthday_show();
+    },
+    data_story:function () {
+        var Cdata={
+            contactnane:$($('.info_content_input')[0]).val()||'',
+            contacttel:$($('.info_content_input')[1]).val()||'',
+            postsign:$('.content-dd-right-img-2').attr('index')
+        };
+        var arr=[],$father = $('#text-box-idCard-box');
+        for(var i=0;i<$('#text-box-idCard-box').find('li').length;i++){
+            var $son=$($father.find('li')[i]);
+           arr[i]={
+           passenger_name:$son.find('.passenger-name').find('.info_content_input').val()||'',//姓名
+           card_kind : $son.find('.card-kind option:selected').attr('data-type')||'',//证件类别
+           sex_kind : $son.find('.sex-kind option:selected').attr('data-type')||'',//证件类别
+           passenger_code : $son.find('.passenger-code').find('.info_content_input').val()||'',//证件号码
+           passenger_phone : $son.find('.passenger-phone').find('.info_content_input').val()||'',//电话
+           passenger_birthday_year : $son.find('.info_content_input_birthday').find('input').eq(0).val()||'',//年份
+           passenger_birthday_month : $son.find('.info_content_input_birthday').find('input').eq(1).val()||'',//月份
+           passenger_birthday_day : $son.find('.info_content_input_birthday').find('input').eq(2).val()||''//日份
+                }
+        }
+        Cdata.passengers=arr;
+        return Cdata;
+    },
+    editAddressClick:function () {
+        $('#editAddress').on('click',function(){
+                 var data=page.data_story();
+                 Storage.set('PassengerData',data);
+                 console.log(data);
+                 self.location.href='../pages/addressList.html?sign=special'
+        })
+    },
+    judge_special:function () {
+    if(ZSH_Extent.getPostUrl('sign')==='special'){
+         var passenger_arr=Storage.get('PassengerData');
+        $($('#contact-name').find('.info_content_input')[0]).val(passenger_arr.contactnane);
+        $($('#contact-name').find('.info_content_input')[1]).val(passenger_arr.contacttel);
+        $('.content-dd-right-img-2').attr('index',passenger_arr.postsign);
+        if(passenger_arr.postsign==='0'){
+            $('.content-dd-right-img-2').attr('src','../img/air/addNewAddress-03.png');
+        }
+
+        var $father = $('#text-box-idCard-box');
+        $($('.info_content_input')[0]).val(passenger_arr.contactnane);
+        $($('.info_content_input')[1]).val(passenger_arr.contacttel);
+        for(var i=0;i<passenger_arr.passengers.length;i++){
+             if(i+1<passenger_arr.passengers.length){
+                 $('.text-box-idCard-add').eq(0).click();
+             }
+            var $son=$($father.find('li')[i]);
+            $son.find('.passenger-name').find('.info_content_input').val(passenger_arr.passengers[i].passenger_name);
+            $son.find('.passenger-code').find('.info_content_input').val(passenger_arr.passengers[i].passenger_code);
+            $son.find('.passenger_phone').find('.info_content_input').val(passenger_arr.passengers[i].passenger_phone);
+            $son.find('.info_content_input_birthday').find('input').eq(0).val(passenger_arr.passengers[i].passenger_birthday_year);
+            $son.find('.info_content_input_birthday').find('input').eq(1).val(passenger_arr.passengers[i].passenger_birthday_month);
+            $son.find('.info_content_input_birthday').find('input').eq(2).val(passenger_arr.passengers[i].passenger_birthday_day);
+            $son.find(".card-kind").find('option').eq(Number(passenger_arr.passengers[i].card_kind)-1).attr("selected","selected");
+            $son.find(".sex-kind").find('option').eq(Number(passenger_arr.passengers[i].sex_kind)-1).attr("selected","selected");
+            if(passenger_arr.passengers[i].card_kind!=='1'){
+                $son.find('.passenger-birthday').show();
+            }
+        }
     }
+}
 }
 
 var popup={
@@ -479,5 +589,6 @@ function change_Ip(hmp_website_Ip) {
     air_info_confirm.create_order.url=hmp_website_Ip+'hmp_website/yiplain/getpolicyandcreateorder.json';
     air_info_confirm.json_accident.url=hmp_website_Ip+'hmp_website/yiplain/getinsuranceprice.json';
     air_info_confirm.json_delay.url=hmp_website_Ip+'hmp_website/yiplain/getinsuranceprice.json';
+    air_info_confirm.json_delay.url=hmp_website_Ip+'hmp_website/yiplain/getdefaultaddress.json';
 
 }

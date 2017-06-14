@@ -105,7 +105,7 @@ var ZSH_Extent = {
         var $popup =
             $('<div id="createPopup">' +
             '<div class="popup-box">' +
-            '<p class="popup-tips">'+string+'</p>' +
+            '<p class="popup-tips">'+(string||'业务异常')+'</p>' +
             '<div class="popup-make" >确&nbsp;&nbsp;&nbsp;定</div>' +
             '</div>' +
             '</div>');
@@ -118,13 +118,11 @@ var ZSH_Extent = {
                 }else{
                     self.location.href='../pages/air.html';
                 }
-
             }else if(error=='index'){
                //   跳转入机票入口页
                 reBookPlaneClick();
             }
        });
-
         $('#createPopup').css({
             'position': 'fixed',
             'z-index': 100,
@@ -161,6 +159,60 @@ var ZSH_Extent = {
 
 
     },
+    createCanleOrSure:function (string,url,fn) {
+        var $popup =
+            $('<div id="createPopup">' +
+                '<div class="popup-box">' +
+                '<p class="popup-tips">'+(string||'业务异常')+'</p>' +
+                '<div class="popup-make-btn make-sure" >确&nbsp;定</div><div class="popup-make-btn make-cancel" >取&nbsp;消</div>' +
+                '</div>' +
+                '</div>');
+        $('body').append($popup);
+        $('#createPopup').find('.make-sure').on('click',function(){
+            $popup.remove();
+            fn();
+        });
+        $('#createPopup').find('.make-cancel').on('click',function(){
+            $popup.remove();
+        });
+        $('#createPopup').css({
+            'position': 'fixed',
+            'z-index': 100,
+            'left': 0,
+            'right': 0,
+            'top': 0,
+            'bottom': 0,
+            'background-color': 'rgba(0, 0, 0, .1)'
+        }).find('.popup-box').css({
+            'font-size':'0',
+            'position': 'absolute',
+            'width': '90%',
+            'margin-left':'5%',
+            'background-color':'rgba(255,255,255,.9)',
+            'border-radius':'.7rem',
+            'padding':'1rem 0',
+            'text-align': 'center',
+            'top': '45%',
+            'margin-top': '-5rem'
+        }).find('.popup-tips').css({
+            'font-size': '2.2rem',
+            'color': 'black',
+            'margin-bottom': '1rem'
+        }).siblings('.popup-make-btn').css({
+            'font-size': '2.2rem',
+            'margin-top':'1.5rem',
+            'width': '45%',
+            'display':'inline-block',
+            'margin-left':'1%',
+            'border-radius':'inherit',
+            'background-color':'#0077DB',
+            'color': 'white',
+            'padding':'.8rem 0',
+            'margin-bottom': '1rem'
+        }).siblings('.make-sure').css({
+            'margin-right':'1%'
+        });
+    },
     // 获取url的参数
     getPostUrl: function (name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -180,7 +232,27 @@ var ZSH_Extent = {
         var u = navigator.userAgent;
         var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
         return isiOS;
-    }
+    },
+    listenHistroyBack:function () {
+        $(document).ready(function($) {
+            if (window.history && window.history.pushState) {
+                $(window).on('popstate', function() {
+                    var hashLocation = location.hash;
+                    var hashSplit = hashLocation.split("#!/");
+                    var hashName = hashSplit[1];
+
+                    if (hashName !== '') {
+                        var hash = window.location.hash;
+                        if (hash === '') {
+                            alert('後退按鈕點擊');
+                        }
+                    }
+                });
+
+                window.history.pushState('forward', null, './#forward');
+            }
+
+        });}
 }
 
 

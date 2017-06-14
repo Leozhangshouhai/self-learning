@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes"/>
+
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="format-detection" content="email=no"/>
@@ -10,11 +11,9 @@
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0, user-scalable=0"/>
     <title>航班信息确认</title>
     <link rel="stylesheet" href="../css/info_confirm.css"/>
-
-
 </head>
 <body>
-<div id="container">
+<div id="container" >
     <!-- 头部-->
     <div class="header">
         <img class="header-return" src="../img/air/left_03.png" alt="span"/>
@@ -35,13 +34,13 @@
                     <span class="go_contentBox_dd-name">去程</span>
                     <span class="go_contentBox_dd_date">12月10日</span>
                     <span class="go_contentBox_dd_time">22:20</span>
-                    <span class="go_contentBox_dd_money">￥200</span>
+                    <span class="go_contentBox_dd_money"></span>
                 </dd>
                 <dd class="go_contentBox_dd" id="back_contentBox_dd" style="display: none">
                     <span class="go_contentBox_dd-name">返程</span>
                     <span class="go_contentBox_dd_date">12月12日</span>
                     <span class="go_contentBox_dd_time">22:20</span>
-                    <span class="go_contentBox_dd_money">￥240</span>
+                    <span class="go_contentBox_dd_money"></span>
                 </dd>
             </dl>
             <!-- 电话内容信息 -->
@@ -72,8 +71,8 @@
                         <span class="info_content_left">性别</span>
                       <span class="info_content_input id-kind">
                 <select class="info_content_input_select sex-kind">
-                    <option value="" class="info_content_input_select_option" data-type="1">男</option>
-                    <option value="" class="info_content_input_select_option" data-type="2">女</option>
+                    <option value="" class="info_content_input_select_option" data-type="1" >男</option>
+                    <option value="" class="info_content_input_select_option" data-type="2" >女</option>
                 </select>
                      </span>
                     </div>
@@ -100,8 +99,8 @@
                     <div class="text-box-one passenger-birthday">
                         <span class="info_content_left">出生日期</span>
                         <span class="info_content_input info_content_input_birthday">
-                            <input type="text" value="" placeholder="年" name="year"/>/<input type="text" placeholder="月"
-                                                                                             name="month"/>
+                            <input type="text" value="" placeholder="年" name="year"/>/
+                            <input type="text" placeholder="月" name="month"/>
                             /<input type="text" placeholder="日" name="day"/>
                         </span>
                         <span class="info_content_error">*输入有误,请重新输入</span>
@@ -118,7 +117,6 @@
                         <img src="../img/air/air-info-reduce.png" alt="减号" class="text-box-idCard-reduce"/>
                     </div>
                 </li>
-
 
             </ul>
             <!-- 是否未成年  暂时没有这个接口-->
@@ -158,13 +156,13 @@
                 <img src="../img/air/air-info-3.png" choose="false" alt="" class="text-box-baoxian-img"/>
                 <span class="text-box-baoxian-name">意外险</span>
                 <span class="text-box-baoxian-detail">详细说明</span>
-                <span class="text-box-baoxian-money">￥60</span>
+                <span class="text-box-baoxian-money"></span>
             </div>
             <div class="text-box-one text-box-baoxian">
                 <img src="../img/air/air-info-3.png" choose="false" alt="" class="text-box-baoxian-img"/>
                 <span class="text-box-baoxian-name">延误险</span>
                 <span class="text-box-baoxian-detail">详细说明</span>
-                <span class="text-box-baoxian-money">￥40</span>
+                <span class="text-box-baoxian-money"></span>
             </div>
         </div>
         <!-- 其他费用 -->
@@ -174,9 +172,34 @@
             </div>
             <div class="air-info-otherfree-content">
                 <span class="air-info-otherfree-name">机建燃油</span>
-                <span class="air-info-otherfree-content-money">￥100</span>
+                <span class="air-info-otherfree-content-money"></span>
             </div>
         </div>
+        <!--  行程单以及发票   -->
+        <div class="air-info-otherfree">
+            <div class="air-info-otherfree-title">
+                <span>行程单及发票</span>
+            </div>
+            <div class="air-info-otherfree-content">
+                    <span class="air-info-post-text">是否邮寄</span>
+                    <span class="air-info-post">
+                    <img src="../img/air/addNewAddress-02.png" alt="" index="1" class="content-dd-right-img-2" >
+                </span>
+                <div class="postBox">
+                    <span class="postBoxLeft">邮寄地址：</span>
+                    <span class="postBoxMiddle">
+                        <p class="postBoxMiddle-add"></p>
+                        <p class="postBoxMiddle-name"><span class="postBoxMiddle-name-name"></span>&nbsp;<span class="postBoxMiddle-name-phone"></span></p>
+                    </span>
+                    <span class="postBoxRight"><span  id="editAddress">更改</span>
+                      <span class="postBoxRight-money"></span>
+                    </span>
+
+                </div>
+
+            </div>
+        </div>
+
         <!--协议 -->
         <dl>
             <dd class="air-info-otherfree-agreement">

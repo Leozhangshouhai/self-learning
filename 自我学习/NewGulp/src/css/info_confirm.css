@@ -3,12 +3,19 @@
     padding: 0;
     box-sizing: border-box;
     font-family: PingFang TC
+}li{
+     list-style:none;
+    text-decoration: none;
+ }
+a{
+    text-decoration: none;
+    color: inherit;
 }
-
 #container, html {
     background-image: url(../img/air/bg.png);
     background-size: cover;
     background-position: center;
+    visibility:hidden;
     background-repeat: no-repeat
 }
 
@@ -295,20 +302,65 @@
     display: inline-block
 }
 
-.air-info-otherfree-name {
+.air-info-otherfree-name,.air-info-post-text {
     width: 40%;
     font-size: 1.2rem;
     color: #646464
 }
-
-.air-info-otherfree-content-money {
+.content-dd-right-img-2{
+    width:4rem;
+    margin-left: 1rem;
+}
+.air-info-otherfree-content-money,.air-info-post {
     font-size: 1.8rem;
     font-weight: bolder;
     color: #0077db;
     width: 60%;
-    text-align: right
+    text-align: right;
+}
+.air-info-post-text,.air-info-post{
+    padding-bottom: 1rem;
 }
 
+.postBox{
+    font-size: 0;
+    width: 100%;
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+   border-top: 1px solid #e1e1e1;
+    color: #646464;
+    position: relative;
+}
+.postBox>span{
+    display: inline-block;
+    font-size: 1.2rem;
+    vertical-align: top;
+
+}
+.postBoxLeft{
+    width: 25%;
+
+}
+.postBoxMiddle{
+    width:62%;
+    padding-right: 2rem;
+}
+.postBoxMiddle-add,.postBoxMiddle-name{
+    padding-bottom: 0.5rem;
+}
+.postBoxRight{
+    width:13%;
+    position: relative;
+}
+.postBoxRight-money{
+    position: absolute;
+    left: 0;
+    top: 5rem;
+    /*top:;: 0;*/
+    color: #44ABE9;
+    font-size: 1.4rem;
+    font-weight: bolder;
+}
 .air-info-otherfree-agreement {
     padding: 0 1.8rem;
     font-size: 0;

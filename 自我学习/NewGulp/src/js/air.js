@@ -34,7 +34,6 @@ var air = {
     page_click: function () {
         $('#choose-btn').find('div').on('click', function () {
             $(this).addClass('active').siblings('div').removeClass('active');
-
             if ($(this).html() == '单程') {
                 json_sign.type = 1;
                 $($('.middle-time-box')[1]).hide();
@@ -274,7 +273,7 @@ var air = {
         $($('.middle-data-name')[1]).replaceWith($clone_city_go);
     },
     endorsed_judge:function () {
-       var yiorderid=ZSH_Extent.getPostUrl('yiorderid')|| null;
+       var yiorderid=ZSH_Extent.getPostUrl('yiorderid');
        // true --正常流程进来   false--表示改签进来
        if( yiorderid ===null){
            air.someCommonClick();
@@ -307,6 +306,7 @@ var json = {
         success: function (data) {
             console.log(data)
             if(data.head.rtnCode==='000000'){
+                Storage.set('yiorderidInfo',data.body)
                 $($('.middle-data-name')[0]).val(data.body.citynamestart) ;
                 $($('.middle-data-name')[1]).val(data.body.citynameend) ;
                 var option=' <option value="" class="middle-data-airname-select-option"  city-name='+data.body.citynamestart+' name='+data.body.scity+'>'+data.body.airportnamestart+'</option>';

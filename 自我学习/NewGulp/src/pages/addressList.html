@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>地址列表</title>
+    <link rel="stylesheet" href="../css/addressList.css">
+</head>
+<body style="height: 100%">
+<div id="container">
+    <div class="header">
+        <img class="header-return-special" src="../img/air/left_03.png" alt="span"/>
+        <span class="header-chufa" id="endorsed">选择地址</span>
+        <span class="header-right" @click="controllerClick">管理</span>
+    </div>
+    <div class="content">
+            <p class="init-address" v-show="controller" >当前默认地址</p>
+        <transition-group name="flip-list" tag="dl">
+            <dd class="list-dd" v-for="(demo,index) in addressinfo"  v-bind:key="demo" >
+                <div class="list-dd-left">
+                    <div>
+                        <input type="text" :value="demo.name" class="content-name" readonly>
+                        <input type="text" :value="demo.phone" class="content-tel" readonly>
+                    </div>
+                    <p class="content-address" v-text="demo.province+demo.city+demo.area+demo.address"></p>
+                    <div v-show="!controller">
+                        <button class="content-write content-btn" @click="editAddress(index)">编辑</button>
+                        &nbsp;
+                        <button class="content-delete content-btn" @click="deleteAddress(index)">删除</button>
+                    </div>
+                </div>
+                <img :src="demo.isdefault?'../img/air/address-01.png':'../img/air/air-info-3.png'" alt="" class="content-chooseImg" v-show="(demo.isdefault||!controller)" @click="chooseInit(index)">
+            </dd>
+        </transition-group>
+        <div class="bank"></div>
+    </div>
+    <transition name="fade">
+        <a href="addNewAddress.html">
+            <div class="make-sure-pay-box" v-show="!controller" >
+                <button class="make-sure-pay" >添加地址</button>
+            </div>
+        </a>
+    </transition>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+<script src="../js/common/zepto-1.2.0.js"></script>
+<script src="../js/autoSize(new).js"></script>
+<script src="../js/common/ZSH_extent.js"></script>
+<script src="../js/common/WebViewJavascriptBridgeInit.js"></script>
+<script src="../js/jiekoutext/base.js"></script>
+<script src="../js/jiekoutext/storage.js"></script>
+<script src="../js/jiekoutext/md5.js"></script>
+<script src="../js/jiekoutext/base64.js"></script>
+<script src="../js/jiekoutext/3DES.js"></script>
+<script src="../js/jiekoutext/ajax_bao.js"></script>
+<script src="../js/common/vue2.js"></script>
+<script src="../js/addressList.js"></script>
+</body>
+</html>

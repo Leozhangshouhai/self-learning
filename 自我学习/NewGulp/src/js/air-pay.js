@@ -2,13 +2,16 @@
  * Created by leo on 2017/1/9.
  */
 $(function () {
+
     css_right();
+    $('#whole').css('visibility','visible')
     //  获取订单信息
-    air_pay_data.pay_info = Storage.get('air-pay-data');
-    air_pay_data.plane_information_json = Storage.get('json_plane_order_personInfo');
-    air_pay_data.init();
-    page.click_init();
-    page.pay_way();
+      air_pay_data.pay_info = Storage.get('air-pay-data');
+      air_pay_data.plane_information_json = Storage.get('json_plane_order_personInfo');
+      air_pay_data.init();
+      page.click_init();
+      page.pay_way();
+
 
 });
 // 部分CSS 样式修正
@@ -108,7 +111,7 @@ var page = {
             $('.popup').css('z-index', -10);
         });
         $('.info-show-price-detail').click(function () {
-            //$('.popup').fadeIn(300);
+
             $('.popup').css('z-index', 110);
 
         })

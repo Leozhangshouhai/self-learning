@@ -4,7 +4,6 @@
 
 var Ajax_accessTicket='';
 var hmp_website_Ip='';
-
 function Ajax_json(json ,change_Ip) {
     function createparam(param) {
         var appid = "BAS5-520100-0001";
@@ -23,7 +22,7 @@ function Ajax_json(json ,change_Ip) {
             Storage.set('login.accessticket', Ajax_accessTicket);
         }
         var accessTicket =Ajax_accessTicket!=''?Ajax_accessTicket: Storage.get('login.accessticket');
-        // var accessTicket ='74b917d990e044d1a556c51af77a2fd1';
+        // var accessTicket ='983eeaf128834cc5a7df5d0635da4b39';
         console.log('accessTicket'+accessTicket)
         var version = "2.0";
         var req = {
