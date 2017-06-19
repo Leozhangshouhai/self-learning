@@ -589,6 +589,5 @@ function change_Ip(hmp_website_Ip) {
     air_info_confirm.create_order.url=hmp_website_Ip+'hmp_website/yiplain/getpolicyandcreateorder.json';
     air_info_confirm.json_accident.url=hmp_website_Ip+'hmp_website/yiplain/getinsuranceprice.json';
     air_info_confirm.json_delay.url=hmp_website_Ip+'hmp_website/yiplain/getinsuranceprice.json';
-    air_info_confirm.json_delay.url=hmp_website_Ip+'hmp_website/yiplain/getdefaultaddress.json';
-
+    air_info_confirm.get_initaddress.url=hmp_website_Ip+'hmp_website/user/getdefaultaddress.json';
 }
