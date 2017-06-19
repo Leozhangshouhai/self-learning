@@ -10,7 +10,6 @@ function Ajax_json(json ,change_Ip) {
         var appkey = "02e45ae192526ce470d8352e7403134a92526ce470d8352e";
         var b = new Base64();
         var sign = encrypt_string(appkey, hex_md5(b.encode(appid + JSON.stringify(param))));
-        //var accessTicket = 'e37d0eb3f2ad47fab58ab698a1e77ef5';
         if(hmp_website_Ip!='') {
             Storage.set('login.hmp_website_Ip', hmp_website_Ip);
         }

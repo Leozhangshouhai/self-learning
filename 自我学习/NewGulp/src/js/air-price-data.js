@@ -32,7 +32,6 @@ var fun = {
         //********
         if (contral_sign) {
             //******************
-
             var  temp_arr=air_price.bubbling_order(air_price.all_plane.secondFlightList,'speed');//默认时长排序
             $($('#fixed .fixed-choose-detail')[2]).html(temp_arr[temp_arr.length-1].timediff);
             temp_arr=air_price.bubbling_order(air_price.all_plane.secondFlightList,'time');//默认起飞时间排序
@@ -43,7 +42,6 @@ var fun = {
             $('#container').show(200);
             $('#fixed').show(200);
             page.change_click();
-
         } else {
             if (air_price.air_json.type == 2) {
                 air_price.get_planeInfo.parameters.type = '2';
@@ -58,7 +56,6 @@ var fun = {
                 air_price.get_planeInfo.parameters.date = air_price.air_json.date;
             }
             Ajax_json(air_price.get_planeInfo,change_Ip);
-
         }
 
     }
@@ -164,7 +161,7 @@ var air_price = {
             if (data[i].cabinSeatList.length > 0) {
                 var src = data[i].airLogo;
                 var $demo = $("<dd class='airtickets-show-dd'><div class='airtickets-show-dd-box'>" +
-                "<p class='airtickets-show-dd-name'>" + data[i].airName +"&nbsp;&nbsp;"+ data[i].originCode+ data[i].flightNo+"</p>" +
+                "<p class='airtickets-show-dd-name'>" + data[i].airName +"&nbsp;&nbsp;"+ data[i].airCode+ data[i].flightNo+"</p>" +
                 "<div class='airtickets-show-dd-logo'>" +
                 "<img src=" + src + " alt='航空logo'/></div>" +
                 "<div class='airtickets-show-dd-star'>" +
@@ -253,7 +250,7 @@ var air_price = {
     }
 };
 function change_Ip(hmp_website_Ip) {
-    air_price.get_planeInfo.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
+    // air_price.get_planeInfo.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
 
 }
 
