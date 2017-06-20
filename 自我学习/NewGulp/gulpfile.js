@@ -26,7 +26,7 @@ var  gulp = require('gulp'),
 var path={
     input:{
         html:['src/pages/*.html'],
-        js:['src/js/*.js'],
+        js:['src/js/**'],
         css:['src/css/**'],
         image:['src/img/**'],
         fonts:['src/fonts/**'],
@@ -38,7 +38,6 @@ var path={
         js:'dist/js',
         img:'dist/img' ,
         copy:'dist/fonts'
-
     },
     del:{
         css:'dist/minCss',
@@ -119,7 +118,7 @@ gulp.task('imgmin',function(){
         .pipe(imgmin([
           imgmin.gifsicle({interlaced: true}),
           imgmin.jpegtran({progressive: true}),
-          imgmin.optipng({optimizationLevel: 5}),
+          imgmin.optipng({optimizationLevel:3}),
           imgmin.svgo({plugins: [{removeViewBox: true}]})
       ]))
         .pipe(gulp.dest(path.output.img))
@@ -171,6 +170,7 @@ gulp.task('browser-sync', function() {
 
 });
 gulp.task('default',['browser-sync']);
+gulp.task('minAll',['minhtml','less','mincss','minjs','copy','imgmin']);
 gulp.task('min',['minhtml','less','mincss','minjs','copy']);
 
 

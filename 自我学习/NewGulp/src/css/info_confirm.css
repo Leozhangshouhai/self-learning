@@ -15,8 +15,10 @@ a{
     background-image: url(../img/air/bg.png);
     background-size: cover;
     background-position: center;
-    visibility:hidden;
     background-repeat: no-repeat
+}
+#container{
+    visibility:hidden;
 }
 
 .header {

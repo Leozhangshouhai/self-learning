@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>前端js加密解密</title>
+	</head>
+
+	<body>
+		<div>
+			<p>输入:<input type="text" id="encode"/></p>
+			<p>加密后:<span id="encodeVal"></span></p>
+			<input type="password" id="sss" />
+			<br />
+			<label>直接根据上面的值进行解密，解密后:<span id="decodeVal"></span></label>
+		</div>
+		<script>
+			var dataED = new Function();
+			dataED.prototype = {
+				code: {
+					a: 1,
+					b: 2,
+					c: 3,
+					d: 4,
+					e: 5,
+					f: 6,
+					g: 7,
+					h: 8,
+					i: 9,
+					j: 11,
+					k: 12,
+					l: 13,
+					m: 14,
+					n: 15,
+					o: 16,
+					p: 17,
+					q: 18,
+					r: 19,
+					s: 10,
+					t: 21,
+					u: 22,
+					v: 23,
+					w: 24,
+					x: 25,
+					y: 26,
+					z: 27,
+				},
+				encode: function(Strings) {
+					var data = this.code,
+						test = Strings;
+					var dataM = test.split("").map(function(e, i) {
+						if(data[e]) {
+							var ret = "(";
+							for(var i = 0; i < data[e]; i++) {
+								ret += "1";
+							};
+							for(var i = 0; i < data[e]; i++) {
+								ret += "0";
+							};
+							ret += ")";
+							return ret;
+						};
+						if(!isNaN(parseInt(e))) {
+							var rets = "[";
+							for(var i = 0; i < parseInt(e); i++) {
+								rets += "1";
+							};
+							for(var i = 0; i < parseInt(e); i++) {
+								rets += "0";
+							};
+							rets += "]";
+							return rets;
+						}
+						return e;
+					});
+					var newData = "";
+					dataM.forEach(function(e) {
+						newData += e;
+					});
+					var newDataE = encodeURI(newData).split("").map(function(e) {
+						if(!isNaN(parseInt(e))) {
+							if(parseInt(e) == 1) {
+								return "有";
+							} else if(parseInt(e) == 0) {
+								return "没";
+							} else {
+								return e;
+							};
+						} else {
+							return e;
+						};
+					});
+					var newDataS = "";
+					newDataE.forEach(function(e) {
+						newDataS += e;
+					});
+					return encodeURI(newDataS);
+				},
+				decode: function(Strings) {
+					var data = this.code;
+					var dataD = decodeURI(Strings).split("").map(function(e) {
+						if(e == "有") {
+							return "1";
+						} else if(e == "没") {
+							return "0";
+						}
+						return e;
+					});
+					var newDataE = "";
+					dataD.forEach(function(e) {
+						newDataE += e;
+					});
+					var newDataES = decodeURI(newDataE).match(/\(+.+?\)|\[+.+?\]|./img);
+					var dataJ = newDataES.map(function(e) {
+						if(e.match(/\(+.+?\)/img)) {
+							var index = e.replace(/[^1]/img, "").length;
+							var indexKey = null;
+							for(var i in data) {
+								if(data[i] == index) {
+									indexKey = i;
+									break;
+								};
+							}
+							return indexKey;
+						} else
+						if(e.match(/\[+.+?\]/img)) {
+							var index = e.replace(/[^1]/img, "").length;
+							return index;
+						} else
+							return e;
+					});
+					var newDataJ = "";
+					dataJ.forEach(function(e) {
+						newDataJ += e;
+					});
+					return newDataJ;
+				}
+			}
+			var Obj = document.getElementById('encode');
+			Obj.onchange = function() {
+				var val = Obj.value;
+				var EN = new dataED();
+				var ENVAL = EN.encode(val);
+				var DEVAL = EN.decode(ENVAL);
+				document.getElementById('encodeVal').innerHTML = ENVAL;
+				document.getElementById('decodeVal').innerHTML = DEVAL;
+			}
+			document.getElementById('sss').onkeydown = function(){
+				var EN = new dataED();
+				var str = document.getElementById('sss').value;
+				var aa = EN.encode(str);
+				//document.getElementById('sss').value = aa;
+			}
+		</script>
+	</body>
+
+</html>

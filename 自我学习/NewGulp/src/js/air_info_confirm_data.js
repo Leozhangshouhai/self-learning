@@ -5,8 +5,6 @@ $(function () {
     air_info_confirm.plane_json = Storage.get('json_plane_order_personInfo');
     page.init();
     $('#container').css('visibility','visible');
-
-
 });
 //数据以及数据交互
 var air_info_confirm = {
@@ -225,7 +223,7 @@ var page = {
                 invoincephone:$('.postBoxMiddle-name-phone').html()
             };
             // 往返程则增加返程数据;
-            if (air_info_confirm.plane_json.back) {
+            if (air_info_confirm.plane_json.hasOwnProperty("back")===true) {
                 air_info_confirm.create_order.parameters.type = '2';
                 air_info_confirm.create_order.parameters.secondAirco = air_info_confirm.plane_json.back.plane_info.airCode;
                 air_info_confirm.create_order.parameters.secondFlightNo = air_info_confirm.plane_json.back.plane_info.flightNo;
@@ -242,7 +240,6 @@ var page = {
             popup.loading_show();
             Ajax_json(air_info_confirm.create_order,change_Ip);
         })
-
     },
     check_textNull:function(){
       var s=  $.makeArray($('.text-box-one')).every(function(e){
@@ -264,10 +261,7 @@ var page = {
                 return true
             }
         }
-
         return false;
-
-
     },
     regular_verify: function () {
         $('.info_content_input').on('blur', function () {
@@ -409,7 +403,6 @@ var page = {
                 $('.content-dd-right-img-2').attr('src','../img/air/addNewAddress-02.png').attr('index','1');
             }
         });
-
     },
     add_infoBox: function () {
         $('.text-box-idCard-add').on('click', function () {
@@ -538,7 +531,6 @@ var page = {
         $('#editAddress').on('click',function(){
                  var data=page.data_story();
                  Storage.set('PassengerData',data);
-                 console.log(data);
                  self.location.href='../pages/addressList.html?sign=special'
         })
     },
@@ -574,12 +566,11 @@ var page = {
         }
     }
 }
-}
+};
 
 var popup={
     loading_show:function(){
    $('#popup').fadeIn(300);
-
     },
     loading_dis:function(){
         $('#popup').fadeOut(300);

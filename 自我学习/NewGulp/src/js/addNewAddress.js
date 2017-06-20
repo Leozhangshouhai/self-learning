@@ -142,7 +142,6 @@ var page = {
                 delete info.addaddress.parameters.id;
                 Ajax_json(info.addaddress,changeIp);
             }
-
         }
 
     },
