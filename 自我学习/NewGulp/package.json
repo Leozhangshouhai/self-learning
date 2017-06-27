@@ -3,6 +3,7 @@
     "browser-sync": "^2.18.8",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
+    "gulp-asset-addversion": "^0.0.3",
     "gulp-concat": "^2.6.1",
     "gulp-connect": "^5.0.0",
     "gulp-file-copy": "^0.0.1",

@@ -3,66 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <title>阿里百川测试</title>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <script src="//g.alicdn.com/tmapp/tida2/2.2.16/tida.js?appkey=24483908"></script>
+    <meta charset="UTF-8" name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
 </head>
 <body>
 <h2>阿里百川测试</h2>
 <button onclick="goShop('shop')">打开指定店铺</button>
 <button onclick="goShop('detail')">打开详情</button>
-<button onclick="goShop('taoke')">淘客链接</button>
+<button onclick="goShop('taoke')">测试买一单</button>
 <button onclick="goShop('url')">在淘宝打开链接</button>
 <button onclick="goShop('url_TM')">在天猫打开链接</button>
+<button onclick="goShop('login')">测试登录授权</button>
 
 <!--<script src="//g.alicdn.com/mtb/lib-BCJSBridge/0.3.5/bc-jsbridge.js"></script>-->
 <script type="text/javascript" src="//g.alicdn.com/mtb/lib-applink/0.3.4/??callApp.js,linksdk.js"></script>
 <script>
+    Tida.ready({
+        // interactId:"", // 互动实列ID type string 若无抽奖模块，此参数无须传入。给错误的实例ID会走错误流程
+         module: ['device'] // 应用所需要的模块。非必选，默认加载所有模块。支持的模块见注释。
+        // sellerNick:"" // 商家名称
+        // shopId:123 // 店铺ID 从url中取 可选
+    }, function () {
+        // TODO
+    });
+
+
     window.BC_SDK = BCSDK_AppLink.init({
-        appkey : '24405059', //必填，输入百川应用的appkey
+        appkey: '24405059', //必填，输入百川应用的appkey
         backURL: 'tbopen7663://', //必填，默认为空字符串，applink的tips的回跳url， 设置能在手机淘宝里面调回你自己应用的url，格式为`tbopen${appkey}`。
         openApp: false, //非必填，默认为true，非必填，是否唤起客户端，设置false，只会做H5跳转。
         linkKey: 'TB', //非必填，默认为TB, 唤起手淘(TB)/天猫(TM)。
         isNeedDownload: false, //非必填，默认为false, 没有app的情况下跳转目标h5页面还是下载页, 默认跳转目标h5页面。
-        isDefaultRedirect: true, //选填, 没有唤起app的情况下是否默认跳转, 默认true。
-        params:{}, //非必填，带给applink协议的扩展参数,用户自定义参数也传在这里, 如scm、pvid、pid、subpid、e、unionId等业务参数会放到这里。
-        trackParams:{}, //非必填，ybhpss的映射对象，传入这里的参数会被拼为ybhpss字符串带到协议上。
+        isDefaultRedirect: false, //选填, 没有唤起app的情况下是否默认跳转, 默认true。
+        params: {}, //非必填，带给applink协议的扩展参数,用户自定义参数也传在这里, 如scm、pvid、pid、subpid、e、unionId等业务参数会放到这里。
+        trackParams: {}, //非必填，ybhpss的映射对象，传入这里的参数会被拼为ybhpss字符串带到协议上。
         timeout: 1000 // 非必填，默认跳转(目标h5页/下载页)的延时时长。
     });
     function goShop(string) {
-      switch(string){
-          case 'url_TM':window.BC_SDK.gotoUrl({
-              url : '//pages.tmall.com/wow/act/15933/zhuangban',
-              linkKey:'TM',
-              params : {}
-          });
-          break;
-          case 'url':window.BC_SDK.gotoUrl({
-              url : '//h5.m.taobao.com/awp/core/detail.htm?id=43385670822',//id是商品Id
-              linkKey:'TB',
-              params : {}
-          });
-          break;
-          case 'taoke':window.BC_SDK.goTaoke({
-              tkUrl : '//h5.m.taobao.com/awp/core/detail.htm?id=43385670822',
-              params : {
-                  pid: "xxx", // 淘客必填
-                  subpid: "xxx",
-                  unionId: "xxx"
-              }
-          });
-          break;
-          case 'detail':window.BC_SDK.goDetail({
-              itemId : '539488475784',
-              params : {}
-          });
-          break;
-          case 'shop':  window.BC_SDK.goShop({
-              shopId : '64809422',
-              params : {}
-          });
-          break;
-          default:
-              break;
-      }
+        switch (string) {
+            case 'login':
+
+                Tida.isLogin(Tida.doAuth(function(data){
+                    alert(1);
+                    if(data.finish){
+                        // 授权成功 可以顺利调用需要授权的接口了
+                    }else {
+                        // 未能成功授权
+                    }
+                }));
+                break;
+            case 'url_TM':
+                window.BC_SDK.gotoUrl({
+                    url: '//pages.tmall.com/wow/act/15933/zhuangban',
+                    linkKey: 'TM',
+                    params: {}
+                });
+                break;
+            case 'url':
+                window.BC_SDK.gotoUrl({
+                    url: '//h5.m.taobao.com/awp/core/detail.htm?id=43385670822',//id是商品Id
+                    linkKey: 'TB',
+                    params: {}
+                });
+                break;
+            case 'taoke':
+                window.BC_SDK.goTaoke({
+                    tkUrl: 'https://s.click.taobao.com/hKWIphw',
+//              linKey:'TM',
+//              params : {
+//                  pid: "mm_125101397_30270723_112118839", // 淘客必填
+//                  subpid: "xxx",
+//                  unionId: "xxx"
+//              }
+                });
+                break;
+            case 'detail':
+                window.BC_SDK.goDetail({
+                    itemId: '539488475784',
+                    params: {}
+                });
+                break;
+            case 'shop':
+                window.BC_SDK.goShop({
+                    shopId: '64809422',
+                    params: {}
+                });
+                break;
+            default:
+                break;
+        }
     }
 </script>
 </body>

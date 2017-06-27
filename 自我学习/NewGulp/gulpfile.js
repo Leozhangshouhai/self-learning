@@ -5,6 +5,7 @@ var  gulp = require('gulp'),
     concat = require('gulp-concat'),
     connect = require('gulp-connect'),
    browserSync = require('browser-sync').create(),
+    rev = require('gulp-asset-addversion'); //自动添加版本号
     less = require('gulp-less'),
     gulpif = require('gulp-if'),
     minifyCss = require('gulp-minify-css'),
@@ -62,6 +63,7 @@ gulp.task('minhtml',function(){
         .on('error',function(error){
             console.log(error.message);
         })
+        .pipe(rev())
         .pipe(gulp.dest(path.output.html))
 
 });
@@ -77,6 +79,7 @@ gulp.task('mincss',function(){
        path.input.css
    )
         .pipe(minifyCss())
+       .pipe(rev())
         .pipe(gulp.dest(path.output.css))
 });
 // JS 压缩并混淆加密
@@ -99,6 +102,7 @@ gulp.task('minjs',function(){
         .on('error',function (error) {
             console.log(error.message)
         })
+        .pipe(rev())
         .pipe(gulp.dest(path.output.js))
 });
 
@@ -108,6 +112,7 @@ function Jshit(){
         .pipe(jshint())
         .pipe(jshint.reporter())
         .pipe(concat('allindex.js'))
+        .pipe(rev())
         .pipe(gulp.dest(path.output.js))
 }
 gulp.task('jshint', Jshit);

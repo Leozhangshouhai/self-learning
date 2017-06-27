@@ -86,7 +86,7 @@ var air_info_confirm = {
         error: function (error) {
             console.log(error);
             // 业务异常
-            ZSH_Extent.createLoading(error.head.rtnMsg)
+            // ZSH_Extent.createLoading(error.head.rtnMsg)
         }
     },
 };
@@ -99,9 +99,9 @@ var page = {
         this.regular_verify();
         this.check_submit();
         this.submit_click();
-        Ajax_json(air_info_confirm.get_initaddress,change_Ip);
         this.editAddressClick();
         this.judge_special();
+        Ajax_json(air_info_confirm.get_initaddress,change_Ip);
     },
     regular_express: {
         phone: function (s) {
@@ -543,7 +543,6 @@ var page = {
         if(passenger_arr.postsign==='0'){
             $('.content-dd-right-img-2').attr('src','../img/air/addNewAddress-03.png');
         }
-
         var $father = $('#text-box-idCard-box');
         $($('.info_content_input')[0]).val(passenger_arr.contactnane);
         $($('.info_content_input')[1]).val(passenger_arr.contacttel);
@@ -554,7 +553,7 @@ var page = {
             var $son=$($father.find('li')[i]);
             $son.find('.passenger-name').find('.info_content_input').val(passenger_arr.passengers[i].passenger_name);
             $son.find('.passenger-code').find('.info_content_input').val(passenger_arr.passengers[i].passenger_code);
-            $son.find('.passenger_phone').find('.info_content_input').val(passenger_arr.passengers[i].passenger_phone);
+            $son.find('.passenger-phone').find('.info_content_input').val(passenger_arr.passengers[i].passenger_phone);
             $son.find('.info_content_input_birthday').find('input').eq(0).val(passenger_arr.passengers[i].passenger_birthday_year);
             $son.find('.info_content_input_birthday').find('input').eq(1).val(passenger_arr.passengers[i].passenger_birthday_month);
             $son.find('.info_content_input_birthday').find('input').eq(2).val(passenger_arr.passengers[i].passenger_birthday_day);

@@ -6,8 +6,7 @@
 function getUserTicketClick() {
        WebViewJavascriptBridge.callHandler('getUserTicket', null, function(response) {
            Ajax_accessTicket=JSON.parse(response).userTicket;
-           console.log(123213213131);
-           console.log(response);
+           Storage.set('login.accessticket', Ajax_accessTicket);
        });
        WebViewJavascriptBridge.callHandler('getServiceHost', null, function(response) {
            hmp_website_Ip=JSON.parse(response).serviceHost;
