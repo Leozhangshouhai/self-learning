@@ -88,7 +88,7 @@ var air_info_confirm = {
             // 业务异常
             // ZSH_Extent.createLoading(error.head.rtnMsg)
         }
-    },
+    }
 };
 var page = {
     init: function () {
@@ -102,6 +102,7 @@ var page = {
         this.editAddressClick();
         this.judge_special();
         Ajax_json(air_info_confirm.get_initaddress,change_Ip);
+       this.check_createBtn()
     },
     regular_express: {
         phone: function (s) {
@@ -254,7 +255,6 @@ var page = {
         var $arr = $('.info_content_error');
         for (var i = 0; i < $arr.length; i++) {
             if ($($arr[i]).css('display') != 'none') {
-
                 break;
             }
             if (i == $arr.length - 1) {
@@ -283,24 +283,8 @@ var page = {
                     $(this).siblings('.info_content_error').css('display', 'none');
                 } else {
                     $(this).siblings('.info_content_error').css('display', 'inline');
-
-
                 }
             }
-            // 是否禁用提交按钮
-
-            if (page.check_submit()&& page.check_textNull()) {
-                $('.air-make-sure-box').css({
-                    'background': '#0077DB',
-                    'color': 'white'
-                }).attr('disabled', false);
-            } else {
-                $('.air-make-sure-box').css({
-                    'background': '#e6e6e6',
-                    'color': '#646464'
-                }).attr('disabled', true);
-            }
-
         });
         $('.info_content_input_birthday').find('input').on('blur', function () {
             var _this = this;
@@ -312,7 +296,6 @@ var page = {
                     $('.info_content_input_birthday').next('.info_content_error').hide();
                 }
             }
-
             function judge(_this) {
                 if ($(_this).attr('name') == 'year') {
                     if (Number($(_this).val()) >= 1900 && Number($(_this).val()) <= 2000) {
@@ -508,7 +491,10 @@ var page = {
         var Cdata={
             contactnane:$($('.info_content_input')[0]).val()||'',
             contacttel:$($('.info_content_input')[1]).val()||'',
-            postsign:$('.content-dd-right-img-2').attr('index')
+            postsign:$('.content-dd-right-img-2').attr('index'),
+            accident:$('.text-box-baoxian-img').first().attr('choose'),
+            delay:$('.text-box-baoxian-img').last().attr('choose')
+
         };
         var arr=[],$father = $('#text-box-idCard-box');
         for(var i=0;i<$('#text-box-idCard-box').find('li').length;i++){
@@ -539,6 +525,18 @@ var page = {
          var passenger_arr=Storage.get('PassengerData');
         $($('#contact-name').find('.info_content_input')[0]).val(passenger_arr.contactnane);
         $($('#contact-name').find('.info_content_input')[1]).val(passenger_arr.contacttel);
+        if(passenger_arr.accident=='true'){
+            $('.text-box-baoxian-img').first().attr({
+                'choose':passenger_arr.accident,
+                'src':'../img/air/air-info-2.png'
+            })
+        }
+        if(passenger_arr.delay=='true'){
+            $('.text-box-baoxian-img').last().attr({
+                'choose':passenger_arr.delay,
+                'src':'../img/air/air-info-2.png'
+            })
+        }
         $('.content-dd-right-img-2').attr('index',passenger_arr.postsign);
         if(passenger_arr.postsign==='0'){
             $('.content-dd-right-img-2').attr('src','../img/air/addNewAddress-03.png');
@@ -564,7 +562,26 @@ var page = {
             }
         }
     }
-}
+},
+    /*******
+     * 修复最后一栏填写信息后，提交按钮恢复
+     * ******/
+    check_createBtn:function () {
+        var clock=setInterval(function () {
+            // 是否禁用提交按钮
+            if (page.check_submit()&& page.check_textNull()) {
+                $('.air-make-sure-box').css({
+                    'background': '#0077DB',
+                    'color': 'white'
+                }).attr('disabled', false);
+            } else {
+                $('.air-make-sure-box').css({
+                    'background': '#e6e6e6',
+                    'color': '#646464'
+                }).attr('disabled', true);
+            }
+        },1200);
+    }
 };
 
 var popup={

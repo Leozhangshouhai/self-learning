@@ -30,10 +30,10 @@
             var orderNo=$('#orderNO').html();
             WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo':orderNo,'payChannel':'01'},function(response) {
                 //alert(response);\
-                if (response.info == 0) {
-                    self.location.href = '../pages/air-successOrfail.html?sign=' + sign + '&&type=1'
+                if (response.info.resultStatus== 0) {
+                    self.location.href = '../pages/pay-successOrfail.html?sign=' + sign + '&&type=1'
                 } else {
-                    self.location.href = '../pages/air-successOrfail.html?sign=' + sign + '&&type=2'
+                    self.location.href = '../pages/pay-successOrfail.html?sign=' + sign + '&&type=2'
                 }
 
             })
@@ -44,9 +44,9 @@
             var orderNo=$('#orderNO').html();
             WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo':orderNo,'payChannel':'02'},function(response) {
                 if (response.info == 0) {
-                    self.location.href = '../pages/air-successOrfail.html?sign=' + sign + '&&type=1'
+                    self.location.href = '../pages/pay-successOrfail.html?sign=' + sign + '&&type=1'
                 } else {
-                    self.location.href = '../pages/air-successOrfail.html?sign=' + sign + '&&type=2'
+                    self.location.href = '../pages/pay-successOrfail.html?sign=' + sign + '&&type=2'
                 }
 
             })
@@ -107,10 +107,9 @@
                         $('#firstairlinestatus').html("已申请改签");
                     }else if(obj.firstline.orderstatus == '6'){
                         $('#firstairlinestatus').html("已申请退票");
-                    }else if(obj.firstline.orderstatus == '2'){
+                    }else if(obj.firstline.orderstatus == '1'){
                         $('#refundorderfirst,#endorsedApplyfirst').attr('href',planeJson.refundOrder.url + obj.firstline.yiorderid);
                         $('#refundorderfirst,#endorsedApplyfirst').show();
-
                     }
                     if(obj.secondline == null || obj.secondline.airco == null || obj.secondline.airco == ''){
                         $('#popup-detail-title-back').hide();

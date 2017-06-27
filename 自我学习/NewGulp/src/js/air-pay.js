@@ -2,7 +2,6 @@
  * Created by leo on 2017/1/9.
  */
 $(function () {
-
     css_right();
     $('#whole').css('visibility','visible')
     //  获取订单信息
@@ -41,7 +40,7 @@ var air_pay_data = {
         var $goAllFee = this.pay_info.body.orderDetail[0].cabinprice;
         var $goFee = Number(this.pay_info.body.orderDetail[0].fuleprice) + Number(this.pay_info.body.orderDetail[0].taxprice);
         // $('.info-show-price').html('￥' + (Number($goAllFee) + $goFee));
-        $('.info-show-price').html('￥' + this.pay_info.body.mainOrderVO.orderMoney);
+        $('.info-show-price').html('￥' + (this.pay_info.body.mainOrderVO.orderMoney+Number(this.pay_info.body.mailmoney)));
         $go.find('.popup-detail-title-time-date').first().html(timearr[1] + '月' + timearr[2] + '日');
         $go.find('.popup-detail-title-time-price').html( '￥' +Number($goAllFee)*this.pay_info.body.orderDetail[0].pcount);
         $('.oil-fee-total').html( '￥' +Number($goFee)*this.pay_info.body.orderDetail[0].pcount);
@@ -124,7 +123,7 @@ var page = {
                 var orderNo = air_pay_data.pay_info.body.mainOrderVO.orderNo;
                 WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo': orderNo, 'payChannel': '01'}, function (response) {
                     //alert(response);
-                    if (response.info == 0) {
+                    if (response.info.resultStatus  == '9000') {
                         self.location.href = '../pages/pay-successOrfail.html?sign=' + air_pay_data.sign + '&&type=1'
                     } else {
                         self.location.href = '../pages/pay-successOrfail.html?sign=' + air_pay_data.sign + '&&type=2'
