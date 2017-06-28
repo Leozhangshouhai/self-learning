@@ -3,15 +3,13 @@
  */
 $(function () {
     css_right();
-    $('#whole').css('visibility','visible')
+    $('#whole').css('visibility','visible');
     //  获取订单信息
       air_pay_data.pay_info = Storage.get('air-pay-data');
       air_pay_data.plane_information_json = Storage.get('json_plane_order_personInfo');
       air_pay_data.init();
       page.click_init();
       page.pay_way();
-
-
 });
 // 部分CSS 样式修正
 function css_right() {
@@ -31,7 +29,8 @@ var air_pay_data = {
         this.data_binding();
     },
     data_binding: function () {
-
+console.log(this.plane_information_json.go);
+console.log(this.pay_info);
         //  初始化绑定
         $('.info-show-title-add').html(this.plane_information_json.go.city + '-' + this.plane_information_json.go.ecity);
         $('.info-show-title-name').html('单程');
@@ -40,7 +39,7 @@ var air_pay_data = {
         var $goAllFee = this.pay_info.body.orderDetail[0].cabinprice;
         var $goFee = Number(this.pay_info.body.orderDetail[0].fuleprice) + Number(this.pay_info.body.orderDetail[0].taxprice);
         // $('.info-show-price').html('￥' + (Number($goAllFee) + $goFee));
-        $('.info-show-price').html('￥' + (this.pay_info.body.mainOrderVO.orderMoney+Number(this.pay_info.body.mailmoney)));
+        $('.info-show-price').html('￥' + this.pay_info.body.mainOrderVO.orderMoney);
         $go.find('.popup-detail-title-time-date').first().html(timearr[1] + '月' + timearr[2] + '日');
         $go.find('.popup-detail-title-time-price').html( '￥' +Number($goAllFee)*this.pay_info.body.orderDetail[0].pcount);
         $('.oil-fee-total').html( '￥' +Number($goFee)*this.pay_info.body.orderDetail[0].pcount);
@@ -69,7 +68,6 @@ var air_pay_data = {
             var $back = $('#popup-detail-title-back');
             $back.fadeIn(300);
             $back.find('.popup-detail-title-time-date').html(timearr[1] + '月' + timearr[2] + '日');
-            //            $back.find('.popup-detail-title-time-price').html('折后' + (this.pay_info.body.orderDetail[1].cabinprice - this.pay_info.body.orderDetail[1].commissionMoney));
             $back.find('.popup-detail-title-airline-img').attr('src', this.plane_information_json.back.plane_info.airLogo);
             $back.find('.popup-detail-title-airline').find('.popup-detail-title-airline-company').html(this.plane_information_json.back.plane_info.airName);
             $back.find('.popup-detail-title-time-airline-name').html(this.plane_information_json.back.plane_info.airCode + this.plane_information_json.back.plane_info.flightNo);
@@ -92,14 +90,14 @@ var air_pay_data = {
         }
         if (this.plane_information_json.back) {
             var $backFee = Number(this.pay_info.body.orderDetail[1].fuleprice) + Number(this.pay_info.body.orderDetail[1].taxprice);
-            // var $backAllFee = (this.pay_info.body.orderDetail[1].cabinprice - this.pay_info.body.orderDetail[1].commissionMoney)
             var $backAllFee = this.pay_info.body.orderDetail[1].cabinprice;
             $back.find('.popup-detail-title-time-price').html('￥' + ((Number($backAllFee)+ Number($goAllFee))*this.pay_info.body.orderDetail[0].pcount));
             $('.oil-fee-total').html( '￥' +(Number($goFee)+$backFee)*this.pay_info.body.orderDetail[0].pcount);
 
-        } else {
-
         }
+        //计算延误保险费，意外保险费
+        $('.fee-accident').html( '￥' +this.pay_info.body.accidentamount+'('+this.pay_info.body.accidentnum+'份)');
+        $('.fee-delay').html('￥' +this.pay_info.body.delayamount+'('+this.pay_info.body.delaynum+'份)');
     }
 };
 var page = {
@@ -116,29 +114,26 @@ var page = {
         })
     },
     pay_way: function () {
-
             Storage.set('orderNo', air_pay_data.pay_info.body.mainOrderVO.orderNo);
             document.getElementById('AliPay').onclick = function (e) {
                 e.preventDefault();
                 var orderNo = air_pay_data.pay_info.body.mainOrderVO.orderNo;
                 WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo': orderNo, 'payChannel': '01'}, function (response) {
-                    //alert(response);
-                    if (response.info.resultStatus  == '9000') {
+                    var res=JSON.parse(response);
+                    if (res.info.resultStatus  == '9000') {
                         self.location.href = '../pages/pay-successOrfail.html?sign=' + air_pay_data.sign + '&&type=1'
                     } else {
                         self.location.href = '../pages/pay-successOrfail.html?sign=' + air_pay_data.sign + '&&type=2'
                     }
-
                 })
             };
             document.getElementById('wechat').onclick = function (e) {
                 e.preventDefault();
                 var orderNo = air_pay_data.pay_info.body.mainOrderVO.orderNo;
                 WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo': orderNo, 'payChannel': '02'}, function (response) {
-                    //alert(response);
-                    //ZSH_Extent.creatconsoleeLoading('')
-                    console.log(response);
-                    if (response.info == 0) {
+
+                    var res=JSON.parse(response);
+                    if (res.info == 0) {
                         self.location.href = '../pages/pay-successOrfail.html?sign=' + air_pay_data.sign + '&&type=1'
                     } else {
                         self.location.href = '../pages/pay-successOrfail.html?sign=' + air_pay_data.sign + '&&type=2'
@@ -146,8 +141,6 @@ var page = {
                     log('callback', response);
                 })
             }
-
-
 }
 }
 

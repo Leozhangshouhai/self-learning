@@ -88,7 +88,8 @@ var page = {
                 e.preventDefault();
                 var orderNo= Storage.get('orderNo');
                 WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo':orderNo,'payChannel':'01'},function(response) {
-                    if(response.info==0){
+                    var res=JSON.parse(response);
+                    if(res.info.resultStatus== '9000'){
                         self.location.href='../pages/pay-successOrfail.html?sign='+MoniJson.sign+'&&type=1'
                     }else{
                         self.location.href='../pages/pay-successOrfail.html?sign='+MoniJson.sign+'&&type=2'
@@ -99,8 +100,8 @@ var page = {
                 e.preventDefault();
                 var orderNo= Storage.get('orderNo');
                 WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo':orderNo,'payChannel':'02'},function(response) {
-                    // alert(response);
-                    if(response.info==0){
+                    var res=JSON.parse(response);
+                    if(res.info==0){
                         self.location.href='../pages/pay-successOrfail.html?sign='+MoniJson.sign+'&&type=1'
                     }else{
                         self.location.href='../pages/pay-successOrfail.html?sign='+MoniJson.sign+'&&type=2'

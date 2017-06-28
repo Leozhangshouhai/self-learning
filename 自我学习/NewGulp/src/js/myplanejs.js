@@ -29,8 +29,8 @@
             e.preventDefault();
             var orderNo=$('#orderNO').html();
             WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo':orderNo,'payChannel':'01'},function(response) {
-                //alert(response);\
-                if (response.info.resultStatus== 0) {
+                var res=JSON.parse(response);
+                if (res.info.resultStatus== '9000') {
                     self.location.href = '../pages/pay-successOrfail.html?sign=' + sign + '&&type=1'
                 } else {
                     self.location.href = '../pages/pay-successOrfail.html?sign=' + sign + '&&type=2'
@@ -40,10 +40,10 @@
         };
         document.getElementById('wechat').onclick = function(e) {
             e.preventDefault();
-
             var orderNo=$('#orderNO').html();
             WebViewJavascriptBridge.callHandler('payPlaneTicket', {'orderNo':orderNo,'payChannel':'02'},function(response) {
-                if (response.info == 0) {
+                var res=JSON.parse(response);
+                if (res.info == 0) {
                     self.location.href = '../pages/pay-successOrfail.html?sign=' + sign + '&&type=1'
                 } else {
                     self.location.href = '../pages/pay-successOrfail.html?sign=' + sign + '&&type=2'
@@ -108,7 +108,8 @@
                     }else if(obj.firstline.orderstatus == '6'){
                         $('#firstairlinestatus').html("已申请退票");
                     }else if(obj.firstline.orderstatus == '1'){
-                        $('#refundorderfirst,#endorsedApplyfirst').attr('href',planeJson.refundOrder.url + obj.firstline.yiorderid);
+                        $('#refundorderfirst').attr('href',planeJson.refundOrder.url + obj.firstline.yiorderid);
+                        $('#endorsedApplyfirst').attr('href',planeJson.endorsed.url + obj.firstline.yiorderid);
                         $('#refundorderfirst,#endorsedApplyfirst').show();
                     }
                     if(obj.secondline == null || obj.secondline.airco == null || obj.secondline.airco == ''){
@@ -146,7 +147,8 @@
                         }else if(obj.secondline.orderstatus == '6'){
                             $('#secondairlinestatus').html("已申请退票");
                         }else if(obj.secondline.orderstatus == '1'){
-                            $('#refundordersecond，#endorsedApplysecond').attr('href',planeJson.refundOrder.url + obj.secondline.yiorderid);
+                            $('#refundordersecond').attr('href',planeJson.refundOrder.url + obj.secondline.yiorderid);
+                            $('#endorsedApplysecond').attr('href',planeJson.endorsed.url + obj.secondline.yiorderid);
                             $('#refundordersecond，#endorsedApplysecond').show();
                         }
                     }
@@ -255,6 +257,9 @@
         },
         refundOrder:{
             url: "../pages/Refund-application.html?yiorderid="
+        },
+        endorsed:{
+            url: "../pages/Endorsed-to-apply.html?yiorderid="
         },
         changeIp:function (hmp_website_Ip) {
             console.log('hmp_website_Ip'+hmp_website_Ip);

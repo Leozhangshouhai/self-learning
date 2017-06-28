@@ -154,5 +154,4 @@ var page = {
 };
 function change_Ip(hmp_website_Ip) {
     air_order.getApplyInfo.url=hmp_website_Ip+'hmp_website/yiplain/changeticketapply.json';
-
 }

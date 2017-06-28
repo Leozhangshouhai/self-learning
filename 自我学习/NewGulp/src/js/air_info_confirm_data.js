@@ -4,7 +4,7 @@
 $(function () {
     air_info_confirm.plane_json = Storage.get('json_plane_order_personInfo');
     page.init();
-    $('#container').css('visibility','visible');
+    $('#container').css('visibility', 'visible');
 });
 //数据以及数据交互
 var air_info_confirm = {
@@ -45,39 +45,37 @@ var air_info_confirm = {
         success: function (data) {
             console.log(data);
             popup.loading_dis();
-            if(data.head.rtnCode=='000000'){
-                Storage.set('air-pay-data',data);
+            if (data.head.rtnCode == '000000') {
+                Storage.set('air-pay-data', data);
                 Storage.remove('PassengerData');
-                self.location.href='../pages/air-pay.html';
-            }else{
-              ZSH_Extent.createLoading('订单创建失败，请确保信息正确');
-              $('#popup').hide();
+                self.location.href = '../pages/air-pay.html';
+            } else {
+                ZSH_Extent.createLoading('订单创建失败，请确保信息正确');
+                $('#popup').hide();
             }
 
         },
-        error:function(data){
+        error: function (data) {
             console.log(data);
             ZSH_Extent.createLoading('订单创建失败，请确保信息正确');
             $('#popup').hide();
 
         }
     },
-    json_accident:{},
-    json_delay:{},
+    json_accident: {},
+    json_delay: {},
     get_initaddress: {
         url: 'http://101.37.32.245/hmp_website/user/getdefaultaddress.json',
-        parameters: {
-
-        },
+        parameters: {},
         success: function (data) {
             console.log('获取订单成功');
             console.log(data);
             if (data.head.rtnCode === '000000') {
-               var success=data.body.address;
-               $('.postBoxMiddle-add').html(success.province+success.city+success.area+success.address);
-               $('.postBoxMiddle-name-name').html(success.name);
-               $('.postBoxMiddle-name-phone').html(success.phone);
-               $('.postBoxRight-money').html('￥'+data.body.price);
+                var success = data.body.address;
+                $('.postBoxMiddle-add').html(success.province + success.city + success.area + success.address);
+                $('.postBoxMiddle-name-name').html(success.name);
+                $('.postBoxMiddle-name-phone').html(success.phone);
+                $('.postBoxRight-money').html('￥' + data.body.price);
                 // 退票成功，返回机票入口页
             } else {
                 //  其他情况
@@ -101,8 +99,106 @@ var page = {
         this.submit_click();
         this.editAddressClick();
         this.judge_special();
-        Ajax_json(air_info_confirm.get_initaddress,change_Ip);
-       this.check_createBtn()
+        Ajax_json(air_info_confirm.get_initaddress, change_Ip);
+        this.check_createBtn()
+    },
+    common_fun: {
+        error_input_check: function () {
+            if ($(this).attr('name') == 'conName') {
+                if (page.regular_express.name($(this).val())) {
+                    $(this).siblings('.info_content_error').css('display', 'none');
+                } else {
+                    $(this).siblings('.info_content_error').css('display', 'inline');
+                }
+            } else if ($(this).attr('name') == 'phone') {
+                if (page.regular_express.phone($(this).val())) {
+                    $(this).siblings('.info_content_error').css('display', 'none');
+                } else {
+                    $(this).siblings('.info_content_error').css('display', 'inline');
+
+                }
+            } else if ($(this).attr('name') == 'idCard') {
+                if (page.regular_express.idCard($(this).val(), $(this).parents('.passenger-code').prev('.id-card').find('.card-kind option:selected').attr('data-type'))) {
+                    $(this).siblings('.info_content_error').css('display', 'none');
+                } else {
+                    $(this).siblings('.info_content_error').css('display', 'inline');
+                }
+            }
+        },
+        error_birthday_check: function () {
+            var _this = this;
+            if (!judge(_this)) {
+                $('.info_content_input_birthday').next('.info_content_error').show();
+            } else {
+                var inputarr = $('.info_content_input_birthday').find('input');
+                if ($(inputarr[0]).attr('verify') == '1' && $(inputarr[1]).attr('verify') == '1' && $(inputarr[2]).attr('verify') == '1') {
+                    $('.info_content_input_birthday').next('.info_content_error').hide();
+                }
+            }
+            function judge(_this) {
+                if ($(_this).attr('name') == 'year') {
+                    if (Number($(_this).val()) >= 1900 && Number($(_this).val()) <= 2000) {
+                        $(_this).attr('verify', '1');
+                        return true;
+                    } else {
+                        $(_this).attr('verify', '0');
+                        return false;
+                    }
+
+                } else if ($(_this).attr('name') == 'month') {
+                    if ($(_this).val() >= 1 && $(_this).val() <= 12) {
+                        $(_this).attr('verify', '1');
+                        return true;
+                    } else {
+                        $(_this).attr('verify', '0');
+                        return false;
+                    }
+
+                } else if ($(_this).attr('name') == 'day') {
+                    if ($(_this).val() >= 1 && $(_this).val() <= 31) {
+                        $(_this).attr('verify', '1');
+                        return true;
+                    } else {
+                        $(_this).attr('verify', '0');
+                        return false;
+                    }
+
+                }
+            }
+        },
+        dynamic_check: function (string) {
+            var $errors = $('.info_content_error');
+
+            $errors.each(function (index, e) {
+                if ($(e).css('display') != 'none') {
+              var string= $(e).parent().find('.info_content_input').attr('name');
+                  console.log($(e).parent().find('.info_content_input').attr('name'));
+                    var val = $(e).parent().find('.info_content_input').val();
+                    switch (string) {
+                        case 'conName':
+                            if (page.regular_express.name(val)) {
+                                $(e).css('display', 'none');
+                            }
+                            break;
+                        case 'phone':
+                            if (page.regular_express.phone(val)) {
+                                $(e).css('display', 'none');
+                            }
+                            break;
+                        case 'idCard':
+                            var type=$(e).parent().prev('.id-card').find('.card-kind option:selected').attr('data-type')
+                            if (page.regular_express.idCard(val, type)) {
+                                $(e).css('display', 'none');
+                            }
+                            break;
+                        default:
+                            break;
+
+                    }
+                }
+            });
+
+        }
     },
     regular_express: {
         phone: function (s) {
@@ -118,7 +214,7 @@ var page = {
             var reg, reg1;
             var tag;
             //  type==3  返回TRUE  则是不验证军官证
-            if(type==3){
+            if (type == 3) {
                 return true;
             }
             switch (type) {
@@ -200,6 +296,7 @@ var page = {
                 }
                 return str;
             }
+
             //去程参数声明
             air_info_confirm.create_order.parameters = {
                 type: type,
@@ -219,12 +316,12 @@ var page = {
                 contactCellPhone: $('#contact-phone').find('.info_content_input').val(),
                 contactName: $('#contact-name').find('.info_content_input').val(),
                 needInvoince: $('.content-dd-right-img-2').attr('index'),
-                invoinceaddress:$('.postBoxMiddle-add').html(),
-                invoincename:$('.postBoxMiddle-name-name').html(),
-                invoincephone:$('.postBoxMiddle-name-phone').html()
+                invoinceaddress: $('.postBoxMiddle-add').html(),
+                invoincename: $('.postBoxMiddle-name-name').html(),
+                invoincephone: $('.postBoxMiddle-name-phone').html()
             };
             // 往返程则增加返程数据;
-            if (air_info_confirm.plane_json.hasOwnProperty("back")===true) {
+            if (air_info_confirm.plane_json.hasOwnProperty("back") === true) {
                 air_info_confirm.create_order.parameters.type = '2';
                 air_info_confirm.create_order.parameters.secondAirco = air_info_confirm.plane_json.back.plane_info.airCode;
                 air_info_confirm.create_order.parameters.secondFlightNo = air_info_confirm.plane_json.back.plane_info.flightNo;
@@ -239,17 +336,17 @@ var page = {
             }
             console.log(air_info_confirm.create_order);
             popup.loading_show();
-            Ajax_json(air_info_confirm.create_order,change_Ip);
+            Ajax_json(air_info_confirm.create_order, change_Ip);
         })
     },
-    check_textNull:function(){
-      var s=  $.makeArray($('.text-box-one')).every(function(e){
-          if($(e).hasClass('passenger-birthday')){
-              return true;
-          }
-          return $(e).find('input').val()!=''
+    check_textNull: function () {
+        var s = $.makeArray($('.text-box-one')).every(function (e) {
+            if ($(e).hasClass('passenger-birthday')) {
+                return true;
+            }
+            return $(e).find('input').val() != ''
         });
-  return s;
+        return s;
     },
     check_submit: function () {
         var $arr = $('.info_content_error');
@@ -264,69 +361,8 @@ var page = {
         return false;
     },
     regular_verify: function () {
-        $('.info_content_input').on('blur', function () {
-            if ($(this).attr('name') == 'conName') {
-                if (page.regular_express.name($(this).val())) {
-                    $(this).siblings('.info_content_error').css('display', 'none');
-                } else {
-                    $(this).siblings('.info_content_error').css('display', 'inline');
-                }
-            } else if ($(this).attr('name') == 'phone') {
-                if (page.regular_express.phone($(this).val())) {
-                    $(this).siblings('.info_content_error').css('display', 'none');
-                } else {
-                    $(this).siblings('.info_content_error').css('display', 'inline');
-
-                }
-            } else if ($(this).attr('name') == 'idCard') {
-                if (page.regular_express.idCard($(this).val(), $(this).parents('.passenger-code').prev('.id-card').find('.card-kind option:selected').attr('data-type'))) {
-                    $(this).siblings('.info_content_error').css('display', 'none');
-                } else {
-                    $(this).siblings('.info_content_error').css('display', 'inline');
-                }
-            }
-        });
-        $('.info_content_input_birthday').find('input').on('blur', function () {
-            var _this = this;
-            if (!judge(_this)) {
-                $('.info_content_input_birthday').next('.info_content_error').show();
-            } else {
-                var inputarr = $('.info_content_input_birthday').find('input');
-                if ($(inputarr[0]).attr('verify') == '1' && $(inputarr[1]).attr('verify') == '1' && $(inputarr[2]).attr('verify') == '1') {
-                    $('.info_content_input_birthday').next('.info_content_error').hide();
-                }
-            }
-            function judge(_this) {
-                if ($(_this).attr('name') == 'year') {
-                    if (Number($(_this).val()) >= 1900 && Number($(_this).val()) <= 2000) {
-                        $(_this).attr('verify', '1');
-                        return true;
-                    } else {
-                        $(_this).attr('verify', '0');
-                        return false;
-                    }
-
-                } else if ($(_this).attr('name') == 'month') {
-                    if ($(_this).val() >= 1 && $(_this).val() <= 12) {
-                        $(_this).attr('verify', '1');
-                        return true;
-                    } else {
-                        $(_this).attr('verify', '0');
-                        return false;
-                    }
-
-                } else if ($(_this).attr('name') == 'day') {
-                    if ($(_this).val() >= 1 && $(_this).val() <= 31) {
-                        $(_this).attr('verify', '1');
-                        return true;
-                    } else {
-                        $(_this).attr('verify', '0');
-                        return false;
-                    }
-
-                }
-            }
-        })
+        $('.info_content_input').on('blur', this.common_fun.error_input_check);
+        $('.info_content_input_birthday').find('input').on('blur', this.common_fun.error_birthday_check)
     },
     get_fee: function () {
         air_info_confirm.json_accident = {
@@ -347,8 +383,8 @@ var page = {
                 $($('.text-box-baoxian').find('.text-box-baoxian-money')[1]).html(data.body);
             }
         };
-        Ajax_json(air_info_confirm.json_accident,change_Ip);
-        Ajax_json(air_info_confirm.json_delay,change_Ip);
+        Ajax_json(air_info_confirm.json_accident, change_Ip);
+        Ajax_json(air_info_confirm.json_delay, change_Ip);
     },
     data_bind: function () {
         $('.header-chufa').html(air_info_confirm.plane_json.go.city);
@@ -378,12 +414,12 @@ var page = {
                 $(this).attr('src', '../img/air/air-info-2.png').attr('choose', 'true');
             }
         });
-        $('.content-dd-right-img-2').on('click',function(){
-            var index=$('.content-dd-right-img-2').attr('index');
-            if(index==='1'){
-                $('.content-dd-right-img-2').attr('src','../img/air/addNewAddress-03.png').attr('index','0');
-            }else{
-                $('.content-dd-right-img-2').attr('src','../img/air/addNewAddress-02.png').attr('index','1');
+        $('.content-dd-right-img-2').on('click', function () {
+            var index = $('.content-dd-right-img-2').attr('index');
+            if (index === '1') {
+                $('.content-dd-right-img-2').attr('src', '../img/air/addNewAddress-03.png').attr('index', '0');
+            } else {
+                $('.content-dd-right-img-2').attr('src', '../img/air/addNewAddress-02.png').attr('index', '1');
             }
         });
     },
@@ -403,53 +439,53 @@ var page = {
         });
         function add() {
             var $li = $('<li class="text-box-idCard">' +
-            '<div class="text-box-one passenger-name">' +
-            '<span class="info_content_left">乘机人</span>' +
-            '<input class="info_content_input" name="conName" type="text" value="" placeholder="乘机人姓名"/>' +
-            '<span class="info_content_error">*输入有误,请重新输入</span>' +
-            '</div>' +
-            '<div class="text-box-one passenger-sex">' +
-            '<span class="info_content_left">性别</span>' +
-            '<span class="info_content_input id-kind">' +
-            '<select  class="info_content_input_select sex-kind">' +
-            '<option value="" class="info_content_input_select_option" data-type="1">男</option>' +
-            '<option value="" class="info_content_input_select_option" data-type="2">女</option>' +
-            '</select>' +
-            '</span>' +
-            '</div>' +
-            '<div class="text-box-one id-card">' +
-            '<span class="info_content_left">证件类型</span>' +
-            '<span class="info_content_input id-kind">' +
-            '<select name=""  class="info_content_input_select card-kind">' +
-            '<option value="" class="info_content_input_select_option" data-type="1">身份证</option>' +
-            '<option value="" class="info_content_input_select_option" data-type="2">护照</option>' +
-            '<option value="" class="info_content_input_select_option" data-type="3">军官证</option>' +
-            '<option value="" class="info_content_input_select_option" data-type="4">驾驶证</option>' +
-            '</select></span>' +
-            '</div>' +
-            '<div class="text-box-one passenger-code">' +
-            '<span class="info_content_left">证件号码</span>' +
-            '<input class="info_content_input" type="text" name="idCard" value="" placeholder="必须和乘机人一致"/>' +
-            '<span class="info_content_error">*输入有误,请重新输入</span>' +
-            '</div>' +
-            '<div class="text-box-one passenger-birthday">' +
-            '<span class="info_content_left">出生日期</span>' +
-            '<span class="info_content_input  info_content_input_birthday">' +
-            '<input type="text" value="" placeholder="年" name="year"/>/<input type="text" placeholder="月" name="month"/>' +
-            '/<input type="text" placeholder="日" name="day"/>' +
-            '</span>' +
-            '<span class="info_content_error">*输入有误,请重新输入</span>' +
-            '</div>' +
-            '<div class="text-box-one  passenger-phone">' +
-            '<span class="info_content_left">手机号码</span>' +
-            '<input class="info_content_input" name="phone" type="text" value="" placeholder="请输入手机号码"/>' +
-            '<span class="info_content_error">*输入有误,请重新输入</span>' +
-            '</div>' +
-            '<div class="text-box-idCard-addAndreduce">' +
-            '<img src="../img/air/air-info-add.png" alt="加号" class="text-box-idCard-add"/>' +
-            '<img src="../img/air/air-info-reduce.png" alt="减号" class="text-box-idCard-reduce"/>' +
-            '</div>' +
-            '</li>');
+                '<div class="text-box-one passenger-name">' +
+                '<span class="info_content_left">乘机人</span>' +
+                '<input class="info_content_input" name="conName" type="text" value="" placeholder="乘机人姓名"/>' +
+                '<span class="info_content_error">*输入有误,请重新输入</span>' +
+                '</div>' +
+                '<div class="text-box-one passenger-sex">' +
+                '<span class="info_content_left">性别</span>' +
+                '<span class="info_content_input id-kind">' +
+                '<select  class="info_content_input_select sex-kind">' +
+                '<option value="" class="info_content_input_select_option" data-type="1">男</option>' +
+                '<option value="" class="info_content_input_select_option" data-type="2">女</option>' +
+                '</select>' +
+                '</span>' +
+                '</div>' +
+                '<div class="text-box-one id-card">' +
+                '<span class="info_content_left">证件类型</span>' +
+                '<span class="info_content_input id-kind">' +
+                '<select name=""  class="info_content_input_select card-kind">' +
+                '<option value="" class="info_content_input_select_option" data-type="1">身份证</option>' +
+                '<option value="" class="info_content_input_select_option" data-type="2">护照</option>' +
+                '<option value="" class="info_content_input_select_option" data-type="3">军官证</option>' +
+                '<option value="" class="info_content_input_select_option" data-type="4">驾驶证</option>' +
+                '</select></span>' +
+                '</div>' +
+                '<div class="text-box-one passenger-code">' +
+                '<span class="info_content_left">证件号码</span>' +
+                '<input class="info_content_input" type="text" name="idCard" value="" placeholder="必须和乘机人一致"/>' +
+                '<span class="info_content_error">*输入有误,请重新输入</span>' +
+                '</div>' +
+                '<div class="text-box-one passenger-birthday">' +
+                '<span class="info_content_left">出生日期</span>' +
+                '<span class="info_content_input  info_content_input_birthday">' +
+                '<input type="text" value="" placeholder="年" name="year"/>/<input type="text" placeholder="月" name="month"/>' +
+                '/<input type="text" placeholder="日" name="day"/>' +
+                '</span>' +
+                '<span class="info_content_error">*输入有误,请重新输入</span>' +
+                '</div>' +
+                '<div class="text-box-one  passenger-phone">' +
+                '<span class="info_content_left">手机号码</span>' +
+                '<input class="info_content_input" name="phone" type="text" value="" placeholder="请输入手机号码"/>' +
+                '<span class="info_content_error">*输入有误,请重新输入</span>' +
+                '</div>' +
+                '<div class="text-box-idCard-addAndreduce">' +
+                '<img src="../img/air/air-info-add.png" alt="加号" class="text-box-idCard-add"/>' +
+                '<img src="../img/air/air-info-reduce.png" alt="减号" class="text-box-idCard-reduce"/>' +
+                '</div>' +
+                '</li>');
 
             $('#text-box-idCard-box').prepend($li);
             //移除焦点事件
@@ -487,89 +523,91 @@ var page = {
         //  初始化增加出生日的事件
         birthday_show();
     },
-    data_story:function () {
-        var Cdata={
-            contactnane:$($('.info_content_input')[0]).val()||'',
-            contacttel:$($('.info_content_input')[1]).val()||'',
-            postsign:$('.content-dd-right-img-2').attr('index'),
-            accident:$('.text-box-baoxian-img').first().attr('choose'),
-            delay:$('.text-box-baoxian-img').last().attr('choose')
+    data_story: function () {
+        var Cdata = {
+            contactnane: $($('.info_content_input')[0]).val() || '',
+            contacttel: $($('.info_content_input')[1]).val() || '',
+            postsign: $('.content-dd-right-img-2').attr('index'),
+            accident: $('.text-box-baoxian-img').first().attr('choose'),
+            delay: $('.text-box-baoxian-img').last().attr('choose')
 
         };
-        var arr=[],$father = $('#text-box-idCard-box');
-        for(var i=0;i<$('#text-box-idCard-box').find('li').length;i++){
-            var $son=$($father.find('li')[i]);
-           arr[i]={
-           passenger_name:$son.find('.passenger-name').find('.info_content_input').val()||'',//姓名
-           card_kind : $son.find('.card-kind option:selected').attr('data-type')||'',//证件类别
-           sex_kind : $son.find('.sex-kind option:selected').attr('data-type')||'',//证件类别
-           passenger_code : $son.find('.passenger-code').find('.info_content_input').val()||'',//证件号码
-           passenger_phone : $son.find('.passenger-phone').find('.info_content_input').val()||'',//电话
-           passenger_birthday_year : $son.find('.info_content_input_birthday').find('input').eq(0).val()||'',//年份
-           passenger_birthday_month : $son.find('.info_content_input_birthday').find('input').eq(1).val()||'',//月份
-           passenger_birthday_day : $son.find('.info_content_input_birthday').find('input').eq(2).val()||''//日份
-                }
-        }
-        Cdata.passengers=arr;
-        return Cdata;
-    },
-    editAddressClick:function () {
-        $('#editAddress').on('click',function(){
-                 var data=page.data_story();
-                 Storage.set('PassengerData',data);
-                 self.location.href='../pages/addressList.html?sign=special'
-        })
-    },
-    judge_special:function () {
-    if(ZSH_Extent.getPostUrl('sign')==='special'){
-         var passenger_arr=Storage.get('PassengerData');
-        $($('#contact-name').find('.info_content_input')[0]).val(passenger_arr.contactnane);
-        $($('#contact-name').find('.info_content_input')[1]).val(passenger_arr.contacttel);
-        if(passenger_arr.accident=='true'){
-            $('.text-box-baoxian-img').first().attr({
-                'choose':passenger_arr.accident,
-                'src':'../img/air/air-info-2.png'
-            })
-        }
-        if(passenger_arr.delay=='true'){
-            $('.text-box-baoxian-img').last().attr({
-                'choose':passenger_arr.delay,
-                'src':'../img/air/air-info-2.png'
-            })
-        }
-        $('.content-dd-right-img-2').attr('index',passenger_arr.postsign);
-        if(passenger_arr.postsign==='0'){
-            $('.content-dd-right-img-2').attr('src','../img/air/addNewAddress-03.png');
-        }
-        var $father = $('#text-box-idCard-box');
-        $($('.info_content_input')[0]).val(passenger_arr.contactnane);
-        $($('.info_content_input')[1]).val(passenger_arr.contacttel);
-        for(var i=0;i<passenger_arr.passengers.length;i++){
-             if(i+1<passenger_arr.passengers.length){
-                 $('.text-box-idCard-add').eq(0).click();
-             }
-            var $son=$($father.find('li')[i]);
-            $son.find('.passenger-name').find('.info_content_input').val(passenger_arr.passengers[i].passenger_name);
-            $son.find('.passenger-code').find('.info_content_input').val(passenger_arr.passengers[i].passenger_code);
-            $son.find('.passenger-phone').find('.info_content_input').val(passenger_arr.passengers[i].passenger_phone);
-            $son.find('.info_content_input_birthday').find('input').eq(0).val(passenger_arr.passengers[i].passenger_birthday_year);
-            $son.find('.info_content_input_birthday').find('input').eq(1).val(passenger_arr.passengers[i].passenger_birthday_month);
-            $son.find('.info_content_input_birthday').find('input').eq(2).val(passenger_arr.passengers[i].passenger_birthday_day);
-            $son.find(".card-kind").find('option').eq(Number(passenger_arr.passengers[i].card_kind)-1).attr("selected","selected");
-            $son.find(".sex-kind").find('option').eq(Number(passenger_arr.passengers[i].sex_kind)-1).attr("selected","selected");
-            if(passenger_arr.passengers[i].card_kind!=='1'){
-                $son.find('.passenger-birthday').show();
+        var arr = [], $father = $('#text-box-idCard-box');
+        for (var i = 0; i < $('#text-box-idCard-box').find('li').length; i++) {
+            var $son = $($father.find('li')[i]);
+            arr[i] = {
+                passenger_name: $son.find('.passenger-name').find('.info_content_input').val() || '',//姓名
+                card_kind: $son.find('.card-kind option:selected').attr('data-type') || '',//证件类别
+                sex_kind: $son.find('.sex-kind option:selected').attr('data-type') || '',//证件类别
+                passenger_code: $son.find('.passenger-code').find('.info_content_input').val() || '',//证件号码
+                passenger_phone: $son.find('.passenger-phone').find('.info_content_input').val() || '',//电话
+                passenger_birthday_year: $son.find('.info_content_input_birthday').find('input').eq(0).val() || '',//年份
+                passenger_birthday_month: $son.find('.info_content_input_birthday').find('input').eq(1).val() || '',//月份
+                passenger_birthday_day: $son.find('.info_content_input_birthday').find('input').eq(2).val() || ''//日份
             }
         }
-    }
-},
+        Cdata.passengers = arr;
+        return Cdata;
+    },
+    editAddressClick: function () {
+        $('#editAddress').on('click', function () {
+            var data = page.data_story();
+            Storage.set('PassengerData', data);
+            self.location.href = '../pages/addressList.html?sign=special'
+        })
+    },
+    judge_special: function () {
+        if (ZSH_Extent.getPostUrl('sign') === 'special') {
+            var passenger_arr = Storage.get('PassengerData');
+            $($('#contact-name').find('.info_content_input')[0]).val(passenger_arr.contactnane);
+            $($('#contact-name').find('.info_content_input')[1]).val(passenger_arr.contacttel);
+            if (passenger_arr.accident == 'true') {
+                $('.text-box-baoxian-img').first().attr({
+                    'choose': passenger_arr.accident,
+                    'src': '../img/air/air-info-2.png'
+                })
+            }
+            if (passenger_arr.delay == 'true') {
+                $('.text-box-baoxian-img').last().attr({
+                    'choose': passenger_arr.delay,
+                    'src': '../img/air/air-info-2.png'
+                })
+            }
+            $('.content-dd-right-img-2').attr('index', passenger_arr.postsign);
+            if (passenger_arr.postsign === '0') {
+                $('.content-dd-right-img-2').attr('src', '../img/air/addNewAddress-03.png');
+            }
+            var $father = $('#text-box-idCard-box');
+            $($('.info_content_input')[0]).val(passenger_arr.contactnane);
+            $($('.info_content_input')[1]).val(passenger_arr.contacttel);
+            for (var i = 0; i < passenger_arr.passengers.length; i++) {
+                if (i + 1 < passenger_arr.passengers.length) {
+                    $('.text-box-idCard-add').eq(0).click();
+                }
+                var $son = $($father.find('li')[i]);
+                $son.find('.passenger-name').find('.info_content_input').val(passenger_arr.passengers[i].passenger_name);
+                $son.find('.passenger-code').find('.info_content_input').val(passenger_arr.passengers[i].passenger_code);
+                $son.find('.passenger-phone').find('.info_content_input').val(passenger_arr.passengers[i].passenger_phone);
+                $son.find('.info_content_input_birthday').find('input').eq(0).val(passenger_arr.passengers[i].passenger_birthday_year);
+                $son.find('.info_content_input_birthday').find('input').eq(1).val(passenger_arr.passengers[i].passenger_birthday_month);
+                $son.find('.info_content_input_birthday').find('input').eq(2).val(passenger_arr.passengers[i].passenger_birthday_day);
+                $son.find(".card-kind").find('option').eq(Number(passenger_arr.passengers[i].card_kind) - 1).attr("selected", "selected");
+                $son.find(".sex-kind").find('option').eq(Number(passenger_arr.passengers[i].sex_kind) - 1).attr("selected", "selected");
+                if (passenger_arr.passengers[i].card_kind !== '1') {
+                    $son.find('.passenger-birthday').show();
+                }
+            }
+        }
+    },
     /*******
      * 修复最后一栏填写信息后，提交按钮恢复
      * ******/
-    check_createBtn:function () {
-        var clock=setInterval(function () {
+    check_createBtn: function () {
+        var clock = setInterval(function () {
+            console.log(1);
+            page.common_fun.dynamic_check();
             // 是否禁用提交按钮
-            if (page.check_submit()&& page.check_textNull()) {
+            if (page.check_submit() && page.check_textNull()) {
                 $('.air-make-sure-box').css({
                     'background': '#0077DB',
                     'color': 'white'
@@ -580,21 +618,21 @@ var page = {
                     'color': '#646464'
                 }).attr('disabled', true);
             }
-        },1200);
+        }, 1200);
     }
-};
 
-var popup={
-    loading_show:function(){
-   $('#popup').fadeIn(300);
+}
+var popup = {
+    loading_show: function () {
+        $('#popup').fadeIn(300);
     },
-    loading_dis:function(){
+    loading_dis: function () {
         $('#popup').fadeOut(300);
     }
 };
 function change_Ip(hmp_website_Ip) {
-    air_info_confirm.create_order.url=hmp_website_Ip+'hmp_website/yiplain/getpolicyandcreateorder.json';
-    air_info_confirm.json_accident.url=hmp_website_Ip+'hmp_website/yiplain/getinsuranceprice.json';
-    air_info_confirm.json_delay.url=hmp_website_Ip+'hmp_website/yiplain/getinsuranceprice.json';
-    air_info_confirm.get_initaddress.url=hmp_website_Ip+'hmp_website/user/getdefaultaddress.json';
+    air_info_confirm.create_order.url = hmp_website_Ip + 'hmp_website/yiplain/getpolicyandcreateorder.json';
+    air_info_confirm.json_accident.url = hmp_website_Ip + 'hmp_website/yiplain/getinsuranceprice.json';
+    air_info_confirm.json_delay.url = hmp_website_Ip + 'hmp_website/yiplain/getinsuranceprice.json';
+    air_info_confirm.get_initaddress.url = hmp_website_Ip + 'hmp_website/user/getdefaultaddress.json';
 }
