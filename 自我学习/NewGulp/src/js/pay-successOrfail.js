@@ -45,7 +45,7 @@ var page = {
             $('.content-sign-title').html('支付失败');
             $('.content-sign-img').attr('src', '../img/air/pay-fail.png');
         }
-        //      从程序上确认是往返还是单程
+        //      从程序上确认是往返还是单程Storage.get('json_plane_order_personInfo')
         if(MoniJson.plane_info.go){
             var $go = $('#go-info');
             var stirng = MoniJson.plane_info.go.data.split('-')[1] * 1 + '月' + MoniJson.plane_info.go.data.split('-')[2] * 1 + '日';

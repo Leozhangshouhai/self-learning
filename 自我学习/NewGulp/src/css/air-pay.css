@@ -407,7 +407,7 @@
     color: #646464
 }
 
-.oil-fee-total,.fee-delay, .fee-accident{
+.oil-fee-total,.fee-delay, .fee-accident,.fee-post{
     text-align: right;
     font-size: 1.8rem;
     color: #0077db
