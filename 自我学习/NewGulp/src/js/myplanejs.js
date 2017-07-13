@@ -209,8 +209,11 @@ var planeJson = {
                 } else {
                     $('#delaycontainer').hide();
                 }
-                if (obj.mailmoney) {
+                if (obj.needinvoince) {
                     $('#postfee').html(obj.mailmoney == null || obj.mailmoney == '' ? '无' : '￥' + obj.mailmoney);
+                    $('#postname').html(obj.invoincename == null || obj.invoincename == '' ? '无' :  obj.invoincename);
+                    $('#postaddress').html(obj.invoinceaddress == null || obj.invoinceaddress == '' ? '无' :  obj.invoinceaddress);
+                    $('#postphone').html(obj.invoincephone == null || obj.invoincephone == '' ? '无' :  obj.invoincephone);
                 } else {
                     $('#postcontainer').hide();
                 }
@@ -227,7 +230,7 @@ var planeJson = {
                         }
                     } else if (obj.orderstatus == '1') {
 
-                        $('#cancelorder').show();
+                        // $('#cancelorder').show();
 
                     }
                 } else if (obj.ordertype == '2') {
@@ -239,13 +242,11 @@ var planeJson = {
                         $('#go2pay').show();
                     }
                     //如果订单状态是已创建，但是还未付款，就显示取消订单
-                    if (obj.orderstatus == '0' && obj.paystatus == '00') {
-                        $('#cancelorder').show();
-                    }
+                    // if (obj.orderstatus == '0' && obj.paystatus == '00') {
+                    //     $('#cancelorder').show();
+                    // }
 
                 }
-
-
                 $('#orderstatusname').html(obj.orderstatusname);
                 $('#paystatusname').html(obj.paystatusname);
             } else {

@@ -3,10 +3,10 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-touch-fullscreen" content="YES" />
-    <meta name="format-detection" content="telephone=no" />
-    <title> </title>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-touch-fullscreen" content="YES"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title></title>
     <link rel="stylesheet" href="../css/myplaneorder.css"/>
     <script src="../js/common/ZSH_extent.js"></script>
     <script src="../js/common/WebViewJavascriptBridgeInit.js"></script>
@@ -26,11 +26,13 @@
                 <span class="popup-detail-title-time-name">去程</span>
                 <span class="popup-detail-title-time-date" id="firststarttime"></span>
 
-            <span id="firstchildcontainer" class="popup-detail-title-time-price">
-                <span id="firstchildprice"></span><span class="popup-detail-title-time-price-people" id="firstchildmess"></span>
+                <span id="firstchildcontainer" class="popup-detail-title-time-price">
+                <span id="firstchildprice"></span><span class="popup-detail-title-time-price-people"
+                                                        id="firstchildmess"></span>
             </span>
-                <span id="firstadultcontainer" class="popup-detail-title-time-price" >
-                <span id="firstadultprice"></span><span class="popup-detail-title-time-price-people" id="firstadultmess"></span>
+                <span id="firstadultcontainer" class="popup-detail-title-time-price">
+                <span id="firstadultprice"></span><span class="popup-detail-title-time-price-people"
+                                                        id="firstadultmess"></span>
             </span>
             </p>
 
@@ -38,9 +40,10 @@
                 <img id="firstaircono" src="" alt="" class="popup-detail-title-airline-img"/>
                 <span id="firstairconame" class="popup-detail-title-airline-company"></span>
                 <span id="firstairline" class="popup-detail-title-time-airline-name"></span>
-                <span id="firstairlinestatus" style="margin-left: 2.6rem;" class="popup-detail-title-time-airline-name"></span>
-                <a class="refundorder" id="refundorderfirst" href="JavaScript:void(0)" >退票</a>
-                <a class="refundorder" id="endorsedApplyfirst" href="JavaScript:void(0)" >改签</a>
+                <span id="firstairlinestatus" style="margin-left: 2.6rem;"
+                      class="popup-detail-title-time-airline-name"></span>
+                <a class="refundorder" id="refundorderfirst" href="JavaScript:void(0)">退票</a>
+                <a class="refundorder" id="endorsedApplyfirst" href="JavaScript:void(0)">改签</a>
             </p>
 
             <p class="popup-detail-title-counter ">
@@ -59,23 +62,25 @@
                     <div class="airtickets-show-dd-end">
                         <span id="firstlineendtime" class="airtickets-show-dd-star-time"></span>
 
-                        <p id="firstlineendbuilding" class="airtickets-show-dd-start-add" ></p>
+                        <p id="firstlineendbuilding" class="airtickets-show-dd-start-add"></p>
                     </div>
                 </div>
             </div>
         </div>
         <!--返程 -->
-        <div id="popup-detail-title-back" class="up-detail-title-box" >
+        <div id="popup-detail-title-back" class="up-detail-title-box">
 
             <p class="popup-detail-title-time">
                 <span class="popup-detail-title-time-name">返程</span>
                 <span class="popup-detail-title-time-date" id="secondstarttime"></span>
 
-            <span id="secondchildcontainer" class="popup-detail-title-time-price">
-                <span id="secondchildprice"></span><span class="popup-detail-title-time-price-people" id="secondchildmess"></span>
+                <span id="secondchildcontainer" class="popup-detail-title-time-price">
+                <span id="secondchildprice"></span><span class="popup-detail-title-time-price-people"
+                                                         id="secondchildmess"></span>
             </span>
                 <span id="secondadultcontainer" class="popup-detail-title-time-price">
-                <span id="secondadultprice"></span><span class="popup-detail-title-time-price-people" id="secondadultmess"></span>
+                <span id="secondadultprice"></span><span class="popup-detail-title-time-price-people"
+                                                         id="secondadultmess"></span>
             </span>
             </p>
 
@@ -83,8 +88,9 @@
                 <img id="secondaircono" src="" alt="" class="popup-detail-title-airline-img"/>
                 <span id="secondairconame" class="popup-detail-title-airline-company"></span>
                 <span id="secondairline" class="popup-detail-title-time-airline-name"></span>
-                <span id="secondairlinestatus" style="margin-left: 2.6rem;" class="popup-detail-title-time-airline-name"></span>
-                <a class="refundorder" id="refundordersecond" href="JavaScript:void(0)" >退票</a>
+                <span id="secondairlinestatus" style="margin-left: 2.6rem;"
+                      class="popup-detail-title-time-airline-name"></span>
+                <a class="refundorder" id="refundordersecond" href="JavaScript:void(0)">退票</a>
                 <a class="refundorder" id="endorsedApplysecond" href="JavaScript:void(0)">改签</a>
             </p>
 
@@ -113,7 +119,7 @@
             <span class="oil-fee-total" id="totalbuildandfuelprice"></span>
         </div>
         <!-- 乘机人信息盒子 -->
-        <div style="margin-top: 4.2rem;" class="info-card-box" id="passengers">
+        <div style="margin-top: 1.2rem;" class="info-card-box" id="passengers">
 
         </div>
         <div class="info-card-box" id="contactor">
@@ -180,10 +186,25 @@
             <span class="oil-fee-name">延迟险</span>
             <span class="oil-fee-total" id="delay"></span>
         </div>
-        <div id="postcontainer" class="oil-fee accident-insurance">
-            <span class="oil-fee-name">邮费</span>
-            <span class="oil-fee-total" id="postfee"></span>
+        <div id="postcontainer">
+            <div  class="oil-fee accident-insurance">
+                <span class="oil-fee-name">邮费</span>
+                <span class="oil-fee-total" id="postfee"></span>
+            </div>
+            <div class="oil-fee accident-insurance">
+                <span class="oil-fee-name">收件人姓名</span>
+                <span class="oil-fee-total" id="postname"></span>
+            </div>
+            <div  class="oil-fee accident-insurance">
+                <span class="oil-fee-name">邮寄地址</span>
+                <span class="oil-fee-total" id="postaddress"></span>
+            </div>
+            <div  class="oil-fee accident-insurance">
+                <span class="oil-fee-name">收件人电话</span>
+                <span class="oil-fee-total" id="postphone"></span>
+            </div>
         </div>
+
         <!-- 订单状态 -->
         <div class="oil-fee accident-insurance">
             <span class="oil-fee-name">订单状态</span>

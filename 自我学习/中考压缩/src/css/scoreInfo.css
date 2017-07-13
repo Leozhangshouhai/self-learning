@@ -1,0 +1,111 @@
+body{
+	background: #f0f0f0;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.contanier{
+	width: 100%;
+	
+}
+.basic_info{
+	width: 100%;
+	background: #fff;	
+}
+.info_txt{
+	line-height: 2.4rem/* 96px */;
+	color: #1eb6b7;
+	font-size: .7rem/* 28px */;
+	padding-left: .8rem/* 32px */;
+}
+.basic_info{
+	margin-bottom: .5rem/* 20px */;
+}
+.info_list{
+	width: 100%;
+	overflow: hidden;
+}
+.info_list li{
+	float: left;
+	width: 8rem/* 320px */;
+	box-sizing: border-box;
+	padding-left: .8rem/* 32px */;
+	overflow: hidden;
+}
+.title{
+	line-height: .7rem/* 28px */;
+	font-size: .55rem/* 22px */;
+	color: #999999;
+}
+.info_data{
+	line-height: 1.25rem/* 50px */;
+	color: #333333;
+	font-size: .7rem/* 28px */;
+	margin-bottom: .4rem/* 16px */;
+}
+
+/* =======中考成绩===== */
+.score_box{
+	width: 15.6rem/* 624px */;
+	margin: 0 auto;
+	margin-bottom: .5rem/* 20px */;
+	border-radius: .35rem/* 14px */;
+	overflow: hidden;
+	background: #fff;
+}
+.point{
+	width: 100%;
+	box-sizing: border-box;
+	height: 2.5rem/* 100px */;
+	padding-bottom: .5rem/* 20px */;
+	line-height: 2rem;
+	color: #fff;
+	font-size: .7rem/* 28px */;
+}
+.point span:nth-of-type(1){
+	padding-left: .6rem/* 24px */;
+}
+.sum_point{
+	padding-right: .6rem/* 24px */;
+}
+.middle_point{
+	background: url('../img/Bg01_05.png') no-repeat;
+	background-size: 100%;
+}
+.subject_lis{
+	overflow: hidden;
+}
+.subject{
+	height: 2.2rem/* 88px */;
+	border-top: .025rem solid #e6e6e6;
+	width: 7.76rem/* 312px */;
+	line-height: 2.2rem;
+	color: #555555;
+	font-size: .6rem/* 24px */;
+}
+.subject:nth-of-type(1){
+	border-top: 0;
+}
+.subject:nth-of-type(2){
+	border-top: 0;
+}
+.subject:nth-of-type(2n+1){
+	border-right: .025rem solid #e6e6e6;
+}
+.subject_txt{
+	padding-left: .6rem;
+}
+.subject_score{
+	padding-right: .6rem/* 24px */
+}
+.all_point{
+	background: url('../img/Bg01_08.png') no-repeat;
+	background-size: 100%;
+}
+.syn_point{
+	background: url('../img/Bg01_11.png') no-repeat;
+	background-size: 100%;
+}

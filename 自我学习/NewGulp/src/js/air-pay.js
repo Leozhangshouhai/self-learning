@@ -106,10 +106,13 @@ var air_pay_data = {
         } else {
             $('.oil-fee-box').eq(2).hide();
         }
-        if (this.pay_info.body.mailmoney == '0') {
-            $('.oil-fee-box').eq(3).hide();
+        if (this.pay_info.body.mainOrderVO.needinvoince) {
+            $('.fee-post').eq(0).html('￥' + this.pay_info.body.mailmoney);
+            // $('.fee-post').eq(1).html(this.pay_info.body.mainOrderVO.invoincename==null||this.pay_info.body.mainOrderVO.invoincename==''?'无':this.pay_info.body.mainOrderVO.invoincename);
+            // $('.fee-post').eq(2).html(this.pay_info.body.mainOrderVO.invoinceaddress==null||this.pay_info.body.mainOrderVO.invoinceaddress==''?'无':this.pay_info.body.mainOrderVO.invoinceaddress);
+            // $('.fee-post').eq(3).html(this.pay_info.body.mainOrderVO.invoincephone==null||this.pay_info.body.mainOrderVO.invoincephone==''?'无':this.pay_info.body.mainOrderVO.invoincephone);
         } else {
-            $('.fee-post').html('￥' + this.pay_info.body.mailmoney);
+            $('#postbox').hide();
         }
 
     }
