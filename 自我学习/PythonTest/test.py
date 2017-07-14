@@ -3,7 +3,8 @@
 # __author__='zhangshouhai'python+webdriver 查找元素
 # __des__='ViolationQuery'
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest,time
@@ -15,15 +16,19 @@ class ViolationQuery(unittest.TestCase):
 		self.driver.implicitly_wait(30)
 		self.verificationErrors = []
 		self.accept_next_alert = True
-		self.driver.set_window_size(1920,1080)
+		self.driver.maximize_window()
 	def test_fund(self):
 		driver = self.driver
-		driver.get(
-			self.base_url + "/fund/public/newfundweb/service/Fund_index.html?param=jbxx&serviceid=undefined&areaid=520100&serviceid=7e0e3013b5cf8978d278d3467b308639&areaid=520100")
-		driver.find_element_by_id("user_id").clear()
-		driver.find_element_by_id("user_id").send_keys("520102198608263439")
+		builder = ActionChains(driver)
+		builder.key_down(Keys.F12).perform()
+		time.sleep(2)
+		driver.get(self.base_url + "/fund/public/newfundweb/service/Fund_index.html?param=jbxx&serviceid=undefined&areaid=520100&serviceid=7e0e3013b5cf8978d278d3467b308639&areaid=520100")
+		
+		input=driver.find_element_by_id("user_id")
+		input.clear()
+		input.send_keys("520102198608263439")
 		driver.find_element_by_css_selector("button.search_btn.idCard-page-submit").click()
-		time.sleep(5)
+		time.sleep(2)
 		self.assertEqual("116112580", driver.find_element_by_css_selector("p.spcode-middle").text)
 		driver.find_element_by_css_selector("div.search-list-submit").click()
 		driver.find_element_by_id("password").clear()
@@ -31,7 +36,7 @@ class ViolationQuery(unittest.TestCase):
 		driver.find_element_by_css_selector("button.input-password-btn.make-sure").click()
 		time.sleep(20)
 		self.assertEqual(u"贵阳市住房公积金网上预申请及查询系统", driver.title)
-	def test_volat(self):
+	def atest_volat(self):
 		print("开始任务1：违章查询的自动化测试")
 		self.driver.get(self.base_url+'ht/traffic-pc/pages/traffic-violation.html?serviceid=f3fe8bd9e266974a5faaa2a037e04247&areaid=520100')
 		time.sleep(2)
@@ -54,7 +59,7 @@ class ViolationQuery(unittest.TestCase):
 		sign=self.driver.find_element_by_xpath('//div[@class="detail-wrap"]').is_displayed()
 		self.assertEqual(True, sign)
 		print("测试结果：******%s"%sign)
-	def test_schoolMap(self):
+	def atest_schoolMap(self):
 		#  模拟点击左侧区县选择栏，验证条件:
 		#1.点击后，右边列表框是否出现 
 		#2.默认点击第一个，列表框第一个信息是否匹配

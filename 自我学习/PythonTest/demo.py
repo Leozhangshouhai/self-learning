@@ -1,7 +1,14 @@
 
-s1=72
-s2=85
-r=(s2-s1)/s1*100;
-print('小明成绩上升比例：%.2f%%'%r)
-print ("你好，世界,%s" %"我的世界")
-print ('1024*768= %4d'%(1024*768))
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoAlertPresentException
+import unittest,time
+
+driver=webdriver.Chrome()
+driver.get("http://www.baidu.com")
+self.driver.maximize_window()
+builder = ActionChains(driver)
+builder.key_down(Keys.F12).perform()
+time.sleep(5)
