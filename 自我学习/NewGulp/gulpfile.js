@@ -96,8 +96,8 @@ gulp.task('minjs',function(){
     };
 
     gulp.src(path.input.js)
-        .pipe(jshint(jshintConfig))
-        .pipe(jshint.reporter(stylish))
+        // .pipe(jshint(jshintConfig))
+        // .pipe(jshint.reporter(stylish))
         .pipe(uglify())
         .on('error',function (error) {
             console.log(error.message)

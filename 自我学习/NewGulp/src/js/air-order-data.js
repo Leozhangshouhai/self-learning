@@ -111,6 +111,7 @@ var air_order = {
             console.log(data);
             if (data.head.rtnCode === '000000') {
                 // 禁止一切函数和修改
+              $('##popup-loading').hide();
                 ZSH_Extent.createLoading('改签成功','index');
             }
         },
@@ -144,6 +145,7 @@ var page = {
                     'contactphone':air_order.yiorderidInfo.contactphone,
                     'outticketorderid':ZSH_Extent.getPostUrl('yiorderid')
                 };
+                $('##popup-loading').show();
                 Ajax_json(air_order.getApplyInfo,change_Ip)
             } else {
                 self.location.href = '../pages/air_info_confirm.html';
@@ -153,5 +155,5 @@ var page = {
     }
 };
 function change_Ip(hmp_website_Ip) {
-    air_order.getApplyInfo.url=hmp_website_Ip+'hmp_website/yiplain/changeticketapply.json';
+    // air_order.getApplyInfo.url=hmp_website_Ip+'hmp_website/yiplain/changeticketapply.json';
 }

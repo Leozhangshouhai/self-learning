@@ -71,7 +71,6 @@ var container = new Vue({
         },
         endorse_click: function () {
             WebViewJavascriptBridge.callHandler('airPlaneChanged', {'yiorderid': ZSH_Extent.getPostUrl('yiorderid')}, function (response) {
-
             })
         }
     },

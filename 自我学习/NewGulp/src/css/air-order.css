@@ -310,3 +310,31 @@
     color: #646464;
     font-size: 2rem
 }
+
+/*   loading  弹层 */
+#popup-loading{
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: none;
+    background-color: rgba(0,0,0,.1);
+}
+.popup-loading-box{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 45%;
+    margin-top: -2.6rem;
+}
+.popup-loading-tips{
+    font-size: 1.8rem;
+    color: black;
+    margin-bottom: 1rem;
+}
+.popup-loading-loading{
+    width: 4rem;
+    animation: all linear 2s;
+}
