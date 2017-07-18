@@ -34,7 +34,8 @@ $(function () {
             'payChannel': '01'
         }, function (response) {
             var res = JSON.parse(response);
-            if (res.info.resultStatus == '9000') {
+            var success=JSON.parse(res.info);
+            if (success.resultStatus == '9000') {
                 ZSH_Extent.createLoading('支付成功','index');
                 // self.location.href = '../pages/pay-successOrfail.html?sign=' + sign + '&&type=1'
             } else {

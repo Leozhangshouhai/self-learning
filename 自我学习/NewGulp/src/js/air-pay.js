@@ -108,9 +108,6 @@ var air_pay_data = {
         }
         if (this.pay_info.body.mainOrderVO.needinvoince) {
             $('.fee-post').eq(0).html('￥' + this.pay_info.body.mailmoney);
-            // $('.fee-post').eq(1).html(this.pay_info.body.mainOrderVO.invoincename==null||this.pay_info.body.mainOrderVO.invoincename==''?'无':this.pay_info.body.mainOrderVO.invoincename);
-            // $('.fee-post').eq(2).html(this.pay_info.body.mainOrderVO.invoinceaddress==null||this.pay_info.body.mainOrderVO.invoinceaddress==''?'无':this.pay_info.body.mainOrderVO.invoinceaddress);
-            // $('.fee-post').eq(3).html(this.pay_info.body.mainOrderVO.invoincephone==null||this.pay_info.body.mainOrderVO.invoincephone==''?'无':this.pay_info.body.mainOrderVO.invoincephone);
         } else {
             $('#postbox').hide();
         }
@@ -140,7 +137,8 @@ var page = {
                 'payChannel': '01'
             }, function (response) {
                 var res = JSON.parse(response);
-                if (res.info.resultStatus == '9000') {
+              var success=JSON.parse(res.info);
+                if (success.resultStatus == '9000') {
                     self.location.href = '../pages/pay-successOrfail.html?sign=' + air_pay_data.sign + '&&type=1'
                 } else {
                     self.location.href = '../pages/pay-successOrfail.html?sign=' + air_pay_data.sign + '&&type=2'

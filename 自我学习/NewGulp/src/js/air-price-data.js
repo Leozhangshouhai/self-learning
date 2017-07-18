@@ -250,7 +250,7 @@ var air_price = {
     }
 };
 function change_Ip(hmp_website_Ip) {
-    // air_price.get_planeInfo.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
+     air_price.get_planeInfo.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
 
 }
 
