@@ -1,0 +1,138 @@
+#example{
+  padding: 0 .35rem ;
+}
+#header {
+  padding:0.8rem 0 0.4rem 0;
+  border-bottom: 1px solid #e0e0e0
+}
+#choose-btn {
+  width: 100%;
+  border: 1px solid #0077db;
+  font-size: 0;
+  border-radius: 1000px !important
+}
+#choose-btn > div {
+  border-radius: 1000px !important;
+  background-color: transparent;
+  border: 1px solid transparent !important;
+  height: 0.6rem;
+  width: 50%;
+  text-align: center;
+  line-height: 0.6rem;
+  color: #0077db;
+  font-size: 0.3rem;
+  display: inline-block
+}
+.active, .selected {
+  background-color: #0077db !important;
+  color: #fff !important
+}
+.selected > * {
+  color: #fff !important
+}
+
+#middle-data {
+  padding: 0.5rem 0;
+  font-size: 0;
+  width: 100%
+}
+
+#middle-data > div {
+  display: inline-block
+}
+
+.middle-data-text {
+  font-size: .25rem;
+  text-align: center;
+  vertical-align: middle;
+  width: 38%
+}
+
+.middle-data-name {
+  font-size: 0.52rem;
+  text-align: center;
+  color: #646464;
+  width: 100%;
+  outline-color: #0077DB;
+  border: none;
+  background: transparent;
+}
+.middle-data-name::-webkit-input-placeholder{
+  font-size: .34rem !important;
+}
+
+
+.middle-data-airname-select-option{
+  border:1px solid  #0077DB;
+  outline-color: #0077DB;
+}
+.middle-data-airname-select:focus,.middle-data-airname-select-option:focus{
+  border:1px solid  #0077DB;
+  outline: none;
+}
+
+.middle-data-airname-select-option {
+  width: 100%;
+  overflow: hidden;
+}
+
+.middle-data-img {
+  width: 24%;
+  text-align: center
+}
+
+.middle-data-img > img {
+  width: .6rem;
+  vertical-align: middle
+}
+
+.middle-time {
+  font-size: 0
+}
+
+.middle-time-box {
+  display: inline-block;
+  padding: .4rem .35rem;
+  width: 50%;
+  border-bottom: 1px solid #e0e0e0;
+  border-top: 1px solid #e0e0e0
+}
+
+.middle-time-p {
+  font-size:.24rem;
+  color: #dcdcdc
+}
+
+.middle-time-time {
+  font-size: .48rem;
+  color: #646464
+}
+
+.middle-time-week {
+  color: #646464;
+  font-size: .24rem
+}
+
+.middle-time-box:first-child {
+  border-right: 1px solid #e0e0e0
+}
+
+.middle-time-box:last-child {
+  padding-left: .6rem
+}
+.middle-data-airname-select{
+  width: 100%;
+  outline: none;
+  font-size: 0.24rem; /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+  border: solid 1px transparent;
+  /*很关键：将默认的select选择框样式清除*/
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  /*在选择框的最右侧中间显示小箭头图片*/
+  background: url("../assets/img/down.png") no-repeat scroll right center transparent;
+  background-size: contain;
+  /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+  padding: .06rem 0;
+  padding-right: 0.24rem;
+}
