@@ -1,0 +1,1 @@
+function Jqajax(a){$.ajax({url:a.url,type:a.method?a.method:"post",cache:!0,async:!a.async||a.async,success:function(c){a.sCallback(c)},data:a.parameters?a.parameters:null,error:function(a){console.log(),console.log(a)}})}
