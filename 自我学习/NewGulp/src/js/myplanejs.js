@@ -19,8 +19,15 @@ function getQueryString(name) {
     if (r != null) return unescape(r[2]);
     return null;
 };
-Date.prototype.toLocaleString = function () {
-    return this.getFullYear() + "年" + (this.getMonth() + 1) + "月" + this.getDate() + "日 " + this.getHours() + ":" + this.getMinutes();
+Date.prototype.toLocaleString = function() {
+  var minutes='';
+  if(this.getMinutes()<10){
+      minutes='0'+this.getMinutes();
+  }else{
+      minutes=this.getMinutes();
+  }
+
+  return this.getFullYear() + "年" + (this.getMonth() + 1) + "月" + this.getDate() + "日 " + this.getHours() + ":" +  minutes+'' ;
 };
 $(function () {
     setTimeout(function () {
@@ -91,6 +98,9 @@ var planeJson = {
                 $('#orderNO').html(obj.orderNO);
 
                 var firststarttime = new Date(obj.firstline.startdate);
+                console.log(  typeof firststarttime);
+                console.log( firststarttime.getMinutes());
+                console.log( firststarttime.getMinutes());
                 $('#firststarttime').html(firststarttime.toLocaleString());
 
                 $.each(obj.firstline.airLinePriceVOList, function (index, ele) {

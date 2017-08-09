@@ -19,7 +19,7 @@ var page = {
             if (air_price.sign == 2 && air_price.type == 2) {
                 Storage.set('json_plane_back', air_price.all_plane);
                 Storage.set('json_plane_go_index', {I: $(this).attr('i'), J: $(this).attr('j')});
-                self.location.href = '../pages/air-price.html?type=1&&sign=2';
+                self.location.href = '../pages/air-price.html?type=1&&sign=2&&yiorderid='+ZSH_Extent.getPostUrl('yiorderid');
             } else {
                 if ((air_price.type == '1' && air_price.sign == '2' )) {
                     air_price.plane_back_index = {I: $(this).attr('i'), J: $(this).attr('j')};
@@ -64,25 +64,25 @@ var page = {
             //跨月情况
             for (var i = 0; i < calendar.arr.length; i++) {
                 if (calendar.arr[i].sign == calendar.arr[0].sign) {
-                    var dd = '<dd class="time-show-dd">' +
+                    var dd = '<dd class="time-show-dd" data-num='+i+'>' +
                         '<p class="time-show-dd-date">' + calendar.arr[i].day + '</p>' +
                         '<p class="time-show-dd-weekday">' + calendar.arr[i].weekday + '</p>' +
                         '</dd>';
                     num++;
                     if (i == 3) {
-                        dd = '<dd class="time-show-dd time-show-dd-center">' +
+                        dd = '<dd class="time-show-dd time-show-dd-center" data-num='+i+'>' +
                             '<p class="time-show-dd-date">' + calendar.arr[i].day + '</p>' +
                             '<p class="time-show-dd-weekday">' + calendar.arr[i].weekday + '</p>' +
                             '</dd>';
                     }
                     $('.time-show-dl').append(dd);
                 } else {
-                    var dd = '<dd class="time-show-dd1">' +
+                    var dd = '<dd class="time-show-dd1" data-num='+i+'>' +
                         '<p class="time-show-dd-date">' + calendar.arr[i].day + '</p>' +
                         '<p class="time-show-dd-weekday">' + calendar.arr[i].weekday + '</p>' +
                         '</dd>';
                     if (i == 3) {
-                        dd = '<dd class="time-show-dd1 time-show-dd-center">' +
+                        dd = '<dd class="time-show-dd1 time-show-dd-center" data-num='+i+'>' +
                             '<p class="time-show-dd-date">' + calendar.arr[i].day + '</p>' +
                             '<p class="time-show-dd-weekday">' + calendar.arr[i].weekday + '</p>' +
                             '</dd>';
@@ -106,12 +106,12 @@ var page = {
         } else {
             // 同月
             for (var j = 0; j < calendar.arr.length; j++) {
-                var dd = '<dd class="time-show-dd">' +
+                var dd = '<dd class="time-show-dd" data-num='+j+'>' +
                     '<p class="time-show-dd-date">' + calendar.arr[j].day + '</p>' +
                     '<p class="time-show-dd-weekday">' + calendar.arr[j].weekday + '</p>' +
                     '</dd>';
                 if (j == 3) {
-                    dd = '<dd class="time-show-dd time-show-dd-center">' +
+                    dd = '<dd class="time-show-dd time-show-dd-center" data-num='+j+'>' +
                         '<p class="time-show-dd-date">' + calendar.arr[j].day + '</p>' +
                         '<p class="time-show-dd-weekday">' + calendar.arr[j].weekday + '</p>' +
                         '</dd>';

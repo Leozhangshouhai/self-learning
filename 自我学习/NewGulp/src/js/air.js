@@ -396,11 +396,11 @@ var json = {
 * 改变接口地址IP
 * */
 function change_Ip(hmp_website_Ip) {
-  json.code_3_go_json.url=hmp_website_Ip+'hmp_website/yiplain/getairportlist.json';
-  json.code_3_back_json.url=hmp_website_Ip+'hmp_website/yiplain/getairportlist.json';
-  json.go_json.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
-  json.go_back_json.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
-  json.getYiorderid.url=hmp_website_Ip+'hmp_website/yiplain/getchildorderdetailbyyiorderid.json'
+  // json.code_3_go_json.url=hmp_website_Ip+'hmp_website/yiplain/getairportlist.json';
+  // json.code_3_back_json.url=hmp_website_Ip+'hmp_website/yiplain/getairportlist.json';
+  // json.go_json.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
+  // json.go_back_json.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
+  // json.getYiorderid.url=hmp_website_Ip+'hmp_website/yiplain/getchildorderdetailbyyiorderid.json'
 }
 
 

@@ -6,31 +6,36 @@ import Base64 from "./base64";
 const fly = {
 	Axios: function () {
 		let obj = arguments[0];
-		const appid = "IOS-0512-0002";
-		const appkey = "fbe938c4bfe0a7cda1dcae7c85c7f83e37736207d637dc1c";
+		const appid = "BAS5-520100-0001";
+		const appkey = "02e45ae192526ce470d8352e7403134a92526ce470d8352e";
 		const siteid = "510107";
 		const version = "2.0";
 		let body = obj.data ? obj.data : {};
+    let accessTicket ='be40901c52ce4a168d6398d29a57f6f6';
 		let sign = DES.encrypt_string(appkey, MD5.hex_md5((new Base64()).encode(appid + JSON.stringify(body))));
 		let req = {
-			"body": body,
-			"head": {
-				"sign": sign,
-				"siteid": siteid,
-				"appid": appid,
-				"version": version,
-				"accessTicket": localStorage.getItem('accessTicket') ? localStorage.getItem('accessTicket') : localStorage.getItem('com.digitalchina.webapp.access.ticket.storage.key') ? localStorage.getItem('com.digitalchina.webapp.access.ticket.storage.key') : ''
-			}
+      "body":body,
+      "head": {
+        "sign": sign,
+        "accessTicket": accessTicket,
+        "appid": appid,
+        "version": version
+      }
 		};
-		axios.post(obj.url, JSON.stringify(req))
-		.then(function (res) {
-			if (typeof obj.success == 'function')
-				obj.success(res)
-		}).catch(function (err) {
-			if (typeof obj.error == 'function')
-				obj.error(err)
-		});
-	},
+
+    axios.get(obj.url, {
+      params: {
+        'data': JSON.stringify(req)
+      }
+    })
+  .then(function (res) {
+    if (typeof obj.success == 'function')
+      obj.success(res)
+  }).catch(function (err) {
+  if (typeof obj.error == 'function')
+    obj.error(err)
+});
+},
 	encode: function (str) {
 		/**
 		 * 封装的编码简单加密

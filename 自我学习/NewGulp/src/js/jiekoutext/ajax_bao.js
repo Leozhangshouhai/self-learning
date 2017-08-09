@@ -20,8 +20,8 @@ function Ajax_json(json ,change_Ip) {
         if(Ajax_accessTicket!='') {
             Storage.set('login.accessticket', Ajax_accessTicket);
         }
-        // var accessTicket =Ajax_accessTicket!=''?Ajax_accessTicket: Storage.get('login.accessticket');
-        var accessTicket ='be40901c52ce4a168d6398d29a57f6f6';
+        var accessTicket =Ajax_accessTicket!=''?Ajax_accessTicket: Storage.get('login.accessticket');
+        // var accessTicket ='be40901c52ce4a168d6398d29a57f6f6';
         console.log('accessTicket'+accessTicket)
         var version = "2.0";
         var req = {

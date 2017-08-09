@@ -18,7 +18,7 @@ a{
     background-repeat: no-repeat
 }
 #container{
-    visibility:hidden;
+    /*visibility:hidden;*/
 }
 
 .header {
@@ -137,13 +137,10 @@ a{
     width: 25%
 }
 .info_content_error{
-    /*position: absolute;*/
     right: 1.5rem;
-   /*margin-top:  .3rem;*/
     font-size: .8rem;
     color: red;
     margin-left: 25%;
-
     display: none;
 }
 

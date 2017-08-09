@@ -68,6 +68,7 @@ var air_order = {
         //  加载返程信息
         if (judge) {
             var $back = $('#popup-detail-title-back');
+            timearr = this.plane_information_json.back.data.split('-')
             $back.fadeIn(300);
             $back.find('.popup-detail-title-time-date').html(timearr[1] + '月' + timearr[2] + '日');
             $back.find('.popup-detail-title-time-price').html(this.plane_information_json.back.plane_info_seat.cabinSeatPrice);
@@ -111,7 +112,7 @@ var air_order = {
             console.log(data);
             if (data.head.rtnCode === '000000') {
                 // 禁止一切函数和修改
-              $('##popup-loading').hide();
+              $('#popup-loading').hide();
                 ZSH_Extent.createLoading('改签成功','index');
             }
         },
@@ -123,13 +124,13 @@ var air_order = {
 }
 var page = {
     make_sure: function () {
-        if (ZSH_Extent.getPostUrl('yiorderid') !== null && ZSH_Extent.getPostUrl('yiorderid') !== 'false') {
+        if (ZSH_Extent.getPostUrl('yiorderid') !== null && ZSH_Extent.getPostUrl('yiorderid') !== 'false' &&ZSH_Extent.getPostUrl('yiorderid') !== 'null') {
             $('.make-sure-pay').html('改&nbsp;&nbsp;&nbsp;&nbsp;签');
         };
         $('.make-sure-pay-box').on('click', function () {
             Storage.set('json_plane_order_personInfo', air_order.plane_information_json);
             console.log(air_order.plane_information_json.go)
-            if (ZSH_Extent.getPostUrl('yiorderid') != null && ZSH_Extent.getPostUrl('yiorderid') != 'false') {
+            if (ZSH_Extent.getPostUrl('yiorderid') != 'null' &&ZSH_Extent.getPostUrl('yiorderid') != null && ZSH_Extent.getPostUrl('yiorderid') != 'false') {
                 //     改签接口操作
                 //    ********************
                 air_order.getApplyInfo.parameters={
@@ -145,7 +146,7 @@ var page = {
                     'contactphone':air_order.yiorderidInfo.contactphone,
                     'outticketorderid':ZSH_Extent.getPostUrl('yiorderid')
                 };
-                $('##popup-loading').show();
+                $('#popup-loading').show();
                 Ajax_json(air_order.getApplyInfo,change_Ip)
             } else {
                 self.location.href = '../pages/air_info_confirm.html';

@@ -88,7 +88,7 @@ html{
 }
 
 .time-show-dd-center > p {
-    font-weight: 700
+    font-weight: 900
 }
 
 .time-show-dd {
@@ -268,14 +268,13 @@ html{
 }
 
 #blank {
-    opacity: 0;
-    font-size: 0
+  visibility: hidden;
 }
 
 .fixed-choose {
     display: inline-block;
-    width: 33.3%;
-    padding: 1rem 0;
+    width: 50%;
+    padding: .6rem 0;
     background-image: url("../img/air/price(1)_07.png");
     text-align: center;
     background-position-x: right;

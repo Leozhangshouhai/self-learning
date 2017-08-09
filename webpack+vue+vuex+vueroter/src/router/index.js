@@ -6,13 +6,19 @@ import store from "../store";
 const index = resolve => require(['../components/index'], resolve);
 const login = resolve => require(['../components/login'], resolve);
 const airIndex = resolve => require(['../components/air-index'], resolve);
+const canlendar = resolve => require(['../components/canlendar'], resolve);
+const canlendar2 = resolve => require(['../components/canlendar2'], resolve);
+const colorteam = resolve => require(['../components/colorteam'], resolve);
 Vue.use(Router);
 
 const router = new Router({
 	mode: 'hash',
 	routes: [
-		{path: '/', component: airIndex,meta:{title:'机票入口页'}},
+		{path: '/', component: index},
 		{path: '/index', name: 'index', component: index},
+		{path: '/canlendar', name: 'canlendar', component: canlendar},
+		{path: '/canlendar2', name: 'canlendar2', component: canlendar2},
+		{path: '/colorteam', name: 'colorteam', component: colorteam},
 		{path: '/air-index', name: 'air-index', component: airIndex,meta:{title:'机票入口页'}},
 		{path: '/login', name: 'login', component: login, meta: {keepAlive: true}},//如果要缓存某个页面的数据，则在路由后面加上meta: {keepAlive: true}
 	]

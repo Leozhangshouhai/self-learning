@@ -43,20 +43,7 @@
                     <span class="go_contentBox_dd_money"></span>
                 </dd>
             </dl>
-            <!-- 电话内容信息 -->
-            <div class="text-box">
-                <div class="text-box-one" id="contact-name">
-                    <span class="info_content_left"> 联系人</span>
-                    <input class="info_content_input" name="conName" type="text" value="" placeholder="联系人姓名"/>
-                    <span class="info_content_error">*输入有误,请重新输入</span>
 
-                </div>
-                <div class="text-box-one" id="contact-phone">
-                    <span class="info_content_left">手机号码</span>
-                    <input class="info_content_input" name="phone" type="text" value="" placeholder="用于接受确认短信"/>
-                    <span class="info_content_error">*输入有误,请重新输入</span>
-                </div>
-            </div>
             <!--   横线分界-->
             <div class="text-box-one-hr"></div>
             <!--身份证信息添加  -->
@@ -82,7 +69,7 @@
                 <select name="" class="info_content_input_select card-kind">
                     <option value="" class="info_content_input_select_option" data-type="1">身份证</option>
                     <option value="" class="info_content_input_select_option" data-type="2">护照</option>
-                    <option value="" class="info_content_input_select_option" data-type="5">其他</option>
+                    <option value="" class="info_content_input_select_option" data-type="3">其他</option>
                     <!--<option value="" class="info_content_input_select_option" data-type="3">军官证</option>-->
                     <!--<option value="" class="info_content_input_select_option" data-type="4">驾驶证</option>-->
                 </select>
@@ -108,7 +95,7 @@
                     </div>
                     <div class="text-box-one  passenger-phone">
                         <span class="info_content_left">手机号码</span>
-                        <input class="info_content_input" name="phone" type="text" value="" placeholder="请输入手机号码"/>
+                        <input id="last_phone_input" class="info_content_input" name="phone" type="text" value="" placeholder="请输入手机号码"/>
                         <span class="info_content_error">*输入有误,请重新输入</span>
                     </div>
 
@@ -152,6 +139,20 @@
             </div>
             -->
             <div class="text-box-one-hr"></div>
+
+            <!-- 电话内容信息 -->
+            <div class="text-box">
+                <div class="text-box-one" id="contact-name">
+                    <span class="info_content_left"> 联系人</span>
+                    <input class="info_content_input" name="conName" type="text" value="" placeholder="联系人姓名"/>
+                    <span class="info_content_error">*输入有误,请重新输入</span>
+                </div>
+                <div class="text-box-one" id="contact-phone">
+                    <span class="info_content_left">手机号码</span>
+                    <input class="info_content_input" name="phone" type="text" value="" placeholder="用于接受确认短信"/>
+                    <span class="info_content_error">*输入有误,请重新输入</span>
+                </div>
+            </div>
             <!--  保险费用 -->
             <div class="text-box-one text-box-baoxian">
                 <img src="../img/air/air-info-3.png" choose="false" alt="" class="text-box-baoxian-img"/>
@@ -203,7 +204,7 @@
 
         <!--协议 -->
         <dl>
-            <dd class="air-info-otherfree-agreement">
+            <dd class="air-info-otherfree-agreement" id="baoxiao">
                 <span class="air-info-otherfree-agreement-left">报销凭证:</span>
                 <span class="air-info-otherfree-agreement-right">行程单需要在乘机7日内，于起降机场柜台或航空公司售票处免费索取</span>
             </dd>

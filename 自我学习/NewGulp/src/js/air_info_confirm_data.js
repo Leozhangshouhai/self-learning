@@ -48,6 +48,7 @@ var air_info_confirm = {
       if (data.head.rtnCode == '000000') {
         Storage.set('air-pay-data', data);
         Storage.remove('PassengerData');
+        page.Storage_last_info(); //  存储最后一次联系人
         self.location.href = '../pages/air-pay.html';
       } else {
         ZSH_Extent.createLoading('订单创建失败，请确保信息正确');
@@ -76,7 +77,8 @@ var air_info_confirm = {
         $('.postBoxMiddle-name-name').html(success.name);
         $('.postBoxMiddle-name-phone').html(success.phone);
         $('.postBoxRight-money').html('￥' + data.body.price);
-        // 退票成功，返回机票入口页
+        //回填联系人消息
+
       } else {
         //  其他情况
       }
@@ -84,13 +86,12 @@ var air_info_confirm = {
     error: function (error) {
       console.log(error);
       // 业务异常
-      // ZSH_Extent.createLoading(error.head.rtnMsg)
+
     }
   }
 };
 var page = {
   init: function () {
-    this.data_bind();
     this.radio_click();
     this.add_infoBox();
     this.get_fee();
@@ -100,7 +101,10 @@ var page = {
     this.editAddressClick();
     this.judge_special();
     Ajax_json(air_info_confirm.get_initaddress, change_Ip);
-    this.check_createBtn()
+    this.check_createBtn();
+    this.last_one_person();
+    this.auto_set_info();
+    this.data_bind();
   },
   common_fun: {
     error_input_check: function () {
@@ -168,7 +172,6 @@ var page = {
     },
     dynamic_check: function (string) {
       var $errors = $('.info_content_error');
-
       $errors.each(function (index, e) {
         if ($(e).css('display') != 'none') {
           var string = $(e).parent().find('.info_content_input').attr('name');
@@ -226,11 +229,6 @@ var page = {
           reg = /^[a-zA-Z]{5,17}$/;
           reg1 = /^[a-zA-Z0-9]{5,17}$/;
           tag = (reg.test(idcard) || reg1.test(idcard));
-          break;
-        case '3':
-          reg = /南字第(\d{8})号|北字第(\d{8})号|沈字第(\d{8})号|兰字第(\d{8})号|成字第(\d{8})号|济字第(\d{8})号|广字第(\d{8})号|海字第(\d{8})号|空字第(\d{8})号|参字第(\d{8})号|政字第(\d{8})号|后字第(\d{8})号|装字第(\d{8})号/
-          idcard = idcard.replace(/(^\s*)|(\s*$)/g, "");
-          tag = reg.test(idcard);
           break;
         case '4':
           reg = /^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/;
@@ -420,9 +418,11 @@ var page = {
     $('.content-dd-right-img-2').on('click', function () {
       var index = $('.content-dd-right-img-2').attr('index');
       if (index === '1') {
+        $('#baoxiao').show();
         $('.content-dd-right-img-2').attr('src', '../img/air/addNewAddress-03.png').attr('index', '0');
       } else {
         $('.content-dd-right-img-2').attr('src', '../img/air/addNewAddress-02.png').attr('index', '1');
+        $('#baoxiao').hide();
       }
     });
   },
@@ -462,7 +462,7 @@ var page = {
         '<select name=""  class="info_content_input_select card-kind">' +
         '<option value="" class="info_content_input_select_option" data-type="1">身份证</option>' +
         '<option value="" class="info_content_input_select_option" data-type="2">护照</option>' +
-        '<option value="" class="info_content_input_select_option" data-type="5">其他</option>' +
+        '<option value="" class="info_content_input_select_option" data-type="3">其他</option>' +
         // '<option value="" class="info_content_input_select_option" data-type="3">军官证</option>' +
         // '<option value="" class="info_content_input_select_option" data-type="4">驾驶证</option>' +
         '</select></span>' +
@@ -623,7 +623,63 @@ var page = {
         }).attr('disabled', true);
       }
     }, 1200);
+  },
+/* ***  默认回填联系人，使用第一个乘机人信息 */
+  last_one_person:function () {
+    $('#last_phone_input').on('blur',function(){
+      var last_one=$('#text-box-idCard-box').children('li:last-child');
+      var last_name=last_one.find('.info_content_input[name=conName]').val();
+      var last_phone=last_one.find('.info_content_input[name=phone]').val();
+       $('.text-box').find('.info_content_input[name=conName]').val(last_name);
+       $('.text-box').find('.info_content_input[name=phone]').val(last_phone);
+    })
+  },
+/* ***  乘机人信息默认使用最后一次信息 */
+  Storage_last_info:function () {
+    var last_info={};
+    var last_one=$('#text-box-idCard-box').children('li:last-child');
+    var last_name=last_one.find('.info_content_input[name=conName]').val(),
+      last_phone=last_one.find('.info_content_input[name=phone]').val(),
+      last_card=last_one.find('.info_content_input[name=idCard]').val(),
+      last_card_kind=last_one.find('.card-kind option:selected').attr('data-type'),
+      last_sex_kind=last_one.find('.sex-kind option:selected').attr('data-type'),
+      last_birthday_year=last_one.find('.info_content_input_birthday input').eq(0).val(),
+      last_birthday_month=last_one.find('.info_content_input_birthday input').eq(1).val(),
+      last_birthday_day=last_one.find('.info_content_input_birthday input').eq(2).val();
+    last_info={
+      name:last_name,
+      phone:last_phone,
+      card:last_card,
+      card_kind:last_card_kind,
+      sex_kind:last_sex_kind,
+      birthday_year:last_birthday_year,
+      birthday_month:last_birthday_month,
+      birthday_day:last_birthday_day
+    };
+    Storage.set('last_person_info',last_info);
+    return '信息存储成功';   //提示语
+  },
+/* ***   初始化进入，回填乘机人和联系人  */
+  auto_set_info:function () {
+    var  info=Storage.get('last_person_info')||'';
+    if(info===''||info===undefined){
+
+    }else{
+      var last_one=$('#text-box-idCard-box').children('li:last-child');
+    last_one.find('.info_content_input[name=conName]').val(info.name);
+    last_one.find('.info_content_input[name=phone]').val(info.phone);
+    last_one.find('.info_content_input[name=idCard]').val(info.card);
+    last_one.find('.info_content_input_birthday input').eq(0).val(info.birthday_year);
+    last_one.find('.info_content_input_birthday input').eq(1).val(info.birthday_year);
+    last_one.find('.info_content_input_birthday input').eq(2).val(info.birthday_year);
+    $('#text-box-idCard-box').children('li:last-child').find(".sex-kind option").eq((Number(info.sex_kind)-1)).attr('selected','true');
+    $('#text-box-idCard-box').children('li:last-child').find(".card-kind option").eq((Number(info.card_kind)-1)).attr('selected','true');
+      $('#last_phone_input').blur();
+    }
+
+
   }
+
 
 }
 var popup = {
