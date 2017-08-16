@@ -16,7 +16,7 @@ function getUserTicketClick() {
 }
 setTimeout(function () {
     getUserTicketClick();
-},680);
+},600);
 
 
 

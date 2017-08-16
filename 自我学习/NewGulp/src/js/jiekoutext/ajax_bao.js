@@ -14,6 +14,7 @@ function Ajax_json(json ,change_Ip) {
             Storage.set('login.hmp_website_Ip', hmp_website_Ip);
         }
         hmp_website_Ip =hmp_website_Ip!=''?hmp_website_Ip: Storage.get('login.hmp_website_Ip');
+
         console.log(hmp_website_Ip);
         //执行改变ip
         change_Ip(hmp_website_Ip);

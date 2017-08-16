@@ -133,3 +133,10 @@ width: 100%;
 }
 .selected{    background-color: #0077DB}
 .notselected{  background-color: #7F7F7F}
+.tips{
+color: #7F7F7F;
+    font-size: 1.4rem;
+    position: absolute;
+    bottom: 5.6rem;
+    left: 2.5rem;
+}

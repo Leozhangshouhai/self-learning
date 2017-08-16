@@ -280,7 +280,10 @@ var air = {
        }else{
            //  禁用顶部
            $('#header').hide();
-          Ajax_json(json.getYiorderid,change_Ip);
+           setTimeout(function () {
+             Ajax_json(json.getYiorderid,change_Ip);
+           },500)
+
        }
     }
 
@@ -299,7 +302,7 @@ var json_sign={
 var json = {
     // 获取改签订单的详情
     getYiorderid:  {
-        url: 'http://101.37.32.245/hmp_website/yiplain/getchildorderdetailbyyiorderid.json',
+        url: 'http://118.178.225.32/hmp_website/yiplain/getchildorderdetailbyyiorderid.json',
         parameters: {
             'yiorderid': ZSH_Extent.getPostUrl('yiorderid')
         },
@@ -323,7 +326,7 @@ var json = {
     },
     // json 模型
     code_3_go_json: {
-        url: 'http://101.37.32.245/hmp_website/yiplain/getairportlist.json',
+        url: 'http://118.178.225.32/hmp_website/yiplain/getairportlist.json',
       parameters: {
             'keywords': encodeURI(json_sign.scity)
        },
@@ -396,11 +399,12 @@ var json = {
 * 改变接口地址IP
 * */
 function change_Ip(hmp_website_Ip) {
-  // json.code_3_go_json.url=hmp_website_Ip+'hmp_website/yiplain/getairportlist.json';
-  // json.code_3_back_json.url=hmp_website_Ip+'hmp_website/yiplain/getairportlist.json';
-  // json.go_json.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
-  // json.go_back_json.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
-  // json.getYiorderid.url=hmp_website_Ip+'hmp_website/yiplain/getchildorderdetailbyyiorderid.json'
+
+  json.code_3_go_json.url=hmp_website_Ip+'hmp_website/yiplain/getairportlist.json';
+  json.code_3_back_json.url=hmp_website_Ip+'hmp_website/yiplain/getairportlist.json';
+  json.go_json.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
+  json.go_back_json.url=hmp_website_Ip+'hmp_website/yiplain/getplainlist.json';
+  json.getYiorderid.url=hmp_website_Ip+'hmp_website/yiplain/getchildorderdetailbyyiorderid.json'
 }
 
 

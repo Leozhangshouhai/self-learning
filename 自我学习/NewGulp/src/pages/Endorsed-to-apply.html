@@ -16,6 +16,7 @@
         <span class="header-chufa" id="endorsed">改签申请</span>
     </div>
        <my-li  v-for='(demo,index) in list' :id="index" :index="index" :text="demo.reasonContent"></my-li>
+    <p class="tips">改签机票原保险将失效</p>
        <sure-btn class="endorsed-sure-btn" :selected="Endorsed_selected" @refund_click="endorse_click"></sure-btn>
 </div>
 
