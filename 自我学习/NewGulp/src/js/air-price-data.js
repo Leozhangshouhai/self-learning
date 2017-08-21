@@ -39,7 +39,7 @@ var fun = {
     //********
     if (contral_sign) {
       //******************  返程航班中的 返程操作，如果是单程 次函数不执行
-      var temp_arr = air_price.bubbling_order(air_price.all_plane.firstFlightList, 'time');//默认起飞时间排序
+      var temp_arr = air_price.bubbling_order(air_price.all_plane.secondFlightList, 'time');//默认起飞时间排序
       $($('#fixed .fixed-choose-detail')[1]).html(temp_arr[temp_arr.length - 1].takeOffTime);
       temp_arr = air_price.bubbling_order(air_price.all_plane.secondFlightList, 'price');//默认价格排序
       air_price.date_bind(temp_arr);
