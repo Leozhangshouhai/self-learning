@@ -111,7 +111,6 @@ var planeJson = {
         var firststarttime = new Date(obj.firstline.startdate);
         console.log(typeof firststarttime);
         console.log(firststarttime.getMinutes());
-        console.log(firststarttime.getMinutes());
         $('#firststarttime').html(firststarttime.toLocaleString());
 
         $.each(obj.firstline.airLinePriceVOList, function (index, ele) {

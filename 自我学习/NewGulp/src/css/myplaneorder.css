@@ -34,7 +34,7 @@ a{
 .popup-detail {
     padding: 1.5rem 2rem;
     width: 100%;
-    background-color: #001A56;
+background-color: transparent;
     color: #646464;
 }
 #popup-detail-title-back{
@@ -146,10 +146,22 @@ a{
     font-size: 1.8rem;
 
 }
+.refun-box{
+    padding-top: 1rem;
+}
 .refundorder{
     color: white;
     font-size: 1.5rem;
     display: none;
+
+}
+#refundorderfirst,#refundordersecond{
+    padding-right: 1.6rem;
+    border-right: 1px solid white;
+}
+#endorsedApplysecond,#endorsedApplyfirst{
+    padding-left: 1.6rem;
+
 }
 
 /* 出发-到达时间 */

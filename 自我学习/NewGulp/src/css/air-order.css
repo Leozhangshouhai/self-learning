@@ -121,7 +121,8 @@
 }
 
 .popup-detail-title-airline {
-    font-size: 0
+    font-size: 0;
+    position: relative;
 }
 
 .popup-detail-title-airline > * {
@@ -169,6 +170,7 @@
 
 .popup-detail-title-airline-box {
     display: inline-block;
+    position: relative;
     /*width: 100%;*/
     box-sizing: border-box;
   padding-left: 3.05rem
@@ -219,6 +221,22 @@
 
 .airtickets-show-dd-price {
     text-align: center
+}
+.refund{
+
+    height: 3rem;
+    line-height: 3rem;
+    padding: 0 1.25rem;
+    box-sizing: border-box;
+    background-color: #0077db;
+    color: white;
+    font-size: 1.2rem;border-radius: 1000px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -1.5rem;
+
 }
 
 .air-total-fee {

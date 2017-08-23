@@ -15,14 +15,14 @@ function Ajax_json(json ,change_Ip) {
         }
         hmp_website_Ip =hmp_website_Ip!=''?hmp_website_Ip: Storage.get('login.hmp_website_Ip');
 
-        console.log(hmp_website_Ip);
+        // console.log(hmp_website_Ip);
         //执行改变ip
-        change_Ip(hmp_website_Ip);
+        // change_Ip(hmp_website_Ip);
         if(Ajax_accessTicket!='') {
             Storage.set('login.accessticket', Ajax_accessTicket);
         }
-        var accessTicket =Ajax_accessTicket!=''?Ajax_accessTicket: Storage.get('login.accessticket');
-        // var accessTicket ='be40901c52ce4a168d6398d29a57f6f6';
+        // var accessTicket =Ajax_accessTicket!=''?Ajax_accessTicket: Storage.get('login.accessticket');
+        var accessTicket ='ca3d87d421c540f6b37dfc64551d367a';
         console.log('accessTicket'+accessTicket)
         var version = "2.0";
         var req = {

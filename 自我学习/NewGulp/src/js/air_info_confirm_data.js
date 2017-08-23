@@ -103,6 +103,7 @@ var page = {
     Ajax_json(air_info_confirm.get_initaddress, change_Ip);
     this.check_createBtn();
     this.last_one_person();
+    this.a_store();
     this.auto_set_info();
     this.data_bind();
   },
@@ -678,6 +679,13 @@ var page = {
     }
 
 
+  },
+  /*  a标签再做存储 */
+  a_store:function () {
+    $('a').on('click',function () {
+      console.log(12455)
+      page.Storage_last_info()
+    })
   }
 
 

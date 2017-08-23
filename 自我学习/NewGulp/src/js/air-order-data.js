@@ -94,7 +94,7 @@ var air_order = {
         }
     },
     getApplyInfo: {
-        url: 'http://101.37.32.245/hmp_website/yiplain/changeticketapply.json',
+        url: 'http://118.178.225.32/hmp_website/yiplain/changeticketapply.json',
         parameters: {
             'flydate': '2017-01-01 ',
             'stime':'HH:mm',
@@ -120,8 +120,35 @@ var air_order = {
             console.log(error);
             ZSH_Extent.createLoading(error.msg);
         }
+    },
+  getagreementInfo: {
+    url: 'http://118.178.225.32/hmp_website/yiplain/getrefundAndChangeRule.json',
+    parameters: {
+      'airCode':'3U',
+      'cabinCode':'G'
+    },
+    success: function (data) {
+      console.log(data);
+      var success=data.body
+      if (data.head.rtnCode === '000000') {
+        // 禁止一切函数和修改
+        layer.open({
+          title: [
+            '退票改签政策',
+            'background-color:  #0077db; color:#fff;'
+          ]
+          ,content: success.returnRule
+        });
+      }
+    },
+    error:function (error) {
+      console.log(error);
+      ZSH_Extent.createLoading(error.msg);
     }
-}
+  }
+
+
+};
 var page = {
     make_sure: function () {
         if (ZSH_Extent.getPostUrl('yiorderid') !== null && ZSH_Extent.getPostUrl('yiorderid') !== 'false' &&ZSH_Extent.getPostUrl('yiorderid') !== 'null') {
@@ -152,9 +179,17 @@ var page = {
                 self.location.href = '../pages/air_info_confirm.html';
             }
 
+        });
+        $('.refund').on('click',function () {
+          page.refund_agreement()
         })
-    }
+    },
+  refund_agreement:function () {
+        console.log(123)
+    Ajax_json(air_order.getagreementInfo,change_Ip)
+  }
 };
 function change_Ip(hmp_website_Ip) {
      air_order.getApplyInfo.url=hmp_website_Ip+'hmp_website/yiplain/changeticketapply.json';
+     air_order.getagreementInfo.url=hmp_website_Ip+'hmp_website/yiplain/getrefundAndChangeRule.json';
 }

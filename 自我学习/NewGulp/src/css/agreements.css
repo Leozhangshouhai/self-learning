@@ -1,0 +1,52 @@
+*{
+    box-sizing: border-box;
+    font-size:0.28rem ;
+}
+p{
+    padding:0 0.07rem;
+    text-align: justify;
+}
+#container{
+padding: 0 0.3rem;
+}
+.header
+{
+    font-size: 0.32rem;
+    color: #000000;
+    text-align: center;
+    font-weight: bolder;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 0.24rem;
+    padding-top: 0.24rem;
+    margin-top: 0.21rem;
+
+ position: relative;   margin-bottom: .3rem;
+}
+
+.header-title{
+    font-size: 0.32rem;
+}
+
+.header-return {
+    vertical-align: middle;
+    height: 0.32rem;
+    margin-top: -0.16rem;
+    position: absolute;
+    left:0;
+    top: 50%;
+}
+.demo1{
+    margin-top: 0.64rem;
+}
+.img-1{
+    width: 100%;
+}
+.img-list
+{
+    font-size: 0;
+
+}
+.img-list>img{
+    width: 50%;
+    padding: 0.14rem 0.14rem;
+}
