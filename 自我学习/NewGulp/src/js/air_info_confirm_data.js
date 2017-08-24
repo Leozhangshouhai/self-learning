@@ -646,7 +646,10 @@ var page = {
       last_sex_kind=last_one.find('.sex-kind option:selected').attr('data-type'),
       last_birthday_year=last_one.find('.info_content_input_birthday input').eq(0).val(),
       last_birthday_month=last_one.find('.info_content_input_birthday input').eq(1).val(),
-      last_birthday_day=last_one.find('.info_content_input_birthday input').eq(2).val();
+      last_birthday_day=last_one.find('.info_content_input_birthday input').eq(2).val(),
+      last_choose_accident=$('.text-box-baoxian-img').eq(0).attr('choose'),
+      last_choose_delay=$('.text-box-baoxian-img').eq(1).attr('choose');
+    ;
     last_info={
       name:last_name,
       phone:last_phone,
@@ -655,7 +658,9 @@ var page = {
       sex_kind:last_sex_kind,
       birthday_year:last_birthday_year,
       birthday_month:last_birthday_month,
-      birthday_day:last_birthday_day
+      birthday_day:last_birthday_day,
+      choose_accident:last_choose_accident,
+      choose_delay:last_choose_delay
     };
     Storage.set('last_person_info',last_info);
     return '信息存储成功';   //提示语
@@ -671,11 +676,19 @@ var page = {
     last_one.find('.info_content_input[name=phone]').val(info.phone);
     last_one.find('.info_content_input[name=idCard]').val(info.card);
     last_one.find('.info_content_input_birthday input').eq(0).val(info.birthday_year);
-    last_one.find('.info_content_input_birthday input').eq(1).val(info.birthday_year);
-    last_one.find('.info_content_input_birthday input').eq(2).val(info.birthday_year);
+    last_one.find('.info_content_input_birthday input').eq(1).val(info.birthday_month);
+    last_one.find('.info_content_input_birthday input').eq(2).val(info.birthday_day);
     $('#text-box-idCard-box').children('li:last-child').find(".sex-kind option").eq((Number(info.sex_kind)-1)).attr('selected','true');
     $('#text-box-idCard-box').children('li:last-child').find(".card-kind option").eq((Number(info.card_kind)-1)).attr('selected','true');
       $('#last_phone_input').blur();
+      if(info.choose_accident=='true'){
+        $('.text-box-baoxian-img').eq(0).click();
+      }
+      if(info.choose_delay=='true'){
+        $('.text-box-baoxian-img').eq(1).click();
+      }
+
+
     }
 
 
