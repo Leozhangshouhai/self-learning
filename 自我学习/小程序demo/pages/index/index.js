@@ -1,4 +1,4 @@
-//index.js
+0//index.js
 //获取应用实例
 var app = getApp()
 Page({
@@ -9,7 +9,7 @@ Page({
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '../demo/demo'
     })
   },
   onLoad: function () {

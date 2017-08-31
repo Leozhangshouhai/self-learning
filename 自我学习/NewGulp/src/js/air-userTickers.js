@@ -12,7 +12,7 @@ function getUserTicketClick() {
            hmp_website_Ip=JSON.parse(response).serviceHost;
            console.log(response);
            console.log(hmp_website_Ip);
-       })
+       });
 }
 setTimeout(function () {
     getUserTicketClick();

@@ -9,7 +9,7 @@ $(function () {
 //数据以及数据交互
 var air_info_confirm = {
   create_order: {
-    url: 'http://101.37.32.245/hmp_website/yiplain/getpolicyandcreateorder.json',
+    url: 'http://118.178.225.32//hmp_website/yiplain/getpolicyandcreateorder.json',
     parameters: {
       //type: '2',
       //scity: 'CTU',
@@ -51,7 +51,7 @@ var air_info_confirm = {
         page.Storage_last_info(); //  存储最后一次联系人
         self.location.href = '../pages/air-pay.html';
       } else {
-        ZSH_Extent.createLoading('订单创建失败，请确保信息正确');
+        ZSH_Extent.createLoading(data.head.rtnMsg);
         $('#popup').hide();
       }
 
@@ -66,7 +66,7 @@ var air_info_confirm = {
   json_accident: {},
   json_delay: {},
   get_initaddress: {
-    url: 'http://101.37.32.245/hmp_website/user/getdefaultaddress.json',
+    url: 'http://118.178.225.32//hmp_website/user/getdefaultaddress.json',
     parameters: {},
     success: function (data) {
       console.log('获取订单成功');
@@ -702,7 +702,7 @@ var page = {
   }
 
 
-}
+};
 var popup = {
   loading_show: function () {
     $('#popup').fadeIn(300);

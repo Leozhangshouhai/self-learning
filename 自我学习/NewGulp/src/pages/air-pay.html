@@ -22,11 +22,16 @@
             </p>
 
             <div class="info-show-price-box">
-                <span class="info-show-name">订单总价</span>
-                <span class="info-show-price"></span>
+                <span class="info-show-name">需支付</span>
+                <span class="info-show-price" id="infoshowpric"></span>
                 <span class="info-show-price-detail">
                     详情
             </span>
+            </div>
+            <div class="info-show-price-box" id="favorprice" style="display: none;">
+                <span class="info-show-name">已优惠</span>
+                <span class="info-show-price" id="showfavorprice"></span>
+
             </div>
             <!-- 支付方式 -->
             <div class="air-pay-box">
@@ -43,6 +48,14 @@
                     <dd class="air-pay-box-dd" id="wechat">
                         <img src="../img/air/air-pay_03.png" alt="" class="air-pay-box-dd-img"/>
                         <span>微信支付</span>
+
+                        <!--<div class="air-pay-box-dd-refresh">-->
+                        <!--<img src="../img/air/air-pay_06.png" alt="p"/>-->
+                        <!--</div>-->
+                    </dd>
+                    <dd class="air-pay-box-dd" id="unionpay">
+                        <img src="../img/air/unionpay_2x.png" alt="" class="air-pay-box-dd-img"/>
+                        <span>银联</span>
 
                         <!--<div class="air-pay-box-dd-refresh">-->
                         <!--<img src="../img/air/air-pay_06.png" alt="p"/>-->
@@ -186,6 +199,13 @@
                         <!--<span class="oil-fee-name">收件人电话</span>-->
                         <!--<span class="fee-post"></span>-->
                     <!--</div>-->
+                </div>
+                <div id="favormoneydetaildiv">
+                    <div class="oil-fee-box">
+                        <span class="oil-fee-name">优惠</span>
+                        <span class="oil-fee-total" id="favormoneydetail">￥0</span>
+                    </div>
+
                 </div>
 
 

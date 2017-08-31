@@ -10,6 +10,11 @@ $(function () {
     air_pay_data.init();
     page.click_init();
     page.pay_way();
+
+    //如果中奖，弹出提示
+    if(air_pay_data.pay_info.body.prizetype >= 0){
+        ZSH_Extent.createLoading(air_pay_data.pay_info.body.tips, '');
+    }
 });
 // 部分CSS 样式修正
 function css_right() {
@@ -39,7 +44,13 @@ var air_pay_data = {
         var $goAllFee = this.pay_info.body.orderDetail[0].cabinprice;
         var $goFee = Number(this.pay_info.body.orderDetail[0].fuleprice) + Number(this.pay_info.body.orderDetail[0].taxprice);
         // $('.info-show-price').html('￥' + (Number($goAllFee) + $goFee));
-        $('.info-show-price').html('￥' + this.pay_info.body.mainOrderVO.orderMoney);
+        $('#infoshowpric').html('￥' + this.pay_info.body.mainOrderVO.orderMoney);
+
+        if(this.pay_info.body.mainOrderVO.favorMoney != null){
+            $('#favorprice').show();
+            $('#showfavorprice').html('￥' + this.pay_info.body.mainOrderVO.favorMoney);
+            $('#favormoneydetail').html('￥' + this.pay_info.body.mainOrderVO.favorMoney);
+        }
         $go.find('.popup-detail-title-time-date').first().html(timearr[1] + '月' + timearr[2] + '日');
         $go.find('.popup-detail-title-time-price').html('￥' + Number($goAllFee) * this.pay_info.body.orderDetail[0].pcount);
         $('.oil-fee-total').html('￥' + Number($goFee) * this.pay_info.body.orderDetail[0].pcount);
@@ -111,6 +122,9 @@ var air_pay_data = {
         } else {
             $('#postbox').hide();
         }
+        if(this.pay_info.body.mainOrderVO.favorMoney == null){
+            $('#favormoneydetaildiv').hide();
+        }
 
     }
 };
@@ -161,7 +175,25 @@ var page = {
                 }
                 log('callback', response);
             })
+        };
+        document.getElementById('unionpay').onclick = function (e) {
+            e.preventDefault();
+            var orderNo = air_pay_data.pay_info.body.mainOrderVO.orderNo;
+            WebViewJavascriptBridge.callHandler('payPlaneTicket', {
+                'orderNo': orderNo,
+                'payChannel': '03'
+            }, function (response) {
+
+                var res = JSON.parse(response);
+                if (res.info == 'success') {
+                    self.location.href = '../pages/pay-successOrfail.html?sign=' + air_pay_data.sign + '&&type=1'
+                } else {
+                    self.location.href = '../pages/pay-successOrfail.html?sign=' + air_pay_data.sign + '&&type=2'
+                }
+                log('callback', response);
+            })
         }
+
     }
 }
 
