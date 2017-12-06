@@ -1,0 +1,91 @@
+*, body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    font-family: PingFang TC;
+    font-size: 0.28rem;
+}
+/*  屏幕1 */
+#section1{
+    background-image: url("../../img/agreements/activirty-bg-1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0 0.84rem;
+    background-position: center;
+}
+#logo{
+    width: 1.8rem;
+    height: 0.54rem;
+    position: absolute;
+    top: 0.42rem;
+    left: 0.42rem;
+}
+.btn_submit{
+    width: 3rem;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    text-align: center;
+    color: white;
+    outline: none;
+   border: 2px solid white;
+    border-radius: 1000px;
+    font-weight: bolder;
+    background-color: #FE8900;
+    position: absolute;
+    bottom: 1.3rem;
+    left: 50%;
+    margin-left: -1.5rem;
+}
+.btn_down{
+    width: 0.68rem;
+    position: absolute;
+    bottom: 0.46rem;
+    left: 50%;
+    margin-left: -0.34rem;
+}
+
+
+/*    屏幕2   */
+#section2{
+    background-image: url("../../img/agreements/activity.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0 0.84rem;
+    background-position: center;
+
+}
+.header{
+    font-size: 0.6rem;
+    color: #FF9633;
+     margin-top: 1.28rem;
+    text-align: center;
+    letter-spacing: 3px;
+    -webkit-text-stroke: 1px white;
+    /*text-shadow: 1px 1px 4rem #FFFFFF,1px 1px 4rem #FFFFFF,1px 1px 4rem #FFFFFF,1px 1px 4rem #FFFFFF;*/
+}
+.fp-tableCell{
+    vertical-align: top;
+}
+
+.hr-img{
+    width: 0.18rem;
+    height: 0.18rem;  vertical-align: middle;
+}
+.hr-box{
+    text-align: center;
+    padding: 0.45rem 0;
+}
+.hr-one{
+    display: inline-block;
+    background-color: white;
+    height: 1px;width: 2.05rem;  vertical-align: middle;
+}
+.demo1{
+    line-height: 0.42rem;
+    color: black;
+}
+p{
+    line-height: 1.4;
+}

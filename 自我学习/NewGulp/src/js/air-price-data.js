@@ -4,6 +4,7 @@
 $(function () {
   air_price.type = ZSH_Extent.getPostUrl('type');
   air_price.sign = ZSH_Extent.getPostUrl('sign');
+    air_price.changeorderid = ZSH_Extent.getPostUrl('yiorderid');
   fun.judge_go_And_back();
 
 });
@@ -61,6 +62,7 @@ var fun = {
         air_price.get_planeInfo.parameters.scity = air_price.air_json.scity_3;
         air_price.get_planeInfo.parameters.ecity = air_price.air_json.ecity_3;
         air_price.get_planeInfo.parameters.date = air_price.air_json.date;
+          air_price.get_planeInfo.parameters.yiorderid = air_price.changeorderid;
       }
       Ajax_json(air_price.get_planeInfo, change_Ip);
     }
@@ -78,6 +80,7 @@ var export_fun = {
 var air_price = {
   air_json: '',//存储上一个页面传过来的信息，（日期，城市，机场3字码）
   type: '',
+    changeorderid:'',//改签订单号
   head_click:false,
   all_plane: {},
   // 数据排序
@@ -247,6 +250,7 @@ var air_price = {
           air_price.get_planeInfo.parameters.ecity = air_price.air_json.ecity_3;
           air_price.get_planeInfo.parameters.date = air_price.air_json.date;
           air_price.air_json.date_back= new_date;
+            air_price.get_planeInfo.parameters.yiorderid = air_price.changeorderid;
         }
       } else {
         air_price.get_planeInfo.parameters.date = new_date;

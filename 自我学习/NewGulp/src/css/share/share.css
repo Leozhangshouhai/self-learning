@@ -1,0 +1,35 @@
+*, body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    font-family: PingFang TC;
+}
+html{
+    height: 100%;
+}
+#container{
+    height: 100%;
+    background-image: url("../../img/share/share1.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.submit_btn
+{
+   color: #1A1A1A;
+    width: 3rem;
+height: 0.8rem;
+    border-radius: 0.1rem;
+    background-color: #e6ffff;
+    line-height: 0.8rem;text-align: center;
+    border: none;
+    outline: none;
+    position: absolute;
+    left: 50%;
+    margin-left: -1.5rem;
+    font-weight: 600;
+    bottom: 1.2rem;
+
+
+}
