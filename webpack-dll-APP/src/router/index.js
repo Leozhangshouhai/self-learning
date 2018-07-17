@@ -9,11 +9,12 @@ Vue.config.productionTip = false;
 //路由页面按需加载
 const index = resolve => require(['../components/index'], resolve);
 const login = resolve => require(['../components/login'], resolve);
+const ES6demo = resolve => require(['../components/ES6DEMO'], resolve);
 Vue.use(Router);
 const router = new Router({
 	mode: 'hash',
 	routes: [//如果要缓存某个页面的数据，则在路由后面加上meta: {keepAlive: true}
-		{path: '/', component: index, meta: {title: "我是首页"}},
+		{path: '/', component: ES6demo, meta: {title: "我是首页"}},
 		{path: '/index', name: 'index', component: index, meta: {title: "我是首页"}},
 		{path: '/login', name: 'login', component: login, meta: {title: "我是登录页", keepAlive: true}},
 	]
