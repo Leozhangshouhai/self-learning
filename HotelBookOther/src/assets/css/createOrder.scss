@@ -1,0 +1,236 @@
+.creatrOrder{
+    background: #ffffff;
+    color: #3c3c3c;
+    .home-info{
+        width: 100%;
+        padding: .36rem 0 .36rem .3rem;
+        font-size: 0;
+        box-shadow: 0 .02rem .04rem 0 rgba(0,0,0,.1);
+        >div{
+            display: inline-block;
+            vertical-align: middle;
+            height: 2.1rem;
+            &.img-box{
+                width: 3.56rem;
+                border-radius: .12rem;
+                overflow: hidden;
+                border: .01rem solid #d0bbbb;
+                >img{
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+            &.order-info{
+                width: 3.63rem;
+                padding-right: .24rem;
+                text-align: right;
+                >.info-txt{
+                    font-size: .28rem;
+                    line-height: .6rem;
+                }
+                >.price{
+                    margin-top: .3rem;
+                    color: #ffc012;
+                    font-size: .56rem;
+                    font-family: PingFangSC-Semibold;
+                    margin-right: -.05rem;
+                }
+            }
+        }
+    }
+    /*
+        房间数量
+    */
+    >.home-count-box{
+        padding: .52rem .34rem .28rem .6rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        >.txt{
+            font-size: .28rem;
+        }
+        >.count{
+            font-size: 0;
+            >*{
+                display: inline-block;
+                vertical-align: middle;
+            }
+            >span{
+                width: 1.08rem;
+                height: .56rem;
+                line-height: .56rem;
+                text-align: center;
+                color: #666666;
+                font-size: .28rem;
+            }
+            >img{
+                width: .56rem;
+            }
+        }
+    }
+    /*
+        入住信息
+    */
+    >.check-in-info{
+        padding: .34rem .34rem .36rem .56rem;
+        >ul{
+            >li{
+                margin-bottom: .2rem;
+
+                >div{
+                    font-size: 0;
+                    //display: flex;
+                    //justify-content: space-between;
+                    //align-items: center;
+                    >div{
+                        &:first-child{
+                            width: 1.5rem;
+                        }
+                        vertical-align: middle;
+                        display: inline-block;
+                        font-size: .28rem;
+                        margin-bottom: .2rem;
+                        &.input-box{
+                            width: 5.1rem;
+                            //text-align: right;
+                            padding: 0;
+                            font-size: 0;
+                            >input{
+                                background: #f5f6f5;
+                                border: 0;
+                                border-radius: .2rem;
+                                width: 2.04rem;
+                                height: .6rem;
+                                line-height: .6rem;
+                                outline: none;
+                                margin-right: .1rem;
+                                padding-left: .38rem;
+                                &.areaCode{
+                                    width: 1.3rem;
+                                }
+                                &.tel-input{
+                                   width: 2.78rem;
+                                }
+                                &.error::-webkit-input-placeholder{
+                                    color: red;
+                                    opacity:1;
+                                }
+                            }
+                            >img{
+                                margin-left: .26rem;
+                                display: inline-block;
+                                width: .56rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /*
+        要求
+    */
+    .com-box{
+        padding-left: .56rem;
+        margin-top: .04rem;
+        font-size: 0;
+        border-bottom: .02rem solid #f3f3f3;
+        >div{
+            font-size: .28rem;
+            display: inline-block;
+            vertical-align: middle;
+            &.left{
+                width: 1.5rem;
+            }
+            &.right{
+                width: 4.9rem;
+                textarea{
+                    padding: .1rem .2rem;
+                    width: 4.9rem;
+                    height: 1.68rem;
+                    line-height: .5rem;
+                    background: #f5f6f5;
+                    outline: 0;
+                    border-radius: .12rem;
+                    border: 0;
+                }
+            }
+        }
+        &.need{
+            padding-bottom: .36rem;
+            >div{
+                vertical-align: top;
+            }
+        }
+        &.invoice{
+            padding-top: .25rem;
+            padding-bottom: .2rem;
+            >.right{
+                width: 5rem;
+                font-size: 0;
+                >div{
+                    display: inline-block;
+                    vertical-align: middle;
+                    width: 50%;
+                    font-size: .28rem;
+                    >img{
+                        width: .56rem;
+                        display: inline-block;
+                    }
+                    .discountNull{
+                        margin-right: .2rem;
+                    }
+                    &:last-child{
+                        text-align: right;
+                    }
+                }
+                .discountInfo{
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    width: 70%;
+                }
+                .handleBox{
+                    width: 30%;
+                }
+            }
+        }
+        &.to-pay{
+            border: 0;
+            padding-top: 1.12rem;
+            padding-bottom: 1.12rem;
+            >.left{
+                width: .87rem;
+            }
+            >.right{
+                font-size: 0;
+                width: 5.7rem;
+                >div{
+                    width: 50%;
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                >.total{
+                    font-size: .56rem;
+                    color: #ffc012;
+                    font-family: PingFangSC-Semibold;
+                }
+                .to-pay-box{
+                    text-align: right;
+                }
+                .pay-btn{
+                    display: inline-block;
+                    line-height: .76rem;
+                    width: 2.06rem;
+                    text-align: center;
+                    color: #ffffff;
+                    background: #ffc012;
+                    font-family: PingFangSC-Medium;
+                    font-size: .32rem;
+                    border-radius: .36rem;
+                    border: none;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,90 @@
+/* pages/coupon-detail/index.wxss */
+.i-box{
+  padding: 0 24rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+.head{
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: bold;
+  padding: 40rpx 0 30rpx 0;
+}
+.banner-box{
+  height: 340rpx
+}
+.banner{
+  height: 340rpx;
+  width: 100%;
+  border-radius: 8rpx;
+}
+.show-info{
+  display: flex;
+  margin-top:25rpx;
+  align-items: center;
+}
+.left{
+  flex: 3;
+  display: flex;
+  align-items: center;
+}
+.right{
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.icon{
+  margin-right:10rpx;
+  width: 20rpx;
+  height: 20rpx;
+}
+.icon-text{
+  font-size: 28rpx;
+  color: #333333;
+}
+.center-top{
+  margin-top:60rpx;
+}
+.center-left-text{
+  font-size: 42rpx;
+}
+.center-right-text{
+font-size: 30rpx;
+color: #ff4e63;
+}
+.free-btn{
+  margin-top: 30rpx;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  color: #ffffff;
+  background-color:  #ff4e63;
+}
+.tips-box{
+  margin-top:60rpx;
+}
+.tips-title{
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: bold;
+}
+.tips-des{
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #333333;
+}
+.tips-top{
+  margin-top:35rpx;
+}
+.RQ-box{
+  text-align: center;
+}
+.RQ{
+  width: 200rpx;
+  height: 200rpx;
+  display: inline-block;
+}
+.show-status{
+  text-align: center;
+  font-size: 28rpx;
+  }

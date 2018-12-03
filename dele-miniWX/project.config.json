@@ -1,0 +1,51 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.2.0",
+	"appid": "wxf239e0d640b442b7",
+	"projectname": "dele-miniWX",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "我的优惠券",
+					"pathName": "pages/Coupon/Coupon",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "优惠券详情",
+					"pathName": "pages/coupon-detail/index",
+					"query": "agreementid=123&&id=113"
+				}
+			]
+		}
+	}
+}

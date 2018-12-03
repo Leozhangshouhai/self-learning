@@ -1,0 +1,215 @@
+#app .index-con {
+    overflow-x: hidden;
+}
+
+.index-con {
+    width: 100%;
+    color: #3c3c3c;
+    .hotel-top {
+        position: relative;
+        width: 100%;
+        height: 7.5rem;
+        .banner {
+            width: 100%;
+            height: 100%;
+            //width: auto;
+            .banner_img{
+                height: 100%;
+            }
+            //height: 9.5rem;
+            > img {
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+    .startDateWeek, .endDateWeek{
+        position: absolute;
+        top: 1.48rem;
+        left: 1rem;
+        font-size: .24rem;
+        color: #fff;
+    }
+    .endDateNum, .startDateNum{
+        position: absolute;
+        top: .84rem;
+        left: 1rem;
+        font-size: .49rem;
+        color: #fff;
+    }
+    .endDateWeek, .endDateNum{
+        left: 50%;
+        margin-left: 1rem;
+    }
+    /*
+        酒店信息
+    */
+    > .hotel-info {
+        position: relative;
+        width: 100%;
+        height: 2.7rem;
+        > .map {
+            height: 100%;
+            width: 100%;
+            background: #fcfbfa;
+        }
+        > .info-txt {
+            width: 100%;
+            height: 100%;
+            padding: .4rem .4rem 0 .4rem;
+            font-size: .28rem;
+            color: #112e55;
+            .hotel-neme-con{
+                // display: flex;
+                justify-content:  space-between;
+                align-items: center;
+                padding-bottom: .4rem;
+                .hotel-neme{
+                    font-size: .46rem;
+                }
+                >span{
+
+
+                }
+            }
+            .icon-img{
+                width: .19rem;
+                margin-right: .1rem;
+                display: inline-block;
+                margin-top: -.03rem;
+            }
+            .icon-tel{
+                width: .22rem;
+            }
+            > .tel {
+                padding-top: .2rem;
+                font-size: .24rem;
+                a{
+                    color: #112e55;
+                }
+            }
+        }
+    }
+
+    /*
+        房型
+    */
+    > .house-type {
+        padding: 0 .4rem;
+        //background: #fff;
+        font-size: 0;
+        margin-bottom: .42rem;
+        .inner {
+            border-radius: .1rem;
+            overflow: hidden;
+            > div {
+                text-align: center;
+                width: 50%;
+                display: inline-block;
+                vertical-align: middle;
+                font-size: .28rem;
+                font-family: PingFangSC-Medium;
+                color: #a7a7a7;
+                height: .9rem;
+                line-height: .9rem;
+                background: #efefef;
+                &.checkedtype {
+                    background: #06182f;
+                    color: #fff;
+                }
+            }
+        }
+
+    }
+    /*
+        房型列表
+    */
+    > .home-list {
+
+    }
+
+    .hotel-detail-info {
+        padding-left: .45rem;
+        padding-right: .45rem;
+        > .top-box {
+            height: .74rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            //font-size: 0;
+        }
+        > .detail-box {
+            > div {
+                &.scale {
+                    //padding: .14rem 0;
+                    padding-top: .42rem;
+                    > div {
+                        font-size: .24rem;
+                        font-family: PingFangSC-Light;
+                        color: #000;
+                        line-height: .4rem;
+                    }
+                }
+                &.detail-title {
+                    padding-top: .32rem;
+                    padding-bottom: .22rem;
+                    color: #002347;
+                    font-weight: bold;
+                }
+                &.hotle-base {
+                    > div {
+                        font-size: .24rem;
+                        font-family: PingFangSC-Light;
+                        color: #000;
+                        line-height: .4rem;
+                    }
+                }
+                &.hotel-policy {
+                    > ul {
+                        padding-bottom: .63rem;
+                        li {
+                            > div {
+                                font-size: .24rem;
+                                color: #000;
+                            }
+                            .policy-name {
+                                font-weight: bold;
+                                font-family: PingFangSC-Medium;
+                                line-height: .44rem;
+                            }
+                            .policy-content {
+                                font-family: PingFangSC-Light;
+                                line-height: .42rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    .showCalendar-box{
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 1.5rem;
+        width: 100%;
+        z-index: 22;
+        padding: .2rem .5rem 0 .5rem;
+        display: flex;
+        justify-content: space-around;
+        //padding-top: .5rem;
+        font-size: .3rem;
+        >div{
+            text-align: center;
+        }
+        .check-type{
+            font-size: .3rem;
+            margin-bottom: .2rem;
+        }
+        .isCheckType{
+            color: #092347;
+        }
+    }
+}

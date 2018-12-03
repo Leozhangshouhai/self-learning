@@ -1,0 +1,4 @@
+<import src="/template/index-list/index-list.wxml" />
+<view class="coupon-box">
+  <template is="index-list" data="{{ticket_list:ticket_list,ismycoupon:true}}" />
+</view>

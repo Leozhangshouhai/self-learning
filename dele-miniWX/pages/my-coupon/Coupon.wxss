@@ -1,0 +1,7 @@
+@import '/template/index-list/index-list.wxss';
+.coupon-box{
+margin-top:30rpx;
+ padding: 0 25rpx;
+  width: 100%;
+  box-sizing: border-box;
+}

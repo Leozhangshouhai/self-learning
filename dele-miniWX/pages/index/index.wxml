@@ -1,0 +1,22 @@
+<import src="/template/index-list/index-list.wxml" />
+<view class="container">
+<popup-award bindouterEvent="getCodeVal" show="{{showModal}}">
+ <navigator class="my-coupon" url="../my-coupon/Coupon">我的优惠券</navigator>
+</popup-award>
+  <image class="img_banner" src="/static/img/img_banner.png"></image>
+  <view class="body-box">
+    <view class="box-dd {{index>2?'dd-top':''}}" wx:for="{{view_list}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="kindSearch">
+      <image src="{{item.icon}}"></image>
+      <view class="dd-text">{{item.name}}</view>
+    </view>
+  </view>
+  <view class="view-grid-box">
+    <template is="index-list" data="{{ticket_list}}" />
+  </view>
+  <view class="load-more">
+    <view class="more-text" bindtap='onReachBottom'>{{isCanMore?'更多优惠':'没有更多数据了...'}}</view>
+    <image src="/static/icon/icon_moredown.png"></image>
+  </view>
+  <image class="bottom_img" src='/static/img/icon_image.png'></image>
+</view>
+<i-message id="message" />

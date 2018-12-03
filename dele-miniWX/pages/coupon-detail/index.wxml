@@ -1,0 +1,40 @@
+<!--pages/coupon-detail/index.wxml-->
+<view class="container">
+  <view class='i-box'>
+    <view class='head'>{{info.name}}</view>
+    <view class="banner-box">
+      <image class='banner' src="{{info.imgPath}}" move="cover"></image>
+    </view>
+    <view class="show-info">
+      <view class="left" bindtap='callphone' wx:if="{{info.phone}}">
+        <image class='icon' src="/static/icon/icon_black_call.png"></image>
+        <text class="icon-text">{{info.phone||'无'}}</text>
+      </view>
+      <view class="right" bindtap="mapgo" wx:if="{{info.benefitStoresVos[0].distance}}">
+        <image class='icon' src="/static/icon/icon_black_location.png">
+        </image>
+        <text class="icon-text">{{info.benefitStoresVos[0].distance}}</text>
+      </view>
+    </view>
+    <view class='show-info center-top'>
+      <view class='left center-left-text'>{{info.activityTitle}}</view>
+      <view class='right center-right-text' wx:if="{{info.percent}}">剩余{{info.percent}}%</view>
+    </view>
+    <view wx:if='{{isSelfCoupon}}' class="RQ-box">
+      <canvas wx:if="{{info.statusCode==0}}" canvas-id="canvas" class="RQ" src="{{info.qrImgurl}}"></canvas>
+      <view class="show-status" wx:else>{{info.statusName}}</view>
+    </view>
+    <button wx:if="{{!isSelfCoupon}}" bindtap="getCode" class="free-btn">免费领取</button>
+
+    <view class='tips-box'>
+      <view class="tips-dd">
+        <view class="tips-title">使用时间</view>
+        <view class="tips-des">{{info.verificationTime||'无'}}</view>
+      </view>
+      <view class="tips-dd tips-top">
+        <view class="tips-title">使用规则</view>
+        <view class="tips-des">{{info.preferentialRules||'无'}}</view>
+      </view>
+    </view>
+  </view>
+</view>

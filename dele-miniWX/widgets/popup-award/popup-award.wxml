@@ -1,0 +1,12 @@
+<!--widgets/popup-award.wxml-->
+<view wx:if="{{show}}" class="pup-container" catchtouchmove="myCatchTouch" catchtap="_hidePup"  data-box="true">
+  <view class="center-box"  catchtap="_hidePup">
+      <image class="center-box-img" src="/static/img/img_salecode.png"></image>
+      <view class="btn-box">
+         <input class="btn btn-input" value="{{code}}" placeholder='请输入优惠码' maxlength='18' bindinput='_setVal' type="number"></input>
+         <button class="btn btn-btn" bindtap="_sureBtn" >确定</button>
+         <slot></slot> 
+      </view>
+  </view>
+</view>
+<i-message id="message" />

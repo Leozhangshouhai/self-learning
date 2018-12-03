@@ -1,0 +1,55 @@
+/* widgets/popup-award.wxss */
+.pup-container{
+  position: fixed;
+ background-color: rgba(0,0,0,.4);
+  bottom: 0;
+  width: 100%;
+  left:0;
+  right:0;
+  top: 0;
+  display: flex;
+  align-items: center;
+ justify-content: center;
+  z-index: 1;
+
+}
+.center-box{
+
+  width: 496rpx;
+  border-radius: 10rpx;
+  background: white;
+  position: relative;
+  padding-bottom: 45rpx;
+}
+.center-box-img{
+  left: 128rpx;
+  top:-110rpx;
+  height: 354rpx;
+  width: 298rpx;
+  position: absolute;
+}
+.btn-box{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 40rpx;
+  margin-top:284rpx;
+}
+.btn{
+    width: 100%;
+  height: 72rpx;
+  line-height: 72rpx;
+  border-radius: 100rpx;
+  text-align: center;
+}
+.btn-input{
+font-size: 30rpx;
+border:1px solid #ebeced;
+background-color: #f7f7f7;
+}
+.btn-btn{
+font-size: 30rpx;
+margin-top:24rpx;
+color: white;
+border:1px solid #ff4976;
+background-color: #ff4976;
+}

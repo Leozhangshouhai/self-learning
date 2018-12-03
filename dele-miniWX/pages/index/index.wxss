@@ -1,0 +1,62 @@
+
+@import '/template/index-list/index-list.wxss';
+.img_banner{
+  height: 432rpx;
+  width: 100%;
+}
+.body-box{
+  width: 100%;
+  font-size: 0;
+   padding-top: 45rpx;
+   padding-bottom:45rpx;
+}
+.box-dd{
+  width: 33.32%;
+  text-align: center;
+ 
+  display: inline-block;
+}
+.dd-top{
+ margin-top:38rpx;
+}
+.box-dd>image{
+  height: 100rpx;
+  width: 100rpx;
+}
+.dd-text{
+  font-size: 28rpx;
+  color: #333333;
+  margin-top: 15rpx;
+
+}
+.view-grid-box{
+  padding: 0 25rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+.load-more{
+  margin-top:40rpx;
+  margin-bottom:26rpx; 
+  text-align: center;
+  font-size: 0;
+  line-height: 1; 
+}
+.load-more>.more-text{
+font-size: 28rpx;
+color:#717171;
+}
+.load-more image{
+  margin-top: 10rpx;
+  width: 28rpx;
+  height: 14rpx;
+}
+.bottom_img{
+  height: 177rpx;
+  width: 100%;
+}
+.my-coupon{
+  margin-top: 41rpx;
+  color: #666666;
+  font-size: 26rpx;
+  text-align: center;
+}

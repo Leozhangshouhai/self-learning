@@ -1,0 +1,8 @@
+{
+"navigationBarTitleText": "得嘞",
+"enablePullDownRefresh": true,
+"usingComponents": {
+  "popup-award": "/widgets/popup-award/popup-award",
+  "i-message": "/widgets/message/index"
+}
+}

@@ -1,0 +1,91 @@
+.page-loadmore-wrapper{
+    // width: 100%;
+    // padding-top: .12rem;
+    // background: #ffffff;
+    // font-family: PingFangSC-Semibold;
+     ul{
+         position: relative;
+        padding: 0 .1rem;
+        // margin-top: 1.2rem;
+        .orderlist-li{
+            background: #ffffff;
+            width: 100%;
+            padding: .16rem .18rem .18rem .2rem;
+            height: 2.4rem;
+            margin-bottom: .08rem;
+            box-shadow: 0 .04rem .08rem 0 rgba(0,0,0,.15);
+            font-size: 0;
+            >div{
+                display: inline-block;
+                vertical-align: middle;
+                font-size: .36rem;
+                &.left{
+                    width: 1.68rem;
+                    height: 1.68rem;
+                    >img{
+                        width: 100%;
+                        height: 100%;
+                        border:0;
+                    }
+                }
+                &.right1{
+                    position: relative;
+            width: 5.24rem;
+            font-family: PingFangSC-Regular;
+            padding-left: .24rem;
+            height: 1.68rem;
+
+            }
+                &.right{
+                    position: relative;
+                    width: 5.24rem;
+                    font-family: PingFangSC-Regular;
+                    padding-left: .24rem;
+                    >.home-name{
+                        color: #3c3c3c;
+                        line-height: .5rem;
+                        >.num{
+                            font-size: .28rem;
+                            color: #9b9b9b;
+                        }
+                    }
+                    >.comstyle{
+                        font-size: .28rem;
+                        color: #9b9b9b;
+                        line-height: .4rem;
+                    }
+                    >.homeInfo{
+                        span{
+                            padding-right: .2rem;
+                        }
+                    }
+                    >.tel{
+                        img{
+                            display: inline-block;
+                            width: .24rem;
+                            margin-right: .1rem;
+                        }
+
+                    }
+                    >.money-box{
+                        position: absolute;
+                        right: 0;
+                        bottom: -.24rem;
+                        text-align: right;
+                        p{
+                            font-size: .4rem;
+                            line-height: .56rem;
+                            color: #b8834d;
+                            font-family: PingFangSC-Semibold;
+                            &.status{
+                                font-family: PingFangSC-Regular;
+                                font-size: .36rem;
+                                line-height: .56rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+
+<template name="index-list">
+  <navigator wx:for="{{ticket_list}}" wx:key="{{index}}" class="list-box {{index>0?'magrin-top':''}}" data-agreementid="{{item.agreementId}}" data-id="{{item.id}}"
+  url="/pages/coupon-detail/index?agreementid={{item.agreementId}}&&id={{item.id}}&ismycoupon={{ismycoupon||''}}" style="background-image: url('/static/img/icon_ticketlist.png');">
+  <view class="list-head" >
+      <view class='head-left'>{{item.activityTitle}}</view>
+      <view class='head-right'>{{item.typeName}}</view>
+  </view>
+ <view class="list-body">
+      <view class='body-left'>{{item.nerchantsName||item.name}}</view>
+      <view class='body-right'>{{item.distance||''}}</view>
+  </view>
+ 
+ </navigator>
+
+</template>

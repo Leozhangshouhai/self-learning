@@ -1,0 +1,194 @@
+.orderDetail{
+    width: 100%;
+    font-family: PingFangSC-Regular;
+    color: #000000;
+    .top-home-name{
+        font-size: .36rem;
+        text-align: center;
+        >.top-info{
+            padding: .26rem 0 .42rem 0 ;
+            >.numberRoom{
+                font-size: .28rem;
+                color: #9b9b9b;
+            }
+        }
+        >.pay-info-box{
+            padding: 0 .3rem .16rem .34rem;
+            >.list{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: .08rem;
+                >div{
+                    font-family: PingFangSC-Regular;
+                    &.name{
+                        font-size: .36rem;
+                        line-height: .5rem;
+                    }
+                    &.way{
+                        font-size: .28rem;
+                    }
+                    >span{
+                        font-size: .24rem;
+                        &.money{
+                            font-size: .36rem;
+                            font-family: PingFangSC-Semibold;
+                            color: #d8834d;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+    >.shadow-box{
+        margin-bottom: .12rem;
+        box-shadow: 0 .04rem .08rem 0 rgba(0,0,0,.15);
+    }
+    >.info-box{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .14rem .3rem .16rem .3rem;
+        >.left{
+            width: 5rem;
+            .title{
+                font-size: .36rem;
+                padding-left: .02rem;
+                line-height: .5rem;
+            }
+            .info{
+                font-size: .28rem;
+                line-height: .4rem;
+                color: #9b9b9b;
+                >span{
+                    &.addr{
+                        font-size: .36rem;
+                        color: #000000;
+                    }
+                    margin-right: .24rem;
+                    &:last-child{
+                        margin: 0;
+                    }
+                }
+            }
+        }
+        >.right{
+            color: #9b9b9b;
+            width: 1rem;
+            height: .94rem;
+            border-left: .01rem solid #ccc;
+            padding-left: .26rem;
+            line-height: .38rem;
+            display: flex;
+            align-items: center;
+            a{
+                color: #9b9b9b;
+            }
+        }
+    }
+    >.tel-box{
+        padding: .2rem 0 .2rem .34rem;
+        >.left{
+            >.info{
+                >span.addr{
+                    padding-right: .4rem;
+                    font-size: .28rem;
+                }
+            }
+        }
+    }
+    >.info-list-box{
+        padding: .22rem 0 .28rem 0;
+        margin-bottom: .12rem;
+        ul{
+            >li{
+                font-size: 0;
+                margin-bottom: .1rem;
+                *{
+                padding-bottom: .1rem;
+                padding-top: .1rem;
+            }
+                span{
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-size: .28rem;
+                    color: #9b9b9b;
+                    &:first-child{
+                        padding-left: .34rem;
+                        width: 2.18rem;
+                        color: #000000;
+                        font-size: .3rem;
+                        line-height: .42rem;
+
+                    }
+                }
+            }
+        }
+    }
+    >.btn-box{
+        width: 7rem;
+        margin: 0 auto;
+        padding-top: .22rem;
+        font-size: .36rem;
+        font-family: PingFangSC-Regular;
+        >.com-box{
+            text-align: center;
+            height: .8rem;
+            margin-bottom: .1rem;
+            line-height: .8rem;
+            font-size: .36rem;
+            border-radius: .08rem;
+            border: .02rem solid #969696;
+        }
+        >.order-handle{
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: space-between;
+            margin-bottom: .1rem;
+            >div{
+                height: .8rem;
+                line-height: .8rem;
+                font-size: .36rem;
+                border-radius: .08rem;
+                border: .02rem solid #969696;
+                width: 100%;
+            }
+        }
+        >.agin-box{
+            background: #b7834d;
+            color: #ffffff;
+            border-color: #b7834d;
+        }
+    }
+    >.shadow-box-out{
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 11;
+        background: rgba(0,0,0,.3);
+    }
+}
+
+
+.slideInUp-enter-active {
+    animation: slideInUp .5s;
+}
+.slideInUp-leave-active {
+    animation: slideInUp .5s reverse;
+}
+
+//@keyframes slideInUp {
+//    from {
+//        transform: translate3d(0, 100%, 0);
+//        visibility: visible;
+//    }
+//
+//    to {
+//        transform: translate3d(0, 0, 0);
+//    }
+//}
+

@@ -1,0 +1,48 @@
+.list-box{
+  height: 223rpx;
+  width: 100%;
+  padding: 0 48rpx 0 44rpx;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box;
+  position: relative;
+}
+.list-head{
+  padding-top:56rpx;
+ 
+  display: flex;
+  align-items: center;
+}
+.head-left{
+  flex: 2;
+   color: #167eae;
+  font-size: 38rpx;
+  font-weight: bold;
+}
+.head-right{
+  flex: 1;
+  text-align: right;
+   color: #167eae;
+  font-size: 34rpx;
+}
+.list-body{
+  margin-top:24rpx;
+  display: flex;
+  align-items: center;
+}
+.body-left{
+  flex: 2;
+   color: #333333;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.body-right{
+  flex: 1;
+  text-align: right;
+   color: #333333;
+  font-size: 26rpx;
+}
+.magrin-top{
+  margin-top:30rpx;
+}
