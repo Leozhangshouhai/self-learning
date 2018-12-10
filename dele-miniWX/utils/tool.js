@@ -53,6 +53,10 @@ let tool = {
       });
     })
   },
+  translateKm(num){
+    let d = (num / 1000).toFixed(2);
+    return `${d}Km`
+  },
   _canRun: true,
   _canRunLocal: true,
   // 仅对有网络请求的节流有效。 gapTime无实际意义，以实际接口返回时间为准

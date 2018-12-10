@@ -14,7 +14,6 @@ Page({
       latitude: app.globalData.latitude ,
       longitude: app.globalData.longitude,
       personCode: '',
-
     },
     ticket_list: [
 
@@ -83,11 +82,14 @@ Page({
         })
       }
       let arr = this.data.ticket_list || [];
+      for (var x of res.benefitAgreementVos){
+        x.distance = Tool.translateKm(x.distance) ;
+      }
       if(i=='1'){
         this.setData({
           'param.pageIndex': pn + '',
           view_list: res.allBenefitType,
-          ticket_list: res.benefitAgreementVos
+          ticket_list: res.benefitAgreementVos,
         })
       }else{
         arr = new Array().concat(arr, res.benefitAgreementVos);

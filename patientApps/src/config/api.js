@@ -78,7 +78,7 @@ const fly = {
     axios.post(obj.url, qs.stringify(data))
       .then(function (res) {
         if (typeof obj.success == 'function')
-          if(res.data.head.rtnCode === '999999'){
+          if(res.data.head.rtnCode === '9999'){
             Toast({
               mes: res.data.head.rtnMsg,
               timeout: 1500,

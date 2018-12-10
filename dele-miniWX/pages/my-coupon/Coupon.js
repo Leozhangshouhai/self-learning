@@ -33,6 +33,9 @@ Page({
       wx.hideLoading()
       wx.stopPullDownRefresh();
       let arr = this.data.ticket_list || [];
+      for (var x of res.aaData) {
+        x.distance = Tool.translateKm(x.distance);
+      }
       arr = new Array().concat(arr, res.aaData);
       if (arr.length == res.iTotalRecords){
         this.setData({

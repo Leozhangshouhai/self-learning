@@ -11,7 +11,7 @@
       </div>
       <div class="from_item ui-border-bottom ui-bg2 ui-box-sizing ui-size-26 ui-color2 ui-mgl-25 ui-mgr-25 ui-pdt-25">
         <label for="">银行卡号</label>
-        <input class="from_input ui-size-16 ui-color2" ref="bankCardNumber" type="number" maxlength="19" v-model="commission.bankCardNumber" :disabled="isChecked"
+        <input style="width:4rem" class="from_input ui-size-16 ui-color2" ref="bankCardNumber" type="number" maxlength="19" v-model="commission.bankCardNumber" :disabled="isChecked"
                placeholder="请填写">
       </div>
       <div class="from_item ui-border-bottom ui-bg2 ui-box-sizing ui-size-26 ui-color2 ui-mgl-25 ui-mgr-25 ui-pdt-25">

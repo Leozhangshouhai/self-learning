@@ -18,7 +18,7 @@ App({
               ...dataCode
             }
           }).then(res=>{
-            // this.globalData.openid = res.openid;
+            this.globalData.openId = res.openid;
             console.log(res)
           })
         }
@@ -51,7 +51,7 @@ App({
     latitude:'',
     longitude:'',
     accuracy:'',
-    openId:'ooXzr4uAE8HECOeK-ESYphYoflFU'
+    openId:''
   },
 
 })

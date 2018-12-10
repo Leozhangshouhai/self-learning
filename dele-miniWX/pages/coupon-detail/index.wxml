@@ -6,9 +6,9 @@
       <image class='banner' src="{{info.imgPath}}" move="cover"></image>
     </view>
     <view class="show-info">
-      <view class="left" bindtap='callphone' wx:if="{{info.phone}}">
+      <view class="left" bindtap='callphone' wx:if="{{info.phone||info.benefitStoresVos[0].mobile}}">
         <image class='icon' src="/static/icon/icon_black_call.png"></image>
-        <text class="icon-text">{{info.phone||'无'}}</text>
+        <text class="icon-text">{{info.phone||info.benefitStoresVos[0].mobile}}</text>
       </view>
       <view class="right" bindtap="mapgo" wx:if="{{info.benefitStoresVos[0].distance}}">
         <image class='icon' src="/static/icon/icon_black_location.png">
@@ -26,15 +26,25 @@
     </view>
     <button wx:if="{{!isSelfCoupon}}" bindtap="getCode" class="free-btn">免费领取</button>
 
+
     <view class='tips-box'>
-      <view class="tips-dd">
+      <view class="tips-dd"  wx:if='{{isSelfCoupon}}'>
+        <view class="tips-title">核销时间</view>
+        <view class="tips-des">{{info.validTimeStr||'永久有效'}}</view>
+      </view>
+      <view class="tips-dd tips-top">
         <view class="tips-title">使用时间</view>
-        <view class="tips-des">{{info.verificationTime||'无'}}</view>
+        <view class="tips-des">{{info.verificationDay}},{{info.verificationTime}}</view>
       </view>
       <view class="tips-dd tips-top">
         <view class="tips-title">使用规则</view>
         <view class="tips-des">{{info.preferentialRules||'无'}}</view>
       </view>
+      <view class="tips-dd tips-top">
+        <view class="tips-title">描述</view>
+        <view class="tips-des">{{info.instructions||'无'}}</view>
+      </view>
     </view>
+    <view class='tips-top'></view>
   </view>
 </view>

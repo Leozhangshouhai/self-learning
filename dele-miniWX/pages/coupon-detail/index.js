@@ -29,11 +29,12 @@ Page({
     }
   },
   getCode() {
+  
     var param = {
       agreementId: this.data.param.agreementId,
       openId: app.globalData.openId,
       personCode: app.globalData.code,
-      hotelId: this.data.param.id,
+      hotelId: this.data.info.benefitStoresVos[0].id+'',
       activityTitle: this.data.info.activityTitle
     }
     Tool.request({
@@ -67,6 +68,9 @@ Page({
         canvasId: 'canvas',
         text: res.qrCodeAddress
       });
+      for (var x of  res.benefitStoresVos) {
+        x.distance = Tool.translateKm(x.distance);
+      }
       this.setData({
         info: res,
       });
@@ -80,6 +84,9 @@ Page({
         ...this.data.param
       }
     }).then((res => {
+      for (var x of  res.benefitStoresVos) {
+        x.distance = Tool.translateKm(x.distance);
+      }
       this.setData({
         info: res,
       });

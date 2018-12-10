@@ -13,7 +13,7 @@
       <input class="from_input ui-size-16 ui-color2" ref="password" placeholder="请填写密码" type="password" v-model="password">
     </div>
     <div class="from_btn">
-      <yd-button size="large" @click.native="recommanderLogin()" type="warning">登陆</yd-button>
+      <yd-button size="large" @click.native="recommanderLogin()" type="warning">登录</yd-button>
     </div>
   </div>
 </template>
