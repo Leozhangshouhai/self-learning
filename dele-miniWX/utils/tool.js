@@ -47,7 +47,7 @@ let tool = {
           wx.hideLoading();
         },
         fail: res => {
-          api.fail && api.fail(res);
+          obj.fail && obj.fail(res);
           wx.setStorageSync('throttle_canRun', true);
         }
       });

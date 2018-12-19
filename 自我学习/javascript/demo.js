@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 // 各种小的 原生的JS语法和注解
 
 
@@ -115,6 +108,31 @@ document.getElementById('loginBtn').onclick = () => {
 
 
 /**
- * 策略模式：
+ * 备忘录模式：以静态形式在内存中对对象数据进行存储，这样可对对象数据进行恢复。
  * 
  * */
+function Memento(){
+    this.storage={};
+}
+Memento.prototype.saveState=function(key,obj){
+    console.log(this)
+    this.storage[key]=JSON.stringify(obj);
+}
+Memento.prototype.restoreState=function(key){
+    var output={};
+    if(this.storage.hasOwnProperty(key)){
+        output= JSON.parse(this.storage[key]) ;
+    }
+    return output;
+}
+var memento=new Memento(),user={name:'leo',age:23};
+memento.saveState('user',user);
+console.log(memento.storage['user']);
+user={
+    name:'CD-leo',age:'18',weight:'80kg'
+};
+console.log(user);
+user=memento.restoreState('user');
+console.log(memento.storage['user']);
+
+

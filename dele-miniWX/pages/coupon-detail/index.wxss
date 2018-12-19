@@ -80,9 +80,9 @@ color: #ff4e63;
   text-align: center;
 }
 .RQ{
-  width: 200rpx;
-  height: 200rpx;
   display: inline-block;
+  height: 160px;
+  width: 160px;
 }
 .show-status{
   text-align: center;

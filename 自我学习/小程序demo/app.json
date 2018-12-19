@@ -1,7 +1,8 @@
 {
   "pages":[
-    "pages/demo/demo",
+   
     "pages/index/index",
+    "pages/demo/demo",
     "pages/logs/logs",
     "pages/wx-picker/wx-picker",
     "pages/wx-view/wx-view",

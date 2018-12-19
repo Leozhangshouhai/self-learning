@@ -61,11 +61,11 @@ Page({
         ...this.data.myparam
       }
     }).then((res => {
-
       drawQrcode({
-        width: qrcode_w,
-        height: qrcode_w,
+        width:150,
+        height: 150,
         canvasId: 'canvas',
+        // text:'https://github.com/yingye'
         text: res.qrCodeAddress
       });
       for (var x of  res.benefitStoresVos) {

@@ -17,6 +17,6 @@
   </picker>
 </view>
 </tagname>
-    <button bindtap="bindSendDanmu">发送3456弹幕</button>
+    <button bindtap="bindSendDanmu">发送3456bindViewTap弹幕</button>
 
 </view>
