@@ -1,0 +1,25 @@
+写一个页面，通知配置地址url，使得适用于其余14个页面。页面title是相对应的局的名字。页面放在公众号里
+目前需要写这三个地址，
+其他的地址全部写带上线，点击后不跳转，
+PS：要求，
+    1.更改任一个 地址和名字 ，可实现跳转。 
+    2.方便增加新配置页面，
+    3.url尾部配置参数 ，见名知意
+
+
+目前以下三个链接暂时放在 交管局页面（UI上，没有显示有交管局）
+{
+  title:'交管局',
+  list:[
+    {name:'驾驶人计分',url:'http://jxw.xmxing.net/jsrweifa.php'}
+  ]
+}
+
+
+
+驾驶人计分
+http://jxw.xmxing.net/jsrweifa.php
+车辆违章查询
+http://jxw.xmxing.net
+工行e缴费
+http://cdwh.org/wh_portal/servlet/IcbcEjfServlet?computeId=22
