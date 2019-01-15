@@ -1,0 +1,69 @@
+.scrollbar(@width;@opacity;) {
+  width: @width;
+  opacity: @opacity / 100;
+  filter: alpha(opacity=@opacity);
+  background: #000;
+  border-radius: 5px;
+  position: absolute;
+  font-size: 0;
+  z-index: 1;
+}
+
+.bar-background {
+  .scrollbar(100%, 10);
+}
+
+.bar {
+  .scrollbar(30%, 50);
+}
+
+.x {
+  left: 0;
+  bottom: 0;
+  height: 19px;
+}
+
+.y {
+  right: 0;
+  top: 0;
+  width: 9px;
+}
+
+.scrollable-wrapper-x{
+  width: 100%;
+  bottom: 0;
+}
+
+.scrollable-wrapper-y{
+  height: 100%;
+  right: 0;
+  top: 0;
+}
+
+
+.mod-scrollable {
+  position: absolute;
+  z-index: 999;
+
+  // 横向滚动条背景
+  .bg-x {
+    .bar-background;
+    .x;
+  }
+  // 纵向滚动条背景
+  .bg-y {
+    .bar-background;
+    .y;
+  }
+
+  // 横向滚动条
+  .bar-x {
+    .bar;
+    .x;
+  }
+  // 纵向滚动条
+  .bar-y {
+    .bar;
+    .y;
+  }
+}

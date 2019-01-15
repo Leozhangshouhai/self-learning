@@ -1,0 +1,91 @@
+@import "../../../../css-base/src/variable";
+.ui-tables {
+  position: relative;
+  margin-top: 10px;
+  min-height: 130px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.ui-tables .force-wrap {
+  white-space: normal !important;
+}
+
+.ui-tables .error-info {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  .icon {
+    color: @color-orange;
+    margin-right: 5px;
+  }
+}
+
+.ui-tip {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 0 none;
+  border-color: white;
+  //background-image: url("img/tip2.png");
+  background-repeat: no-repeat;
+  white-space: normal !important;
+}
+
+.tooltip-inner {
+  width: 208px;
+}
+
+.ui-tables-loading {
+  text-align: center;
+}
+
+.ui-tables-sortable {
+  cursor: pointer;
+  &:hover {
+    color: @main-color;
+  }
+  .icon {
+    font-size: 16px;
+  }
+  .icon + .icon {
+    margin-left: -10px;
+  }
+}
+
+.ui-tables-sortable.active {
+  color: @main-color;
+}
+
+.ui-tables{
+  .table-striped {
+    tbody{
+      tr{
+        // 通过整行样式来标识一条信息的重要性
+        &.tr-green{
+          color: @color-green;
+        }
+        &.tr-orange{
+          color: @color-orange;
+        }
+        &.tr-red{
+          color: @color-red;
+        }
+        &.tr-blue{
+          color: @color-blue;
+        }
+        td{
+          // 有些表格信息太多,需要折行
+          &.td-fold{
+            display: block;
+            min-width: 300px;
+            max-height: 80px;
+            overflow-y: auto;
+            white-space: normal!important;
+            word-break: break-all;
+          }
+        }
+      }
+    }
+  }
+}

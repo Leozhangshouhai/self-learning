@@ -1,0 +1,31 @@
+@import "../../../../css-base/src/variable";
+.ui-batch-input {
+  display: inline-block;
+  .batch-input {
+    font-size: 0;
+    input {
+      font-size: @font-size-base;
+      padding-right: 40px;
+    }
+  }
+  .btn-in-input {
+    display: inline-block;
+    box-sizing: border-box;
+    height: 32px;
+    width: 26px;
+    margin-left: -27px;
+    padding: 5px;
+    background: #fff;
+    border-left: 1px solid @color-border;
+    border-radius: 0 @border-radius-base @border-radius-base 0;
+    vertical-align: middle;
+    &:after {
+      content: "\003E";
+      color: #9b9b9b;
+    }
+  }
+  .batch-textarea {
+    width: 510px;
+    height: 210px;
+  }
+}

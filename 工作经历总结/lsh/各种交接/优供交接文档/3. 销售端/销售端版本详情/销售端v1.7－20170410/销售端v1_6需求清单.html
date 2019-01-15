@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>销售端v1.6需求清单</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/销售端v1_6需求清单/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/axure/axQuery.js"></script>
+    <script src="resources/scripts/axure/globals.js"></script>
+    <script src="resources/scripts/axutils.js"></script>
+    <script src="resources/scripts/axure/annotation.js"></script>
+    <script src="resources/scripts/axure/axQuery.std.js"></script>
+    <script src="resources/scripts/axure/doc.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/messagecenter.js"></script>
+    <script src="resources/scripts/axure/events.js"></script>
+    <script src="resources/scripts/axure/action.js"></script>
+    <script src="resources/scripts/axure/expr.js"></script>
+    <script src="resources/scripts/axure/geometry.js"></script>
+    <script src="resources/scripts/axure/flyout.js"></script>
+    <script src="resources/scripts/axure/ie.js"></script>
+    <script src="resources/scripts/axure/model.js"></script>
+    <script src="resources/scripts/axure/repeater.js"></script>
+    <script src="resources/scripts/axure/sto.js"></script>
+    <script src="resources/scripts/axure/utils.temp.js"></script>
+    <script src="resources/scripts/axure/variables.js"></script>
+    <script src="resources/scripts/axure/drag.js"></script>
+    <script src="resources/scripts/axure/move.js"></script>
+    <script src="resources/scripts/axure/visibility.js"></script>
+    <script src="resources/scripts/axure/style.js"></script>
+    <script src="resources/scripts/axure/adaptive.js"></script>
+    <script src="resources/scripts/axure/tree.js"></script>
+    <script src="resources/scripts/axure/init.temp.js"></script>
+    <script src="files/销售端v1_6需求清单/data.js"></script>
+    <script src="resources/scripts/axure/legacy.js"></script>
+    <script src="resources/scripts/axure/viewer.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (Shape) -->
+      <div id="u0" class="ax_paragraph">
+        <img id="u0_img" class="img " src="resources/images/transparent.gif"/>
+        <!-- Unnamed () -->
+        <div id="u1" class="text">
+          <p><span>销售端V1.7需求清单——录音功能</span></p><p><span>&nbsp;</span></p><p><span>APP-我的超市</span></p><p><span>&nbsp;</span></p><p><span>1. 入口：我的超市-超市详情页</span></p><p><span>2. 详情页取消“新增记录”入口</span></p><p><span>3. 超市详情页，默认隐藏历史拜访记录；点击加载历史拜访记录</span></p><p><span>4. 拜访按钮默认文案为“开始拜访”</span></p><p><span>5. 点击“开始拜访”按钮，做以下校验</span></p><p><span>&nbsp; &nbsp;&nbsp; 1）校验当前是否有其他拜访存在，如存在，提示文案为“正在拜访其他超市，请先结束拜访”</span></p><p><span>&nbsp; &nbsp;&nbsp; 2）校验当前位置与客服打点的距离，并给出相应提示：</span></p><p><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （1）无法获取当前位置时，提示文案为：“定位失败，请重试！请确认设备中的GPS、Wi-Fi以及移动数据均处于开启状态，并确保当前位置信号良好”</span></p><p><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （2）若当前定位与客服打点相距大于100米，且定位精度大于100米时，提示文案为：“超出打点范围，请重试！请确认设备中的GPS、Wi-Fi以及移动数据均处于开启状态，并确保当前位置信号良好”</span></p><p><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （3）若当前定位与客服打点相距大于100米，且定位精度小于100米时，提示文案为：“当前位置超出打点范围，请确认您位于超市附近，或联系客服校准超市位置”</span></p><p><span>6. 拜访录音过程中</span></p><p><span>&nbsp; &nbsp;&nbsp; 1）按钮上展示文案为“结束拜访”，并展示录音时长</span></p><p><span>&nbsp; &nbsp;&nbsp; 2）离开当前正在录音的页面后，在我的超市列表页顶端，展示快速到达正在拜访超市详情页入口</span></p><p><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （1）入口文案为“正在拜访 XXXX（超市名称）”</span></p><p><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （2）点击跳转至正在录音的页面</span></p><p><span>&nbsp; &nbsp;&nbsp; 3）录音拜访过程中，不允许录音拜访其他超市</span></p><p><span>&nbsp; &nbsp;&nbsp; 4）录音存储在本地，若本地缓存已满，提示“本地缓存已满，请先清除本地多余缓存后继续拜访，是否继续拜访？”，若确认继续拜访录音，则清除本地最早历史录音文件</span></p><p><span>&nbsp; &nbsp;&nbsp; 5）若本地无历史文件，且本地缓存已满时，提示“本地缓存已满，请先手动清除本地缓存”</span></p><p><span>&nbsp; &nbsp;&nbsp; 6）检测当前网络环境，若当前所属Wi-Fi环境时，自动上传本地录音文件</span></p><p><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （1）若当日录音没有上传完成，第二天打开销售端进入首页时，弹提示“您还有X条拜访录音没有上传，请尽快链接Wi-Fi，系统将自动为您上传”</span></p><p><span>&nbsp; &nbsp;&nbsp; 7）本地录音文件在本地最多保留7天，若7天后仍未检测到Wi-Fi环境上传，则自动清除</span></p><p><span>7. 结束录音拜访</span></p><p><span>&nbsp; &nbsp;&nbsp; 1）若拜访录音时长小于2min，此次拜访为无效拜访，结束拜访时需二次确认，提示“本次拜访时间小于5分钟，将不记为有效拜访，是否确认结束拜访？”</span></p><p><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; （1）无效拜访的录音仍保存并上传，但此次拜访将不记为有效拜访</span></p><p><span>&nbsp; &nbsp;&nbsp; 2）结束录音时，支持填写拜访备注，拜访备注可为空</span></p><p><span>&nbsp; &nbsp;&nbsp; 3）结束录音时，记录当前位置并上传至服务器，暂不展示</span></p><p><span>&nbsp; &nbsp;&nbsp; 4）若超过90min未停止录音，则消息push，文案为“您当前仍在拜访录音，30分钟后将自动结束，如需继续，请再次开启”，120min时将自动结束拜访录音</span></p><p><span>&nbsp;</span></p><p><span>CRM-拜访录音</span></p><p><span>&nbsp;</span></p><p><span>1. 展示字段：日期、开始拜访时间、结束拜访时间、超市名称、超市账号、超市地址、负责人、所属主管、拜访录音</span></p><p><span>&nbsp; &nbsp;&nbsp; 1）日期为拜访当日日期</span></p><p><span>&nbsp; &nbsp;&nbsp; 2）负责人及所属主管均为录音当日所属负责人及主管</span></p><p><span>&nbsp; &nbsp;&nbsp; 3）拜访录音支持在线播放及下载文件</span></p><p><span>2. 拜访记录产生即在后台展示一条数据，录音文件上传至服务器前，试听及下载按钮置灰</span></p><p><span>3. 默认优先按日期顺序排列，日期相同时，按拜访开始时间顺序排列</span></p><p><span>4. 支持通过主管、销售筛选，可筛选查看时间段，支持通过超市名称及超市账号搜索</span></p><p><span>5. 同一天同一家超市若存在多条拜访（包括所有有效及无效拜访），则在后台保留多条记录</span></p><p><span>6. 下载的录音文件名称，命名格式为：“日期-开始拜访时间-超市名-超市账号-销售名-主管名”</span></p><p><span>&nbsp;</span></p><p><span>&nbsp;</span></p><p><span>&nbsp;</span></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

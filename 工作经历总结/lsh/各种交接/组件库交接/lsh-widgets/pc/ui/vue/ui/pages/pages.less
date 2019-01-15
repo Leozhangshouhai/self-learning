@@ -1,0 +1,60 @@
+@import "../../../../css-base/src/variable";
+.ui-jpages-nav {
+  margin: 30px 0;
+  text-align: center;
+
+  .navitem {
+    font-size: 12px;
+    line-height: 12px;
+    cursor: pointer;
+    margin: 0 5px;
+    color: @color-text;
+    display: inline-block;
+    border: 1px solid #cccccc;
+    border-radius: @border-radius-base;
+    padding: 7px 11px;
+    background-color: #fafafa;
+    &:hover {
+      background-color: @color-blue;
+      color: #ffffff;
+      border-color: @color-blue;
+    }
+  }
+
+  .curNav {
+    font-weight: bold;
+    background-color: @color-link;
+    color: @color-white;
+    cursor: default;
+    text-shadow: none;
+    border-color: @color-link;
+    &:hover {
+      color: @color-white;
+    }
+  }
+
+  span {
+    margin: 0 5px;
+  }
+
+}
+
+.ui-jpages-wrap {
+  position: relative;
+  margin-top: 10px;
+  min-height: 130px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.ui-jpages-nav a.jp-disabled, .ui-jpages-nav a.jp-disabled:hover {
+  color: #bbb;
+}
+
+.ui-jpages-nav a.jp-disabled, .ui-jpages-nav a.jp-disabled:hover {
+  cursor: default;
+  background: none;
+  &:hover {
+    border-color: #cccccc;
+  }
+}

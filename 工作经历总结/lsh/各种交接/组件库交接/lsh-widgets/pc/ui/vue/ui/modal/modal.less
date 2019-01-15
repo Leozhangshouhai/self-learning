@@ -1,0 +1,79 @@
+.ui-modal {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  outline: 0;
+  // 弹窗大内容区
+  .main {
+    min-width: 550px;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1041;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 6px;
+    box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    background-clip: padding-box;
+    outline: 0;
+
+    // 标题
+    .title {
+      display: block;
+      margin: 0;
+      padding: 15px;
+      border-bottom: 1px solid #e5e5e5;
+      min-height: 16px;
+    }
+
+    // 关闭按钮
+    .close {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1;
+      color: #000;
+      text-shadow: 0 1px 0 #fff;
+      opacity: .2;
+      cursor: pointer;
+      &:hover,
+      &:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+        opacity: .5;
+      }
+    }
+
+    .content {
+      max-height: 400px;
+      overflow-y: auto;
+      padding: 15px;
+    }
+
+    .footer {
+      padding: 15px;
+      text-align: right;
+      border-top: 1px solid #e5e5e5;
+    }
+  }
+  // 遮罩
+  .shadow {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000;
+    opacity: .5;
+  }
+}

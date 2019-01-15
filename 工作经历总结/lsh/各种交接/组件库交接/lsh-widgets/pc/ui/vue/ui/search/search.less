@@ -1,0 +1,71 @@
+.ui-search-group {
+  position: relative;
+  border-bottom: 1px dotted #E2E2E2;
+  //padding-bottom: @inside-row-gap;
+  //margin-bottom: @inside-row-gap;
+
+  .ui-search-wrap {
+    display: inline-block;
+    margin-right: 10px;
+    label {
+      min-width: 89px;
+      // text-align: right;
+      padding-right: 0;
+      padding-left: 5px;
+    }
+    input,
+    select {
+      width: 235px;
+      margin-bottom: 2px;
+      margin-top: 2px;
+      margin-right: 0;
+    }
+    .date-picker {
+      //width: @search-input-width;
+    }
+    .date-range {
+      //width: @input-width;
+    }
+    .datepickbox {
+      input {
+        width: 110px;
+      }
+    }
+  }
+
+  .ui-search-reset {
+    cursor: pointer;
+    margin-left: 5px;
+    //padding-right: 5px;
+    //&:hover {
+    //  text-decoration: underline;
+    //}
+  }
+  .ls-form-group {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .search-wrap {
+    display: inline-block;
+  }
+  .btns {
+    margin: 5px 0 10px;
+    text-align: center;
+  }
+}
+
+.modal-ui-search-batch .modal-dialog {
+  width: 400px;
+  textarea {
+    width: 100%;
+    height: 300px;
+  }
+  p {
+    margin: 0;
+    text-align: left;
+  }
+  .batch-error {
+    color: red;
+    display: none;
+  }
+}
