@@ -39,9 +39,7 @@
               let Qs= await wait();
               console.log('Qs:'+Qs);
               function wait(){
-                        for(var i=0;i<10000000000;i++){
-                            
-                        }
+                       
                         return i;
                       }
           }
