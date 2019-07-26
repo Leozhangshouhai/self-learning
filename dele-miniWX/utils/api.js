@@ -1,6 +1,10 @@
 // const baseUrl ="https://dev.abcbooking.cn:82";
 // const baseUrl = "https://pro.abcbooking.cn"; // 线上
 const baseUrl = "https://uat.abcbooking.cn:82";  // 测试
+setTimeout(()=>
+{
+  let app = getApp();
+  console.log(app);},0)
 module.exports = {
   copponDetail: baseUrl +'/hmp_website/activity/agreementDetail.json',
   couponList: baseUrl +'/hmp_website/activity/recommenderAgreementList.json',

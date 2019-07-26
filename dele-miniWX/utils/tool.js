@@ -1,6 +1,7 @@
 import DES from "./3DES";
 import MD5 from "./md5";
 import Base64 from "./base64";
+
 let tool = {
   // request 函数请求
   request(obj) {

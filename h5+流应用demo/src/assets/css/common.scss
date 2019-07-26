@@ -1,0 +1,168 @@
+// @import "./mui.min.css";
+$mainColor:#5998f4;
+$fbcolor:#4054b2;
+$geryFontColir: #938c8c;
+$mainFontColor:white;
+$fbFontColor:#c6d3f6;
+$fbBorderColor:#BBBBBB;
+
+
+
+//  字体大小 1级 60
+
+$size_1:48px;
+$size_2:36px;
+$size_3:30px;
+$size_4:28px;
+$size_5:24px;
+$size_6:18px;
+
+// 顶部颜色
+$tab_color: #f5f8fe;
+$tab_color_active:#d2ddf7;
+
+
+$border_raduis_1:100px;
+$border_raduis_2:25px;
+$border_raduis_3:15px;
+$border_raduis_4:10px;
+$border_raduis_5:5px;
+
+.all-box {
+    background-color:#F5F5F8 100%;
+    height: auto !important;
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    *{
+        font-family: PingFangSC-regular;
+        box-sizing: border-box;
+    }
+    padding-bottom: 120px;
+}
+button{
+    outline: none;
+    border: 0;
+}
+input,textarea {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.bottom-box {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.mint-header{
+    z-index: 10;
+    background-color: $mainColor !important;
+}
+
+.no-more-data {
+    text-align: center;
+    font-size: $size_5;
+    color: $geryFontColir;
+    margin-top: 40px;
+    padding: 60px;
+}
+.outer-index-top-box{
+    height: 120px;
+    position: relative;
+  
+    text-align: center;
+    line-height: 120px;
+    background: linear-gradient(to bottom, #4e1bd4 , #584ff3 );
+    .outer-index-top-box-title{
+        font-size: 14px;
+        text-align: center;
+        z-index: 11;
+        color: white;
+        position: relative;
+    }
+    .outer-index-top-box-bg-img{
+        height: 80px;
+        width:auto;
+        opacity: .8;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+}
+.no-more-data{
+    padding: 15px 0;
+    text-align: center;
+    font-size:13px;
+    color:white;
+  }
+.outer-index-top-box-mui-icon{
+    position: absolute;
+    left: 10px;
+    top: 30px;
+    color: white;
+    z-index: 12;
+    font-size: 24px;
+}
+ .common-money-self-btn{
+    width: 184px;
+    height: 44px;
+    line-height: 44px;
+    margin: 0 auto;
+    border-radius: 4px;
+    padding: 0;
+    letter-spacing: 2px;
+    font-size: 18px;
+    background-color: rgba(87, 30, 235, 1);
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: 0px 7px 7px 0px rgba(170, 170, 170, 1);
+    border: 1px solid rgba(255, 255, 255, 0);
+        }
+
+
+ .mui-share{
+   position: absolute;
+   right: 10px;
+   top:25px;
+   background: #fff;
+   width: 147px;
+   border-radius: 2px;
+   &:after{
+     position: absolute;
+     height: 20px;
+     width: 20px;
+     content: '';
+     background: #fff;
+     border-radius: 2px;
+     top:-5px;
+     right: 11px;
+     transform: rotate(45deg);
+   }
+   ul>li{
+     line-height: 50px;
+     padding-left: 15px;
+     color:rgba(105,108,121,1);
+     border-bottom:1px solid rgba(245,245,247,1);
+     font-size: 14px;
+     height: 50px;
+   }
+   img{
+     width: 20px;
+     vertical-align: middle;
+   }
+ }
+ .common-btn-style{
+    width: 186px;
+    height: 43px;
+    line-height: 43px;
+    border-radius: 10px;
+    padding: 0;
+    background-color: rgba(87, 30, 235, 1);
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0px 7px 7px 0px rgba(170, 170, 170, 1);
+    border: 1px solid rgba(255, 255, 255, 0);
+ }
