@@ -1,0 +1,98 @@
+.testa-pages-login {
+	background: url(testa/src/testa/common/images/bg.png) no-repeat center;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background-size: cover;
+}
+.testa-pages-login .login-content {
+	width: 360px;
+	height: 460px;
+	padding: 40px;
+	box-sizing: border-box;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	margin-top: -200px;
+	margin-left: -180px;
+	border: 1px solid #5A2A90;
+	background: #FFFFFF;
+	box-shadow: 0 20px 40px 0 rgb(109, 50, 130);
+	border-radius: 8px;
+}
+.testa-pages-login .login-logo {
+	width: 100%;
+	height: 55px;
+	margin: 15px 0 20px;
+	background: url(testa/src/testa/common/images/login-logo.png) no-repeat top left;
+}
+.login-text {
+	color: #fff;
+	text-align: center;
+	font-size: 20px;
+	width: 220px;
+	margin: 0px auto 10px;
+	background: #2e164c;
+}
+.testa-pages-login .login-box input.danger {
+	color: #f13a30;
+}
+.testa-pages-login .login-box input {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 15px;
+	outline: 0;
+	border: 2px solid #F5F5F5;
+	border-radius: 4px;
+}
+.testa-pages-login .login-box p {
+	font-weight: normal;
+	font-size: 12px;
+	color: #f13a30;
+	margin: 0;
+	height: 30px;
+	line-height: 30px;
+	width: 100%;
+}
+.testa-pages-login .login-box .error-name {}
+.testa-pages-login .login-box .error-pwd {}
+.testa-pages-login .login-box .login-rember {
+	color: #fff;
+	font-size: 14px;
+	margin: 0px 0 30px;
+	visibility: hidden;
+}
+.testa-pages-login .login-box .login-rember span {
+	display: block;
+}
+.testa-pages-login .login-box .login-checkbox {
+	width: 15px;
+	height: 15px;
+	background: #fff;
+	display: inline-block;
+	cursor: pointer;
+}
+.testa-pages-login .login-box .login-checkbox.checked {
+	background: url('testa/src/testa/common/images/icon-checkbox-select.png') no-repeat center;
+}
+.testa-pages-login .login-box .login-submit {
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 15px;
+	color: #fff;
+	cursor: pointer;
+	border: 0;
+	background: #6B6ED3;
+	border-radius: 4px;
+	margin-top: 30px;
+}
+.testa-pages-login .company-info {
+	font-size: 12px;
+	color: #999999;
+	position: absolute;
+	bottom: 40px;
+	right: 40px;
+}

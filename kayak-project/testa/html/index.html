@@ -1,0 +1,146 @@
+<!doctype html>
+<html class="testa cabin">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="dmall">
+  <meta name="description" content="多点，多点新鲜，Dmall，多点商城，多点新鲜，生活，服务，生鲜，配送">
+  <meta name="keywords" content="多点，多点新鲜，O2O，Dmall，多点商城，多点新鲜，生活，服务，生鲜，配送">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Dmall testa</title>
+  <link rel="icon" href="//static.dmall.com/kayak-project/partner/dist/partner/common/images/favicon.ico"
+    type="image/x-icon">
+  <script type="application/javascript"
+    data-src="??kayak-lib/dist/kayak-lib/jquery2.2.3/jquery-2.2.3.js,kayak-lib/dist/kayak-lib/seajs3.0/sea-debug.js,kayak-lib/dist/kayak-lib/seajs3.0/config.js,kayak-lib/dist/kayak-lib/arttemplate3.0/template-native.js,kayak-lib/dist/kayak-lib/fastclick/fastclick.js,kayak/dist/kayak/plugin/plugin.js"></script>
+</head>
+
+<body>
+  <script>
+    (function () {
+      // 这里进行项目替换
+      window.kayak = window.kayak || {};
+      window.kayak.root = getSourceRoot();
+      window.kayak.EVT = getEvt();
+      window.kayak.urlRequest = getRequest();
+      document.write('<script src="' + window.kayak.root + 'kayak-lib/dist/kayak-lib/jsloader/jsloader.js " type="application/javascript"><\/script>');
+
+      function getSourceRoot() {
+        var param = getRequest();
+        // 调试模式走调试地址
+        if (param.debuglocation && /\/\/[A-Za-z0-9]+.dmall.com/.test(param.debuglocation)) {
+          return param.debuglocation;
+        }
+        // 默认走环境+静态资源路径
+        return getEvt() + 'static.dmall.com/kayak-project/';
+      }
+
+      function getEvt() {
+        var href = window.location.href,
+          result = '';
+        if (href.indexOf('//test') > 0 && href.indexOf('//test.') == -1) {
+          result = '//test';
+        } else if (href.indexOf('//dev') > 0 && href.indexOf('//dev.') == -1) {
+          result = '//dev';
+        } else {
+          result = '//';
+        }
+        return result;
+      }
+
+      function getRequest(type) {
+        var url,
+          theRequest = {},
+          i, strs;
+        type = type || 'search';
+        switch (type) {
+          case 'hash':
+            url = window.top.location.href.split('#')[1] || '';
+            break;
+          case 'search':
+            // 避免hash不规范情况
+            url = window.top.location.href.split('?')[1] || '';
+            url = url.split('#')[0];
+            break;
+        }
+        strs = url.split('&');
+        for (i = 0; i < strs.length; i++) {
+          theRequest[strs[i].split('=')[0]] = unescape(strs[i].split('=')[1]);
+        }
+        return theRequest;
+      }
+    })();
+
+  </script>
+  <script>
+    // 绕过浏览器自身路由bug
+    window.onload = function () {
+      setTimeout(function () {
+        var version = 201710251430;
+        window.kayak.Loader.loadCss(version);
+        window.kayak.Loader.loadJs(function () {
+          FastClick.attach(document.body);
+          seajs.config({
+            EVT: window.kayak.EVT,
+            kayak: {
+              version: version,
+              updateVersion: true,
+              cache: {
+                main: false // main不缓存
+              }
+            }
+          });
+          seajs.use([
+            'kayak/core/kayak',
+            'cabincore/core/cabin', //使用cabincore里面的资源
+            'cabincore/style/base.css', //使用cabincore里面的资源
+            'cabin/theme/partner/partnerup.css',
+            'cabinpro/theme/partner/partner.css'         
+          ], function (kayak) {
+            var kRouter = kayak.router;
+            kayak.router.on('parseMain', function (pathObj) {
+              var projectName = pathObj.path.split('/')[1];
+              pathObj.mainPath = projectName + '/main/main';
+            });
+
+            kRouter.on('parseActions', function (p) {
+              var pathLen = (p.fullPath + '').split('/').length,
+                path = (p.path + '').split('/');
+
+              if (path.length == 1) {
+                p.actionPath = 'testa/layout/' + path[0] + '/' + path[0];
+              }
+              if (pathLen < 4) {
+                if (path.length == 3) {
+                  p.actionPath = path[1] + '/pages/' + path[2] + '/' + path[2];
+                }
+              } else {
+                if (path.length == pathLen) {
+                  var centerPath = '';
+                  for (var i = 2; i < pathLen - 1; ++i) {
+                    centerPath += path[i] + '/';
+                  }
+                  p.actionPath = path[1] + '/pages/' + centerPath + path[pathLen - 1] + '/' + path[pathLen - 1];
+                }
+              }
+            });
+            kRouter.on('preJump', function (e) {
+              if (e.pathData && e.pathData.dmalllink == '' && e.pathData.web == '') {
+                //todo 设置默认跳转页面
+                kRouter.replace('#index/testa/demovue');
+                return;
+              }
+            });
+            kRouter.start();
+          });
+        }, version);
+      }, 1);
+    }
+
+  </script>
+</body>
+
+</html>

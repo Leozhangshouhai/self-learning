@@ -1,0 +1,40 @@
+.testa-header {
+	height: 100%;
+	width: 100%;
+	position: relative;
+	padding: 0 15px;
+}
+.testa-header .partner-account .partner-account-img {
+	background: url(testa/src/testa/common/images/avatar.png) no-repeat center;
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	display: block;
+	margin: 10px 0 0 20px;
+}
+.testa-header .username {
+	color: #808080;
+	font-size: 14px;
+}
+.testa-header .dropdown-menu {
+	border: 1px solid #f5f5f5!important;
+	box-shadow: 0 2px 15px 1px rgba(0, 0, 0, 0.12)!important;
+}
+.testa-header .J_back_out .head-backout {
+	cursor: pointer;
+}
+.testa-header .J_back_out .head-backout:hover {
+	background: #fff;
+}
+.testa-header .head-backout i {
+	width: 20px;
+	height: 20px;
+	margin-left: 25px;
+	display: block;
+	background: url(testa/src/testa/common/images/icon-logout.png) no-repeat center;
+}
+.testa-header .head-backout span {
+	margin-left: 10px;
+	display: block;
+	color: #999999;
+}
