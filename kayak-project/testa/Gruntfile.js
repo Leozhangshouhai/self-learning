@@ -221,7 +221,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
-  grunt.loadNpmTasks('grunt-sass');
+  // grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-autoprefixer');
 
@@ -230,12 +230,12 @@ module.exports = function (grunt) {
     'copy:html', //复制html
     'copy:image', //复制图片
     'uglify', // 压缩js到dist目录
-    'sass:dist', //编译scss
     'autoprefixer:src',
     'cssmin', // 压缩css到dist目录
     'htmlmin', //压缩tpl到dist目录
     'copy:fixCss',
-    'copy:fixJs'
+    'copy:fixJs',
+    // 'sass:dist', //编译scss
   ]);
 
   // 默认被执行的任务列表。
