@@ -13,7 +13,7 @@ import api from '@/assets/js/api.js';
 import html2canvas from "html2canvas"
 Vue.component(Toast.name, Toast);
 // 需要显示底部nav-bar的路径，匹配对应mint-nav-bar的id
-export const INDEXLISTS=['/index','/adIndex','/quotation', '/discover', '/register', '/wealth'];
+export const INDEXLISTS=['/index','/quotation', '/discover', '/mymine', '/wealth'];
 
 export const setNactiveTopColor = function (color = '#fffffe') {
     window.plus && plus.navigator.setStatusBarBackground(color);

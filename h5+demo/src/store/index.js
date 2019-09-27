@@ -12,8 +12,8 @@ const state = {
 	show_nav:true,
 	my_session:fly.localStore('my_session')||'',
     userInfo: fly.localStore('my_userInfo')||{},
-	is_login:fly.localStore('my_session') ?  true:false,
-	selectedIndex:'index',
+	is_login:fly.localStore('my_session')  ?  true:false,
+	selectedIndex:'',
 	SHOWNAVBAR:false,
 	total_amount_rmb:'',
 	is_first_login:true, // 主页首次加载

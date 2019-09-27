@@ -20,6 +20,7 @@ var webpackConfig = merge(baseWebpackConfig, {
   },
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
+    publicPath:'./',
     path: config.build.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
@@ -29,9 +30,13 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env
     }),
+   
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
+      },
+      mangle: {
+        safari10: true
       },
       sourceMap: true,
       minify:true,

@@ -24,12 +24,13 @@ const router = new Router({
 	mode: 'hash',
 	routes: [
 		//如果要缓存某个页面的数据，则在路由后面加上meta: {keepAlive: true}
-		{path: '/', component: register, meta: {title: "首页"}},
+		{path: '/', component:adIndex , meta: {title: "首页"}},
 		{path: '/quotation', component: index, meta: {title: "启动图"}},
 		{path: '/index', component: index, meta: {title: "启动图"}},
 		{path: '/discover', component: index, meta: {title: "启动图"}},
 		{path: '/wealth', component: index, meta: {title: "启动图"}},
 		{path: '/adIndex', component: adIndex, meta: {title: "启动图"}},
+		{path: '/mymine', component: index, meta: {title: "启动图"}},
 		{path: '/register', component: register, meta: {title: "注册"}},
 	],
 	scrollBehavior (to, from, savedPosition) {
@@ -47,18 +48,7 @@ router.beforeEach((to, from, next) => {
 	//定义一个可以记录路由路径变化的数组，这里用在vuex，其实也可以用sessionStorage,或者在window.routeChain等变量
 	// 埋点
 	// 兼容莫名情况，mint-msgbox 有问题
-	// var msg=document.getElementsByClassName('mint-msgbox-wrapper');
-	// var popup=document.getElementsByClassName('mint-indicator');
-	// var vModal=document.getElementsByClassName('v-modal'); 
-	// if(msg.length>0){
-	// 	msg[0].parentNode.removeChild(msg[0]);
-	// }
-	// if(popup.length>0){
-	// 	popup[0].parentNode.removeChild(popup[0]);
-	// }
-	// if(vModal.length>0){
-	// 	vModal[0].parentNode.removeChild(vModal[0]);
-	// }
+
 // 	Indicator.open("加载中...");
 	let routeLength = store.state.routeChain.length;
 	let isLogin= store.state.is_login;
@@ -89,22 +79,29 @@ router.beforeEach((to, from, next) => {
 		}
 	};
 	//- -  -开发
-	  // next();
+	//   next();
 
 	//   正式--APP
-	if(isLogin){
-		next();
-	}else if( CANPATHS.indexOf(to.path) >-1){
+	if(WEBCANPATHS.indexOf(to.path) >-1){
+			console.log(to.path)
 		next();
 	}else{
-		next('/index');
+		if(isLogin){
+			next();
+		}else{
+			console.log(WEBCANPATHS[0])
+			console.log(to.path)
+			next(WEBCANPATHS[0]);
+		}
 	}
-	//  正式 邀请页面
-	//  if( WEBCANPATHS.indexOf(to.path) >-1){
-	// 	next();
-	// }else{
-	// 	next(WEBCANPATHS[0]);
+	// if( CANPATHS.indexOf(to.path) >-1){
+	// 	if(isLogin){
+	// 		next();
+	// 	}else{
+	// 		next('/register');
+	// 	}
 	// }
+
 });
 
 router.afterEach(route => {

@@ -37,7 +37,7 @@
     Vue.component(Button.name, Button);
     import plus_m from "./assets/js/plus.js";
     import "./assets/js/autoSize(100).js";
-    let CANPATHS = ['/login', '/regist', '/recover'];
+    let RETURNPATHS = ['/index', '/', '/adIndex'];
     export default {
         name: 'app',
         data() {
@@ -86,7 +86,6 @@
                 'pageDirection'
             ]),
             SHOWNAVBAR() {
-              
                 return this.$store.state.SHOWNAVBAR;
             }
 
@@ -247,7 +246,7 @@
                                     msg: res.content.up_des,
                                 }).then(res => {
                                     _t.downWgt();
-                                    console.log(res)
+                                   
                                 })
                             } else {
                                 plus.nativeUI.closeWaiting();
@@ -272,7 +271,7 @@
                         if (_t.$store.state.is_login) {
                             console.log(_t.first)
                             // 登陆情况下
-                            if (_t.$route.path == "/index" || _t.$route.path == "/") {
+                            if ( RETURNPATHS.indexOf( _t.$route.path) >-1 ) {
                                 _t.first = _t.first + 1;
                                 plus.nativeUI.toast('再按一次退出应用');
                                 if (_t.first >= 2) {
@@ -284,9 +283,10 @@
                             } else {
                                 //    _t.$router.go(-1);
                             }
+                            return false
                         } else {
 
-                            if (_t.$route.path == "/outerIndex") {
+                            if (_t.$route.path == "/register") {
                                 _t.first = _t.first + 1;
                                 plus.nativeUI.toast('再按一次退出应用');
                                 if (_t.first >= 2) {
@@ -305,10 +305,10 @@
                     plus.runtime.getProperty(plus.runtime.appid, function (inf) {
                         _t.wgtVer = inf.version;
                         console.log("当前应用版本：" + _t.wgtVer);
-                        _t.checkUpdate();
+                        // _t.checkUpdate();
                     });
                     var self = plus.webview.currentWebview();
-                    _t.notice();
+                    // _t.notice();
                     // plus.navigator.setStatusBarBackground('#571eeb');
                 }
                 if (window.plus) {

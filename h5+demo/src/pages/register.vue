@@ -33,12 +33,16 @@
     },
 
     created() {
-     
+      let _t=this;
+    
+      console.log(999999999999)
       CONFIRM({
         msg: '再按一次返回键退出<br>点此可&nbsp;<span style="border-bottom:1px solid #fff" onclick="(function(){console.log(9999)})()">反馈意见</span>',
         showCancelBtn: true,
         enbtnTextArr:['取消',"确认"]
       }).then(res => {
+        _t.$store.state.is_login=1;
+        _t.$router.push('/index')
         console.log(res);
       })
     },

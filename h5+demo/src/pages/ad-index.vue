@@ -52,7 +52,7 @@
         if(this.arr.length>1){
 
         }else{
-          this.$router.push('/register')
+          this.$router.push('/index')
         }
       },
       setTimer(){
@@ -60,7 +60,7 @@
           this.showTimer-=1;
           if(this.showTimer<=0){
             clearInterval(this.timer);
-            this.$router.push('/register')
+            this.$router.push('/index')
           }
         },1000)
       },

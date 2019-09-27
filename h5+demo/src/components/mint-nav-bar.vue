@@ -19,8 +19,8 @@
                 <img slot="icon" v-if="selectedIndex=='discover'" src="../assets/img/new-img/5-1.png">
                 <img slot="icon" v-else src="../assets/img/new-img/5-0.png"> 发现
             </mt-tab-item>
-            <mt-tab-item id="register">
-                <img slot="icon" v-if="selectedIndex=='register'" src="../assets/img/new-img/4-1.png">
+            <mt-tab-item id="mymine">
+                <img slot="icon" v-if="selectedIndex=='mymine'" src="../assets/img/new-img/4-1.png">
                 <img slot="icon" v-else src="../assets/img/new-img/4-0.png">我的
             </mt-tab-item>
          
@@ -39,14 +39,7 @@
     } from 'mint-ui';
     Vue.component(Tabbar.name, Tabbar);
     Vue.component(TabItem.name, TabItem);
-    let urls = {
-        index: '/index',
-        movie: '/movie',
-        owner: '/owner',
-        tradeIndex:'/dealArea',
-        // tradeIndex:'/tradeIndex',
-        getCalculate:'/getCalculate'
-    }
+  
     export default {
         data() {
             return {
@@ -58,6 +51,7 @@
             selected(n){
                 console.log(n)
                 console.log(this.$store.state.selectedIndex)
+            
                 this.$router.push(`/${n}`)
                
             }
