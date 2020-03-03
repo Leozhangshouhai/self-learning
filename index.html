@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>echarts绘制股票分时图</title>
+    <style>
+    /* css 代码  */
+    </style>
+    <script type="text/javascript" src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts.js"></script>
+</head>
+
+<body>
+    <div id="main" style="min-width:400px;height:400px"></div>
+    <script>
+    var _current = new Date();
+    var base = +new Date(_current.getFullYear(), _current.getMonth(), _current.getDate(), 9, 29, 0);
+    var oneMinute = 60 * 1000 * 1;
+    var date = [];
+    var openValue = Math.round(Math.random() * 300);
+    var data = [openValue];
+    var _index = 100;//当前开始数据为空的下标
+
+    for (var i = 1; i < 392; i++) {
+        var now = new Date(base += oneMinute);
+        date.push([now.getHours() < 10 ? ('0' + now.getHours()) : now.getHours(), now.getMinutes() < 10 ? ('0' + now.getMinutes()) : now.getMinutes(), now.getSeconds() < 10 ? ('0' + now.getSeconds()) : now.getSeconds()].join(':'));
+        var _value = Math.round((Math.random() - 0.5) * 20 + data[i - 1]);
+        if(i>=_index){
+            _value = null;
+        }
+        if (_value < 0) {
+            _value = 0;
+        }
+        data.push(_value);
+    }
+    console.log(data);
+
+    option = {
+        tooltip: {
+            trigger: 'axis',
+            triggerOn:'mousemove',
+            confine:true,
+            position: function(pt) {
+                return [pt[0], '10%'];
+            },
+            formatter: function(a,b,c) { //value当前值，index当前索引
+                if(a[1].data){
+                    a[1].data = ((a[1].data-openValue)/openValue).toFixed(2);
+                    return a[0].axisValue+'<br/>模拟数据：'+a[0].data+'<br/>涨跌幅：'+a[1].data+'%';
+                }else{
+                    // return '暂无';
+                }
+            }
+        },
+        title: {
+            left: 'center',
+            text: '股票分时图',
+        },
+        toolbox: {
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        xAxis: [{
+            show: true,
+            type: 'category',
+            boundaryGap: false,
+            data: date,
+            position: 'bottom',
+            axisLabel: {
+                interval: 29,
+                textStyle: {
+                    color: '#333'
+                }
+            },
+            axisLine: {
+                show:true,
+                lineStyle: {
+                    type: 'solid',
+                    color: '#ccc',
+                    width: 1
+                }
+            },
+            // 控制网格线是否显示
+            splitLine: {
+                show: true, 
+                //  改变轴线颜色
+                lineStyle: {
+                    // 使用深浅的间隔色
+                    color: '#ccc'
+                }                            
+            }
+        }],
+        yAxis: [{
+            type: 'value',
+            boundaryGap: [0, '100%'],
+            axisLine: {// 坐标轴线
+                lineStyle: {
+                    type: 'solid',
+                    color: '#ededed',
+                    width: 1
+                }
+            },
+            axisLabel: {// 坐标轴文本标签，详见axis.axisLabel
+                textStyle: {
+                    color: '#000'
+                }
+            },
+            splitArea:{// 分隔区域
+                show:true, // 默认不显示，属性show控制显示与否
+                areaStyle:{// 属性areaStyle（详见areaStyle）控制区域样式
+                    color:['#fbfbfb','#fbfbfb'],//设置格子背景颜色，第一个设置奇数格子，第二个设置偶数格子
+                    opacity:1
+                }
+            }
+        }, {
+            type: 'value',
+            boundaryGap: [0, '100%'],
+            axisLine: {
+                lineStyle: {
+                    type: 'solid',
+                    color: '#ccc',
+                    width: 1
+                }
+            },
+            axisLabel: {
+                interval: 5,
+                textStyle: {
+                    color: '#000'
+                },
+                formatter: function(value, index) { //value当前值，index当前索引
+                    return ((value-openValue)/openValue).toFixed(2)+'%';
+                }
+            }
+        }],
+        series: [{
+            name: '模拟数据',
+            type: 'line',
+            smooth: true,
+            symbol: 'none',
+            sampling: 'average',
+            yAxisIndex: 0,
+            itemStyle: {
+                color: '#cf6a32',
+                width:1
+            },
+            areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#eac3ae'
+                }, {
+                    offset: 1,
+                    color: '#f8f1ed'
+                }])
+            },
+            data: data,
+            //标识线（收盘价）
+            markLine: {
+                symbol:'none',//去掉警戒线最后面的箭头
+                itemStyle: {
+                    normal: {
+                        lineStyle: {
+                            type: 'solid',
+                            color: '#cf6a32',
+                            width:1
+                        },
+                        label: {
+                            show: true,
+                            position: 'middle'//将警示值放在哪个位置，三个值“start”,"middle","end"  开始  中点 结束
+                        }
+                    }
+                },
+                data: [{
+                    name: 'Y 轴值为 '+openValue+' 的水平线',
+                    yAxis: openValue
+                }]
+            }
+        }, {
+            name: '涨跌幅',
+            type: 'line',
+            smooth: true,
+            symbol: 'none',
+            sampling: 'average',
+            yAxisIndex: 1,
+            itemStyle: {
+                color: '#cf6a32',
+                width:1
+            },
+            areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#eac3ae'
+                }, {
+                    offset: 1,
+                    color: '#f8f1ed'
+                }])
+            },
+            data: data
+        }]
+    };
+
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
+    //每隔1秒获取最新数据
+    var _timer = window.setInterval(function(){
+        var now = new Date(base += oneMinute);
+        var _value = Math.round((Math.random() - 0.5) * 20 + data[_index - 1]);
+        if (_value < 0) {
+            _value = 0;
+        }
+        data[_index] = _value;
+        _index++;
+        if(_index>=392){
+            window.clearInterval(_timer);
+        }
+        myChart.setOption(option);
+    },1000)
+    </script>
+</body>
+
+</html>
+

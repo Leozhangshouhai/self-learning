@@ -1,0 +1,15 @@
+@import "base.scss";
+
+//设置body的默认字体和字体大小
+body {
+  color: #323232;
+  font-size: 32px;
+  font-family: "webfont", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", Arial, sans-serif;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  font-size: calc(100vw / 750 * 100);
+  -webkit-tap-highlight-color: transparent;
+}
